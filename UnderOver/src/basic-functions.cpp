@@ -215,6 +215,10 @@ void setCatapultStatus(int status){
   cataStatus = status;
 }
 
+void setCataRotateStatus(int status){
+  rotateStatus = status;
+}
+
 void catapult(){
   //pid stuff
   auto cataPID = PID();
@@ -232,91 +236,81 @@ void catapult(){
   //thread
   while(true){
     
-    //right before shoot
-    if(cataStatus == 1){
-      Motor_Catapult.stop(hold);
+    if (rotateStatus == 1){ //keep rotating
+        Motor_Cata1.setVelocity(35,percent);
+        Motor_Cata1.spin(fwd);
     }
-    //shoot
+    else if (cataStatus == 1){
+      Motor_Cata1.stop(hold);
+    }
     else if (cataStatus == 2){ //R1
-      Motor_Catapult.setVelocity(127, percent);
-      Motor_Catapult.spinToPosition(ready_Pos + 90, deg);
+      Motor_Cata1.setVelocity(127,percent);
+      Motor_Cata1.spinToPosition(ready_Pos + 160,deg);
       wait(200, msec);
-      setCatapultStatus(0);
+      setCataStatus(0);
     }
-    //reset
-    else if (cataStatus == 0) { // After status 2
-      Motor_Catapult.setVelocity(127, percent);
-      Motor_Catapult.spinToPosition(ready_Pos + 360, deg);
-      //set back to hold
-      setCatapultStatus(1);
-      ready_Pos += 360;
-
+    else if (cataStatus == 0){ //AFTER 2
+      Motor_Cata1.setVelocity(127,percent);
+      Motor_Cata1.spinToPosition(ready_Pos + 360,deg);
+      setCataStatus(1);
+      ready_Pos = ready_Pos + 360;
     }
-    else if(cataStatus == 4){ //y (calibration)
+    else if (cataStatus == 4){ //Y
       if(limit1.PRESSED){
-        setCatapultStatus(1);
-        Motor_Catapult.resetPosition();
-      }
-      else{
-        Motor_Catapult.setVelocity(20, percent);
-        Motor_Catapult.spin(fwd);
+        setCataStatus(1);
+        Motor_Cata1.resetPosition();
+
+      }else{
+        Motor_Cata1.setVelocity(20,percent);
+        Motor_Cata1.spin(fwd);
         ready_Pos = 0;
       }
-
-      }
-    else if(cataStatus == 3){ //b  (idk honestly)
-      Motor_Catapult.resetPosition();
-      Motor_Catapult.spinToPosition(5, degrees);
-      Motor_Catapult.resetPosition();
+      // Motor_Cata1.resetPosition();
+      // ready_Pos = 250;
+      // Motor_Cata1.spinToPosition(250, degrees);
+      // setCataStatus(1);
     }
-
-    else if(cataStatus == 5){ //R2
-      if(cataMode == 1){
-        Motor_Catapult.setVelocity(127, percent);
-        Motor_Catapult.spinToPosition(ready_Pos - 80, deg);
+    else if (cataStatus == 3){ //B
+      Motor_Cata1.resetPosition();
+      Motor_Cata1.spinToPosition(5, degrees);
+      Motor_Cata1.resetPosition();
+      //ready_Pos = Motor_Cata1.position(deg);
+      setCataStatus(1);
+    }
+    else if (cataStatus == 5){ //R2
+      if(cataMode==1){
+        Motor_Cata1.setVelocity(127,percent);
+        Motor_Cata1.spinToPosition(ready_Pos - 80,deg);
         wait(200, msec);
-        cataMode = 0;
-        setCatapultStatus(1);
-      }
-      else if(cataMode = 0){
-        Motor_Catapult.setVelocity(127, percent);
-        Motor_Catapult.spinToPosition(ready_Pos, deg);
+        cataMode=0;
+        setCataStatus(1);}
+      else if(cataMode==0){
+        Motor_Cata1.setVelocity(127,percent);
+        Motor_Cata1.spinToPosition(ready_Pos,deg);
         wait(200, msec);
         cataMode=1;
-        setCatapultStatus(1);
-
-
-      }
-      Brain.Screen.setCursor(3, 1);
-      Brain.Screen.print("vel: %.1f                             ", vel);
-      Brain.Screen.setCursor(4, 1);
-      Brain.Screen.print("pos: %.1f                             ", vel);
-
-      this_thread::sleep_for(5);
-
-      }
-    }  
+        setCataStatus(1);}
     }
+    Brain.Screen.setCursor(3, 1);
+    Brain.Screen.print("vel: %.1f                             ", vel);
+    Brain.Screen.setCursor(4, 1);
+    Brain.Screen.print("pos: %.1f                             ", Motor_Cata1.position(degrees));
 
-    
-
-
-
-
-
-
-
-
-void setPistonA(bool _input){ //FRONT TOUCH
-  if(_input) PistonI.off();
-  else PistonI.on();
+    this_thread::sleep_for(5);
+  }
+  
 }
 
-void setPistonE(bool _input){
-  if(_input) PistonE.off();
-  else PistonE.on();
+
+
+void setPistonE(bool _input) {
+  // set Expansion piston accordingly
+  if (_input)  PistonE.on();
+  else PistonE.off();
 }
-void setPistonW(bool _input){  //wings
-  if(_input) PistonW.off();
-  else PistonW.on();
+
+void setPistonA(bool _input) {
+  // set Expansion piston accordingly
+  if (_input)  PistonA.off();
+  else PistonA.on();
 }
