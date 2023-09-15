@@ -16,7 +16,6 @@
 // ---- END VEXCODE CONFIGURED DEVICES ----
 #include "ezize.h"
 #include "basic-functions.h"
-#include "auton-functions.h"
 #include "parameters.h"
 #include "autonomous.h"
 #include "my-timer.h"
@@ -86,16 +85,16 @@ void usercontrol(void) {
   int print_i = 0;
   int autocollide = 0;
   bool RightPressed = 0;
-
-
-  /*while(1){
-    for (int i=0; i < 8; i++){
-      speed_volt(55+i*5, i+1);
-    }
-  } */
+  bool UpPressed = 0;
+  bool DownPressed = 0;
+  bool R2Pressed = 0;
+  bool BAPressed = 0;
+  bool rotateStatus = 0;
+  bool extensionStatus = 0;
+  bool lowhangStatus = 0;
+  float m_degree= Motor_Cata1.position(deg);
 
   while(true) {
-    
 
     int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
     int Ch2 = abbs(C2) < Joystick_LowerDeadzone ? 0 : C2;
@@ -103,44 +102,61 @@ void usercontrol(void) {
     // int Ch4 = abbs(C4) < Joystick_LowerDeadzone ? 0 : C4;
     if ((abbs(Ch3) < 30 || sign(Ch3) == sign(Ch2)) && abbs(Ch2) > 80 && abbs(Ch2) > abbs(Ch1) + 40) autocollide = sign(Ch2);
     else if ((abbs(Ch3) >= 50 && !(Ch3 > 0 && autocollide == 1)) || (abbs(Ch2) < abbs(Ch1) && abbs(Ch1) > 40)) autocollide = 0;
-
     
-   
-    
-
-    /*else*/ if (autocollide == 0) {
-      moveLeft(Ch3 + 0.8 * Ch1);
-      moveRight(-Ch3 + 0.8 * Ch1);
+    if (autocollide == 0) {
+      moveLeft(Ch3 + 1 * Ch1);
+      moveRight(Ch3 - 1 * Ch1);
     } 
     else {
       moveLeft(autocollide * 15);
       moveRight(autocollide * 15);
     }
-
-    if (L1) setIntakeSpeed(-80);  //intake for holding
-    else if (L2) setIntakeSpeed(100); //out take 
-    else setIntakeSpeed(0); 
-
-    if (R1) setCatapultStatus(2);
-    if (R2) setCatapultStatus(5);
-    if (BY) setCatapultStatus(4);
-    if (BB) setCatapultStatus(3);
-
-
-  //  if (R1) 
-  //  else if (R2) 
-    if (R1) setPistonW(true);
-
-    if (UP) autocollide = -1;
         
-  
-    if (DOWN) {
-      runAuton(auton_choose);
-      //runSkill();
-    }
+    if (L1) setIntakeSpeed(100);
+    else if (L2) setIntakeSpeed(-100);
+    else setIntakeSpeed(0);
 
-    if (RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 5 + 1;
-    RightPressed = RIGHT;
+    if (BA && !BAPressed) {
+      rotateStatus = !rotateStatus;
+      setCataRotateStatus(rotateStatus);
+    }
+    BAPressed = BA;
+
+    if (BY) setCataStatus(4);
+    if (BB) setCataStatus(3);
+    if (R1) setCataStatus(2);
+    if (R2) setCataStatus(5);
+    // if (R2 && !R2Pressed) changeCataMode();
+    // R2Pressed = R2;
+
+    if (UP && !UpPressed){
+      extensionStatus = !extensionStatus;
+      setPistonE(extensionStatus);
+    }
+    UpPressed = UP;
+
+    if (LEFT) setPistonE(false);
+
+    if (DOWN && !DownPressed){
+      lowhangStatus = !lowhangStatus;
+      setPistonA(lowhangStatus);
+    }
+    DownPressed = DOWN;
+
+    if (RIGHT) setPistonA(false);
+
+    //only when down and R2 are both pressed we run auton
+    // if (DOWN && R2) {
+    //   runAuton(auton_choose);
+    //   //runSkill();
+    // }
+
+    // if (RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 3 + 1;
+    // RightPressed = RIGHT;
+
+    m_degree = Motor_Cata1.position(deg)/3;
+    Brain.Screen.setCursor(8, 1);
+    Brain.Screen.print(m_degree);
 
     if (print_i == 0){
       // Brain.Screen.clearScreen();
@@ -150,23 +166,14 @@ void usercontrol(void) {
       Brain.Screen.setCursor(2, 1);
       Brain.Screen.print("ForwardPosition: %.1f                     ", getForwardPos());
 
-      Brain.Screen.setCursor(5, 1);
-      Brain.Screen.print("rotation angle: %f                          ", Rotation1.angle());
-
-      Brain.Screen.setCursor(6, 1);
-      Brain.Screen.print("rotation angle: %f                          ", Motor_Catapult.position(degrees));
-
       Brain.Screen.setCursor(7, 1);
       Brain.Screen.print("Auton choose: %d                          ", auton_choose);
-   
-      Brain.Screen.setCursor(8, 1);
-      if (target_blue==true) Brain.Screen.print("Target_color choose: blue                         ");
-      else Brain.Screen.print("Target_color choose: red                          ");
     }
     print_i += 1;
-    print_i %= 500;
+    print_i %= 100;
 
     this_thread::sleep_for(5);
+    
   }
 }
 
@@ -176,24 +183,17 @@ void usercontrol(void) {
 // Main will set up the competition functions and callbacks.
 //
 int main() {
-  wait(1000, msec);
+  /*wait(1000, msec);
+  setPistonE(false);
   IMU.startCalibration();
   while (IMU.isCalibrating()) {
   }
-  setPistonW(false);
-  Rotation1.resetPosition();
-  wait(1000, msec);
+  wait(1000, msec);*/
 
-
-
-
-  thread GPSPosition(MyGpsPos);
   thread Intake(intake);
   thread Catapult(catapult);
-  
-
-
-  
+  // thread GPSPosition(MyGpsPos);
+  setPistonE(true);
   
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
