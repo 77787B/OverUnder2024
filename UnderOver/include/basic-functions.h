@@ -54,6 +54,7 @@ void intake();
 
 //Cata
 void setCatapultStatus(int);
+void setCataRotateStatus(int);
 void catapult();
 
 /*
@@ -70,7 +71,6 @@ void catapult();
 //Piston
 void setPistonA(bool);
 void setPistonE(bool);
-void setPistonW(bool);
 
 
 void speed_volt(float, int);
