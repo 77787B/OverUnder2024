@@ -19,15 +19,13 @@ controller Controller1 = controller(primary);
   motor Motor_BaseRM = motor(PORT12, ratio6_1, true);
   motor Motor_BaseRB = motor(PORT11, ratio6_1, true);
   motor Motor_Intake1 = motor(PORT17, ratio6_1, true);
-  motor Motor_Catapult = motor(PORT10, ratio18_1, true);
+  motor Motor_Cata1 = motor(PORT10, ratio36_1, true);
 
-  led PistonI = led(Brain.ThreeWirePort.C); //Intake 
-  led PistonE = led(Brain.ThreeWirePort.B); //Elevation
-  led PistonW = led(Brain.ThreeWirePort.H); //Wall
-  
-  inertial IMU = inertial(PORT10);
-  rotation Rotation1 = rotation(PORT13);
-  limit limit1 = limit(Brain.ThreeWirePort.F);
+  inertial IMU = inertial(PORT5);
+  led PistonE = led(Brain.ThreeWirePort.B); //Extension 1
+  led PistonA = led(Brain.ThreeWirePort.G); //Extension 2
+  limit limit1 = limit(Brain.ThreeWirePort.F);//Cata LIMIT
+
   
 
 #endif
