@@ -20,7 +20,29 @@ void auton_far_1() { //AWP SAFETY
   MyTimer autotimer;
   autotimer.reset();
  
+  
+  //pos forward
+  MyGps.gpsPIDMove(0, -1100, -1);
+  PIDAngleRotateAbs(90);
 
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(500);
+
+  setIntakeSpeed(0);
+
+  posForwardAbsWithHeading(90, -200, 90);
+
+
+  MyGps.gpsPIDMove(0, -1100);
+  PIDAngleRotateAbs(0);
+
+  MyGps.gpsPIDMove(0, 200, 1);
+  PIDAngleRotateAbs(90);
+
+  MyGps.gpsPIDMove(600, 200, 1);
+  setCataStatus(5);
+
+  
 
 
 
@@ -34,7 +56,36 @@ void auton_far_2(){
   MyTimer autotimer;
   autotimer.reset();
 
+
+ 
+//first ball
+  MyGps.gpsPIDMove(0, -1100, -1);
+  PIDAngleRotateAbs(90);
+
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
+
+  posForwardAbsWithHeading(90, -200, 90);
+
+
+  MyGps.gpsPIDMove(0, -1100);
+  PIDAngleRotateAbs(0);
+
+
+
+  // setIntakeSpeed(100);
+  // MyGps.gpsPIDMove(0, -1400);
+  // this_thread::sleep_for(300);
+  // setIntakeSpeed(0);
+
+  // MyGps.gpsPIDMove(0, -1000);
+  // PIDAngleRotateAbs(90);
+
   
+
+
+
 
 
 
@@ -47,6 +98,7 @@ void auton_far_2(){
 
 void auton_far_3() {
 
+ 
 }
 
 
@@ -63,7 +115,13 @@ void auton_near_1() { //AWP SAFETY
 }
 
 void auton_near_2() {
+  MyTimer autotimer;
+  autotimer.reset();
+
   
+
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
 }
 
 void auton_near_3() {

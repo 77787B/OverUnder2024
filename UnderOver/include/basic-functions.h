@@ -56,6 +56,7 @@ void intake();
 void setCataStatus(int);
 void setCataRotateStatus(int);
 void catapult();
+void initCata();
 
 /*
 void catapultStatus(bool);

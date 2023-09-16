@@ -86,7 +86,7 @@ void usercontrol(void) {
   int autocollide = 0;
   bool RightPressed = 0;
   bool UpPressed = 0;
-  bool DownPressed = 0;
+  bool BxPressed = 0;
   bool R2Pressed = 0;
   bool BAPressed = 0;
   bool rotateStatus = 0;
@@ -137,11 +137,14 @@ void usercontrol(void) {
 
     if (LEFT) setPistonE(false);
 
-    if (DOWN && !DownPressed){
+    if (DOWN) runAuton(auton_choose);
+    // if(DOWN && R2) runSkill();
+
+    if (BX && !BxPressed){
       lowhangStatus = !lowhangStatus;
       setPistonA(lowhangStatus);
     }
-    DownPressed = DOWN;
+    BxPressed = BX;
 
     if (RIGHT) setPistonA(false);
 
@@ -189,6 +192,7 @@ int main() {
   while (IMU.isCalibrating()) {
   }
   wait(1000, msec);
+  initCata();
 
   thread Intake(intake);
   thread Catapult(catapult);

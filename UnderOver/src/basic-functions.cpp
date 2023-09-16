@@ -232,6 +232,13 @@ void setCataRotateStatus(int status){
   rotateStatus = status;
 }
 
+void initCata(){
+    Motor_Cata1.resetPosition();
+    Motor_Cata1.setVelocity(90,percent);
+    Motor_Cata1.spinToPosition(120,deg);
+}
+
+
 void catapult(){
   auto cataPID = PID();
   cataPID.setCoefficient(5, 0, 0);
@@ -246,7 +253,7 @@ void catapult(){
 
   while(true){
     if (rotateStatus == 1){ //keep rotating
-        Motor_Cata1.setVelocity(35,percent);
+        Motor_Cata1.setVelocity(45,percent);
         Motor_Cata1.spin(fwd);
     }
     else if (cataStatus == 1){
