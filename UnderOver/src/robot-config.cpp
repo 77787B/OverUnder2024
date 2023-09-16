@@ -21,7 +21,7 @@ controller Controller1 = controller(primary);
   motor Motor_Intake1 = motor(PORT17, ratio6_1, true);
   motor Motor_Cata1 = motor(PORT10, ratio36_1, true);
 
-  inertial IMU = inertial(PORT5);
+  inertial IMU = inertial(PORT7);
   led PistonE = led(Brain.ThreeWirePort.B); //Extension 1
   led PistonA = led(Brain.ThreeWirePort.G); //Extension 2
   limit limit1 = limit(Brain.ThreeWirePort.F);//Cata LIMIT
