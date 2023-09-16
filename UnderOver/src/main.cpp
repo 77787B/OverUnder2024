@@ -183,17 +183,16 @@ void usercontrol(void) {
 // Main will set up the competition functions and callbacks.
 //
 int main() {
-  /*wait(1000, msec);
+  wait(1000, msec);
   setPistonE(false);
   IMU.startCalibration();
   while (IMU.isCalibrating()) {
   }
-  wait(1000, msec);*/
+  wait(1000, msec);
 
   thread Intake(intake);
   thread Catapult(catapult);
-  // thread GPSPosition(MyGpsPos);
-  setPistonE(true);
+  thread GPSPosition(MyGpsPos);
   
   // Set up callbacks for autonomous and driver control periods.
   Competition.autonomous(autonomous);
