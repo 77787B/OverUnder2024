@@ -53,7 +53,7 @@ void setIntakeSpeed(float);
 void intake();
 
 //Cata
-void setCatapultStatus(int);
+void setCataStatus(int);
 void setCataRotateStatus(int);
 void catapult();
 

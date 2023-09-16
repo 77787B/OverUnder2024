@@ -6,7 +6,6 @@
 #include "my-timer.h"
 #include "ezize.h"
 #include "iostream"
-#include "roundRobinQueue.h"
 using namespace std;
 
 bool autonChecker = false;
@@ -189,6 +188,18 @@ float getPitch() {
   return IMU.pitch();
 }
 
+void setPistonE(bool _input) {
+  // set Expansion piston accordingly
+  if (_input)  PistonE.off();
+  else PistonE.on();
+}
+
+void setPistonA(bool _input) {
+  // set Expansion piston accordingly
+  if (_input)  PistonA.off();
+  else PistonA.on();
+}
+
 float intake_speed = 0;
 
 void setIntakeSpeed(float _input){
@@ -196,22 +207,24 @@ void setIntakeSpeed(float _input){
 }
 
 void intake() {
-
   while(true){
-    if (fabs(intake_speed) > 100) intake_speed = sign(intake_speed) * 100;
     Motor_Intake1.spin(directionType::fwd, (int)130 * intake_speed, voltageUnits::mV);
-
-    this_thread::sleep_for(5);
+    this_thread::sleep_for(1);
   }
 }
 
-// ---------cataStatus ---------
-// 1 = ready to shoot  2 = shooting
-// 0 = pulling down to preshoot pos
+// ---------- cataStatus --------- 
+// 1 = ready to shoot   2 = shooting
+// 0 = pulling down to preshoot position
 int cataMode = 1;
 int cataStatus = 1;
+int rotateStatus = 0;
 
-void setCatapultStatus(int status){
+// void changeCataMode(){
+//   cataMode = !cataMode;
+// }
+
+void setCataStatus(int status){
   cataStatus = status;
 }
 
@@ -220,7 +233,6 @@ void setCataRotateStatus(int status){
 }
 
 void catapult(){
-  //pid stuff
   auto cataPID = PID();
   cataPID.setCoefficient(5, 0, 0);
   cataPID.setTarget(0);
@@ -229,13 +241,10 @@ void catapult(){
   cataPID.setErrorTolerance(2);
   cataPID.setDTolerance(20);
   cataPID.setJumpTime(50);
-  //def
   double vel = 0, pos_last = 0, pos_crt = 0;
-  double ready_Pos = Motor_Catapult.position(deg);
+  double ready_Pos = Motor_Cata1.position(deg);
 
-  //thread
   while(true){
-    
     if (rotateStatus == 1){ //keep rotating
         Motor_Cata1.setVelocity(35,percent);
         Motor_Cata1.spin(fwd);
@@ -299,18 +308,4 @@ void catapult(){
     this_thread::sleep_for(5);
   }
   
-}
-
-
-
-void setPistonE(bool _input) {
-  // set Expansion piston accordingly
-  if (_input)  PistonE.off();
-  else PistonE.on();
-}
-
-void setPistonA(bool _input) {
-  // set Expansion piston accordingly
-  if (_input)  PistonA.off();
-  else PistonA.on();
 }

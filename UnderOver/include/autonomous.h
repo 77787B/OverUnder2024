@@ -7,21 +7,17 @@
 
 
 
+void auton_far_1(void);
+
+void auton_far_2(void);
+
+void auton_far_3(void); 
+
 void auton_left_1(void);
 
 void auton_left_2(void);
 
-void auton_left_3(void); //awp
-
-void auton_right_1(void);
-
-void auton_right_2(void);
-
-void auton_right_3(void);
-
-void auton_AWP(void);
-
-void auton_low(void);
+void auton_left_3(void);
 
 void runAuton(int);
 
