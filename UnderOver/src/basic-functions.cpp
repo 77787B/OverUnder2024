@@ -305,8 +305,8 @@ void catapult(){
 
 void setPistonE(bool _input) {
   // set Expansion piston accordingly
-  if (_input)  PistonE.on();
-  else PistonE.off();
+  if (_input)  PistonE.off();
+  else PistonE.on();
 }
 
 void setPistonA(bool _input) {

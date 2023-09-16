@@ -38,6 +38,12 @@ void auton_left_1() { //AWP SAFETY
   Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
 }
 
+void auton_AWP(){
+  MyTimer autotimer;
+  autotimer.reset();
+
+}
+
 
 void auton_left_2() {
 
@@ -158,7 +164,8 @@ void runAuton(int auton_choose) {
  
 
 
-  if (auton_choose == 1) auton_left_1(); 
+  if (auton_choose == 1) auton_AWP(); 
+ // if (auton_choose == 1) auton_left_1(); 
  // else if (auton_choose == 2) auton_left_2();  
  // else if (auton_choose == 3) auton_left_3(); 
   else if (auton_choose == 2) auton_right_1(); 
