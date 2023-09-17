@@ -93,7 +93,7 @@ void usercontrol(void) {
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
-
+  initCata();
   while(true) {
 
     int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
@@ -119,6 +119,7 @@ void usercontrol(void) {
     if (BA && !BAPressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
+      if(rotateStatus ==0) setCataStatus(4);
     }
     BAPressed = BA;
 
@@ -137,7 +138,10 @@ void usercontrol(void) {
 
     if (LEFT) setPistonE(false);
 
-    if (DOWN) runAuton(auton_choose);
+    if(DOWN) runAuton(auton_choose);
+    if(RIGHT && !RightPressed) auton_choose = 3;
+    RightPressed = RIGHT;
+
     // if(DOWN && R2) runSkill();
 
     if (BX && !BxPressed){
@@ -146,7 +150,7 @@ void usercontrol(void) {
     }
     BxPressed = BX;
 
-    if (RIGHT) setPistonA(false);
+    // if (RIGHT) setPistonA(false);
 
     //only when down and R2 are both pressed we run auton
     // if (DOWN && R2) {
@@ -192,7 +196,6 @@ int main() {
   while (IMU.isCalibrating()) {
   }
   wait(1000, msec);
-  initCata();
 
   thread Intake(intake);
   thread Catapult(catapult);

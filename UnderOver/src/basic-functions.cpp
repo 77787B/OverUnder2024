@@ -253,8 +253,9 @@ void catapult(){
 
   while(true){
     if (rotateStatus == 1){ //keep rotating
-        Motor_Cata1.setVelocity(45,percent);
+        Motor_Cata1.setVelocity(85 ,percent);
         Motor_Cata1.spin(fwd);
+
     }
     else if (cataStatus == 1){
       Motor_Cata1.stop(hold);
@@ -277,7 +278,7 @@ void catapult(){
         Motor_Cata1.resetPosition();
 
       }else{
-        Motor_Cata1.setVelocity(20,percent);
+        Motor_Cata1.setVelocity(40,percent);
         Motor_Cata1.spin(fwd);
         ready_Pos = 0;
       }
@@ -289,6 +290,7 @@ void catapult(){
     else if (cataStatus == 3){ //B
       Motor_Cata1.resetPosition();
       Motor_Cata1.spinToPosition(5, degrees);
+
       Motor_Cata1.resetPosition();
       //ready_Pos = Motor_Cata1.position(deg);
       setCataStatus(1);

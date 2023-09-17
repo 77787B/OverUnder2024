@@ -19,10 +19,12 @@ void autonInit(void) {
 void auton_far_1() { //AWP SAFETY
   MyTimer autotimer;
   autotimer.reset();
+
+  initCata();
  
   
   //pos forward
-  MyGps.gpsPIDMove(0, -1100, -1);
+  MyGps.gpsPIDMove(0, -1200, -1);
   PIDAngleRotateAbs(90);
 
   setIntakeSpeed(-100);
@@ -30,16 +32,17 @@ void auton_far_1() { //AWP SAFETY
 
   setIntakeSpeed(0);
 
-  posForwardAbsWithHeading(90, -200, 90);
+  posForwardAbsWithHeading(90, -150, 90);
+  MyGps.gpsPIDMove(0, -1200);
 
-
-  MyGps.gpsPIDMove(0, -1100);
   PIDAngleRotateAbs(0);
 
-  MyGps.gpsPIDMove(0, 200, 1);
+
+  MyGps.gpsPIDMove(-200, 10, 1);
   PIDAngleRotateAbs(90);
 
-  MyGps.gpsPIDMove(600, 200, 1);
+
+  MyGps.gpsPIDMove(650, 10, 1);
   setCataStatus(5);
 
   
@@ -57,20 +60,47 @@ void auton_far_2(){
   autotimer.reset();
 
 
+  initCata();
  
 //first ball
-  MyGps.gpsPIDMove(0, -1100, -1);
+  MyGps.gpsPIDMove(0, -1200, -1);
   PIDAngleRotateAbs(90);
 
   setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
+  this_thread::sleep_for(500);
+
   setIntakeSpeed(0);
 
-  posForwardAbsWithHeading(90, -200, 90);
+  posForwardAbsWithHeading(90, -150, 90);
+  
+
+  MyGps.gpsPIDMove(-100, -1200);   
+  setIntakeSpeed(0);
+  PIDAngleRotateAbs(-45);
+
+//2nd
+  
+  MyGps.gpsPIDMove(80, -1290, -1, 80);
+
+  setIntakeSpeed(100);
+  this_thread::sleep_for(800);
+
+  setIntakeSpeed(0);
+
+  //MyGps.gpsPIDMove(0, -1100, -1);
+  PIDAngleRotateAbs(90);
+
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(800);
+  setIntakeSpeed(0);
+
+  posForwardAbsWithHeading(90, -320, 90);
 
 
-  MyGps.gpsPIDMove(0, -1100);
-  PIDAngleRotateAbs(0);
+
+
+
+  
 
 
 
@@ -107,12 +137,39 @@ void auton_near_1() { //AWP SAFETY
 
   MyTimer autotimer;
   autotimer.reset();
+  setIntakeSpeed(100);
+  setCataStatus(5);
+  softStartTimerForward(0, 80, 200);
+  posForwardAbsWithHeading(80, 1000, 0);
+  PIDPosForwardAbs(1180);
+  PIDPosForwardAbs(670);
+  PIDAngleRotateAbs(-135, 2.5, 0.03, 5, 1.5);
+  // this_thread::sleep_for(50);
+  setCataStatus(2);
+  this_thread::sleep_for(300);
 
-  
+  setIntakeSpeed(0);
+  PIDAngleRotateAbs(-150);
+  setCataStatus(5);
+  PIDPosForwardAbs(830);
+  // setPistonHook(1);
+  voltageForward(15);
+  this_thread::sleep_for(400);
 
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
+  resetForwardPos();
+  PIDPosForwardAbs(-500);
+  this_thread::sleep_for(100);
+  resetForwardPos();
+  PIDPosCurveAbs(1, 800);
+  // setPistonHook(0);
+  setIntakeSpeed(-100);
+  PIDPosForwardAbs(800);
+  setIntakeSpeed(0);
+
+  Brain.Screen.setCursor(8, 1);
+  Brain.Screen.print("Auton Time: %.1f                 ", autotimer.getTime());
 }
+
 
 void auton_near_2() {
   MyTimer autotimer;
