@@ -200,12 +200,13 @@ void PIDAngleRotateAbs(float _target, float kp, float ki, float kd, float tolera
 
   // auto myTimer = MyTimer();
   auto pid = PID();
-  //pid.setCoefficient(0.9, 0.1, 3);
-  pid.setCoefficient(kp, ki, kd);
+  pid.setCoefficient(0.9, 0.1, 3);
+  // pid.setCoefficient(kp, ki, kd);
   pid.setTarget(_target);
   pid.setIMax(30);
   pid.setIRange(15);
-  pid.setErrorTolerance(tolerance);
+  // pid.setErrorTolerance(tolerance);
+  pid.setErrorTolerance(2.5);
   pid.setDTolerance(5);
   pid.setJumpTime(20);
   pid.setType("turn");
