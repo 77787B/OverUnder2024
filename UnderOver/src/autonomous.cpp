@@ -20,39 +20,48 @@ void auton_far_1() { //AWP SAFETY
   MyTimer autotimer;
   autotimer.reset();
 
-  initCata();
- 
+  // initCata();
   
-  //pos forward
-  MyGps.gpsPIDMove(0, -1200, -1);
-  PIDAngleRotateAbs(90);
+  // //pos forward
+  MyGps.gpsPIDMove(0, 650, 1);
+  this_thread::sleep_for(500); 
 
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
+  timerForward(60, 500);
+  this_thread::sleep_for(200);
 
-  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(0, 0, -1);  
+  // // // turn clockwise
+  PIDAngleRotateAbs(55);
+  // this_thread::sleep_for(500);
 
-  posForwardAbsWithHeading(90, -150, 90);
-  MyGps.gpsPIDMove(0, -1200);
+  // // backup a bit
+  MyGps.gpsPIDMove(0, -100, -1);
+  // this_thread::sleep_for(5000);
 
-  PIDAngleRotateAbs(0);
+  // backup to horizontal bar
+  // MyGps.gpsPIDMove(0, -650, -1);
+  // this_thread::sleep_for(250);
+
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(500);
+
+  // setIntakeSpeed(0);
+
+  // posForwardAbsWithHeading(90, -150, 90);
+  // MyGps.gpsPIDMove(0, -1200);
+
+  // PIDAngleRotateAbs(0);
 
 
-  MyGps.gpsPIDMove(-200, 10, 1);
-  PIDAngleRotateAbs(90);
+  // MyGps.gpsPIDMove(-200, 10, 1);
+  // PIDAngleRotateAbs(90);
 
 
-  MyGps.gpsPIDMove(650, 10, 1);
-  setCataStatus(5);
+  // MyGps.gpsPIDMove(650, 10, 1);
+  // setCataStatus(5);
 
-  
-
-
-
-
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
+  // Brain.Screen.setCursor(11, 1);
+  // Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
 }
 
 void auton_far_2(){
