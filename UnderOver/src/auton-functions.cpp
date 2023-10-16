@@ -17,6 +17,8 @@ void voltageForward(float _power){
 }
 
 void timerForward(float _power, int _duration) {
+  printf ("timerForward: %.1f, %i, \n", _power, _duration);
+
   // move forward with _power for _duration msec
   // does not stop base when finishing
   moveForward(_power);
@@ -195,18 +197,20 @@ void PIDAngleRotateRel(float _target) {
 }
 
 void PIDAngleRotateAbs(float _target, float kp, float ki, float kd, float tolerance) {
+  printf ("PIDAngleRotateAbs: target=%.1f, \n", _target);
+
   // rotate clockwise with _power to _target angle
   // stops base when finishing
 
   // auto myTimer = MyTimer();
   auto pid = PID();
-  pid.setCoefficient(0.9, 0.1, 3);
-  // pid.setCoefficient(kp, ki, kd);
+  // pid.setCoefficient(0.9, 0.1, 3);
+  pid.setCoefficient(kp, ki, kd);
   pid.setTarget(_target);
   pid.setIMax(30);
   pid.setIRange(15);
-  // pid.setErrorTolerance(tolerance);
-  pid.setErrorTolerance(2.5);
+  pid.setErrorTolerance(tolerance);
+  //pid.setErrorTolerance(2.5);
   pid.setDTolerance(5);
   pid.setJumpTime(20);
   pid.setType("turn");
@@ -215,9 +219,11 @@ void PIDAngleRotateAbs(float _target, float kp, float ki, float kd, float tolera
     moveClockwise(pid.getOutput());
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Heading: %.2f            ", getHeading());
-    
     this_thread::sleep_for(5);
   }
+
+  printf ("PIDAngleRotateAbs: end=%.1f, \n", getHeading());
+
   resetForwardPos();
   unlockBase();
 }

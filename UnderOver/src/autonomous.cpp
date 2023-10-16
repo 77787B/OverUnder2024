@@ -17,51 +17,28 @@ void autonInit(void) {
 
 
 void auton_far_1() { //AWP SAFETY
+  printf ("\nauton_scenario_1_far_1:\n");
+
   MyTimer autotimer;
   autotimer.reset();
 
-  // initCata();
+  /***** 1: Push tribal into goal *****/
   
-  // //pos forward
+  // 1.1
   MyGps.gpsPIDMove(0, 650, 1);
+  this_thread::sleep_for(100); 
+  timerForward(60, 400);
+  
+  // /***** 2: Move back to bar *****/
+
+  // // 2.1
+  MyGps.gpsPIDMove(0, 0, -1);
   this_thread::sleep_for(500); 
 
-  timerForward(60, 500);
-  this_thread::sleep_for(200);
-
-  MyGps.gpsPIDMove(0, 0, -1);  
-  // // // turn clockwise
-  PIDAngleRotateAbs(55);
-  // this_thread::sleep_for(500);
-
-  // // backup a bit
-  MyGps.gpsPIDMove(0, -100, -1);
-  // this_thread::sleep_for(5000);
-
-  // backup to horizontal bar
-  // MyGps.gpsPIDMove(0, -650, -1);
-  // this_thread::sleep_for(250);
-
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(500);
-
-  // setIntakeSpeed(0);
-
-  // posForwardAbsWithHeading(90, -150, 90);
-  // MyGps.gpsPIDMove(0, -1200);
-
-  // PIDAngleRotateAbs(0);
-
-
-  // MyGps.gpsPIDMove(-200, 10, 1);
-  // PIDAngleRotateAbs(90);
-
-
-  // MyGps.gpsPIDMove(650, 10, 1);
-  // setCataStatus(5);
-
-  // Brain.Screen.setCursor(11, 1);
-  // Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
+  // // 2.2
+  PIDAngleRotateAbs(60);
+  this_thread::sleep_for(100); 
+  timerForward(-70, 375);
 }
 
 void auton_far_2(){
