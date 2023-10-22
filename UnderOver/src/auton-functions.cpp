@@ -163,8 +163,8 @@ void PIDPosCurveRel(float left_target, float right_target, float maxPower, float
 }
 
 
-void PIDPosCurveAbs(float left_target, float right_target, float tolerance) {
-  PIDPosCurveRel(getLeftPos() + left_target, getRightPos() + right_target, tolerance);
+void PIDPosCurveAbs(float left_target, float right_target, float maxPower, float tolerance) {
+  PIDPosCurveRel(getLeftPos() + left_target, getRightPos() + right_target, maxPower, tolerance);
 }
 
 void softStartTimerForward(float _powerInit, float _powerFinal, int _duration) {
