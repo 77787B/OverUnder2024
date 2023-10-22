@@ -138,6 +138,11 @@ void usercontrol(void) {
 
     if (LEFT) setPistonE(false);
 
+    if(UP && L2){
+      
+      setPistonA(extentionStatus);
+    }
+
     if(DOWN) runAuton(auton_choose);
     if(RIGHT && !RightPressed) auton_choose = 3;
     RightPressed = RIGHT;
