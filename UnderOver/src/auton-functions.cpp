@@ -110,11 +110,12 @@ void PIDPosForwardRel(float _target) {
   PIDPosForwardAbs(getForwardPos() + _target);
 }
 
-void PIDPosCurveRel(float left_target, float right_target, float tolerance) {
+void PIDPosCurveRel(float left_target, float right_target, float maxPower, float tolerance) {
   // move curved to _target position
   // stops base when finishing
 
   // auto myTimer = MyTimer();
+
   float _target = (left_target + right_target) / 2;
   float ratio = left_target / right_target;
   auto pid = PID();
@@ -126,19 +127,32 @@ void PIDPosCurveRel(float left_target, float right_target, float tolerance) {
   pid.setErrorTolerance(tolerance);
   pid.setDTolerance(5);
   pid.setJumpTime(20);
-  while (!pid.targetArrived()){ //} && myTimer.getTime() < 1000 + abbs(target * 10)) {
-    float leftPos_err = (getForwardPos() / _target) * left_target - getLeftPos();
-    float rightPos_err = (getForwardPos() / _target) * right_target - getRightPos();
+
+  auto pid2 = PID();
+  float k2 = 10;
+  pid2.setCoefficient(1.05, 0.05, 1.5);
+  pid2.setTarget(0);
+  pid2.setIMax(30);
+  pid2.setIRange(20);
+  pid2.setErrorTolerance(0.05);
+  pid2.setDTolerance(5);
+  pid2.setJumpTime(20);
+
+  while (! pid.targetArrived() ){ //} && myTimer.getTime() < 1000 + abbs(target * 10)) {
+    float left_done = (left_target - getLeftPos())/left_target; 
+    float right_done = (right_target - getRightPos())/right_target;
     pid.update(getForwardPos());
+    pid2.update(left_done-right_done);
     float PIDoutput = pid.getOutput();
-    if (fabs(PIDoutput) > 90) PIDoutput = sign(PIDoutput) * 90;
+    float PID2output = pid2.getOutput();
+    if (fabs(PIDoutput) > maxPower) PIDoutput = sign(PIDoutput) * maxPower;
     if (ratio > 1){
-      moveLeft(PIDoutput + k * leftPos_err);
-      moveRight(PIDoutput / ratio + k * rightPos_err);
+      moveLeft(PIDoutput - 0.25*maxPower*PID2output);
+      moveRight(PIDoutput/ratio +  0.25*maxPower*PID2output/ratio);
     }
     else{
-      moveLeft(pid.getOutput() * ratio + k * leftPos_err);
-      moveRight(pid.getOutput() + k * rightPos_err);
+      moveLeft(PIDoutput * ratio  - 15*PID2output*ratio);
+      moveRight(PIDoutput + 15*PID2output);
     }
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print("Forward Position: %.1f                           ", getForwardPos());
@@ -148,8 +162,9 @@ void PIDPosCurveRel(float left_target, float right_target, float tolerance) {
   unlockBase();
 }
 
-void PIDPosCurveAbs(float left_target, float right_target, float tolerance) {
-  PIDPosCurveRel(getLeftPos() + left_target, getRightPos() + right_target, tolerance);
+
+void PIDPosCurveAbs(float left_target, float right_target, float maxPower, float tolerance) {
+  PIDPosCurveRel(getLeftPos() + left_target, getRightPos() + right_target, maxPower, tolerance);
 }
 
 void softStartTimerForward(float _powerInit, float _powerFinal, int _duration) {
