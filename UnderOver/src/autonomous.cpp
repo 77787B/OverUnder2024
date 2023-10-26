@@ -9,12 +9,37 @@
 
 
 void autonInit(void) {
-  setPistonE(false);
+  setPistonTB(false);
   resetHeading();
   resetForwardPos();
   MyGps.resetForwardPosGps();
 }
 
+void auton_near_1_FZ()  {
+
+  setPistonTB(true);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-60, 2.5, 0.1, 3);
+  setPistonTB(false);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-102.5, 1.2, 0.1, 3);
+
+  MyGps.gpsPIDMove(450, -50, -1);
+  MyGps.gpsPIDMove(600, -130, -1);
+
+
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(500);
+  setIntakeSpeed(0);
+  this_thread::sleep_for(100);
+
+  timerForward(-100, 300);
+  this_thread::sleep_for(300);
+  //PIDPosCurveRel(700, 900);
+  MyGps.gpsPIDMove(-330, -300, 1);
+  this_thread::sleep_for(100);
+  MyGps.gpsPIDMove(-660, -595, 1, 80);
+}
 
 void auton_far_1() { //AWP SAFETY
   printf ("\nauton_scenario_1_far_1:\n");
