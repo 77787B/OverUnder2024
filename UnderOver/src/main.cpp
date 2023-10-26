@@ -119,38 +119,35 @@ void usercontrol(void) {
     if (BA && !BAPressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
-      if(rotateStatus ==0) setCataStatus(4);
+      if(rotateStatus ==0) setCataStatus(5);
     }
     BAPressed = BA;
 
     if (BY) setCataStatus(4);
     if (BB) setCataStatus(3);
-    if (R1) setCataStatus(2);
-    if (R2) setCataStatus(5);
-    // if (R2 && !R2Pressed) changeCataMode();
-    // R2Pressed = R2;
+    if (R1) setCataStatus(2, 1);
+    if (R2 && !R2Pressed) setCataStatus(5);
+    if (BX && !BXPressed) setCataStatus(6);
+    R2Pressed = R2;
+    BXPressed = BX;
 
     if (UP && !UpPressed){
-      extensionStatus = !extensionStatus;
-      setPistonE(extensionStatus);
+      triballStatus= !triballStatus;
+      setPistonTB(triballStatus);
     }
     UpPressed = UP;
 
-    if (LEFT) setPistonE(false);
-
-
+    if (LEFT && !LeftPressed){
+      lowhangStatus = !lowhangStatus;
+      setPistonLH(lowhangStatus);
+    }
+    LeftPressed = LEFT;
 
     if(DOWN) runAuton(auton_choose);
     if(RIGHT && !RightPressed) auton_choose = 3;
     RightPressed = RIGHT;
 
-    // if(DOWN && R2) runSkill();
-
-    if (BX && !BxPressed){
-      lowhangStatus = !lowhangStatus;
-      setPistonA(lowhangStatus);
-    }
-    BxPressed = BX;
+    // if(DOWN && R2) runSkill()
 
     // if (RIGHT) setPistonA(false);
 
