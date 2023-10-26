@@ -59,7 +59,7 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-int auton_choose = 1;
+int auton_choose = 2;
 
 void autonomous(void) {
   runAuton(auton_choose);
@@ -93,7 +93,7 @@ void usercontrol(void) {
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
-  initCata();
+  // initCata();
   while(true) {
 
     int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;

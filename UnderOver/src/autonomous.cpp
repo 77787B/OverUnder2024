@@ -4,177 +4,12 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-
-
-
-
 void autonInit(void) {
   setPistonE(false);
   resetHeading();
   resetForwardPos();
   MyGps.resetForwardPosGps();
 }
-
-
-void auton_far_1() { //AWP SAFETY
-  printf ("\nauton_scenario_1_far_1:\n");
-
-  MyTimer autotimer;
-  autotimer.reset();
-
-  /***** 1: Push tribal into goal *****/
-  
-  // 1.1
-  MyGps.gpsPIDMove(0, 650, 1);
-  this_thread::sleep_for(100); 
-  timerForward(60, 400);
-  
-  // /***** 2: Move back to bar *****/
-
-  // // 2.1
-  MyGps.gpsPIDMove(0, 0, -1);
-  this_thread::sleep_for(500); 
-
-  // // 2.2
-  PIDAngleRotateAbs(60);
-  this_thread::sleep_for(100); 
-  timerForward(-70, 375);
-}
-
-void auton_far_2(){
-  MyTimer autotimer;
-  autotimer.reset();
-
-
-  initCata();
- 
-//first ball
-  MyGps.gpsPIDMove(0, -1200, -1);
-  PIDAngleRotateAbs(90);
-
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
-
-  setIntakeSpeed(0);
-
-  posForwardAbsWithHeading(90, -150, 90);
-  
-
-  MyGps.gpsPIDMove(-100, -1200);   
-  setIntakeSpeed(0);
-  PIDAngleRotateAbs(-45);
-
-//2nd
-  
-  MyGps.gpsPIDMove(80, -1290, -1, 80);
-
-  setIntakeSpeed(100);
-  this_thread::sleep_for(800);
-
-  setIntakeSpeed(0);
-
-  //MyGps.gpsPIDMove(0, -1100, -1);
-  PIDAngleRotateAbs(90);
-
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(800);
-  setIntakeSpeed(0);
-
-  posForwardAbsWithHeading(90, -320, 90);
-
-
-
-
-
-  
-
-
-
-  // setIntakeSpeed(100);
-  // MyGps.gpsPIDMove(0, -1400);
-  // this_thread::sleep_for(300);
-  // setIntakeSpeed(0);
-
-  // MyGps.gpsPIDMove(0, -1000);
-  // PIDAngleRotateAbs(90);
-
-  
-
-
-
-
-
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
-
-
-}
-
-
-void auton_far_3() {
-
- 
-}
-
-
-
-void auton_near_1() { //AWP SAFETY
-
-  MyTimer autotimer;
-  autotimer.reset();
-  setIntakeSpeed(100);
-  setCataStatus(5);
-  softStartTimerForward(0, 80, 200);
-  posForwardAbsWithHeading(80, 1000, 0);
-  PIDPosForwardAbs(1180);
-  PIDPosForwardAbs(670);
-  PIDAngleRotateAbs(-135, 2.5, 0.03, 5, 1.5);
-  // this_thread::sleep_for(50);
-  setCataStatus(2);
-  this_thread::sleep_for(300);
-
-  setIntakeSpeed(0);
-  PIDAngleRotateAbs(-150);
-  setCataStatus(5);
-  PIDPosForwardAbs(830);
-  // setPistonHook(1);
-  voltageForward(15);
-  this_thread::sleep_for(400);
-
-  resetForwardPos();
-  PIDPosForwardAbs(-500);
-  this_thread::sleep_for(100);
-  resetForwardPos();
-  PIDPosCurveAbs(1, 800);
-  // setPistonHook(0);
-  setIntakeSpeed(-100);
-  PIDPosForwardAbs(800);
-  setIntakeSpeed(0);
-
-  Brain.Screen.setCursor(8, 1);
-  Brain.Screen.print("Auton Time: %.1f                 ", autotimer.getTime());
-}
-
-
-void auton_near_2() {
-  MyTimer autotimer;
-  autotimer.reset();
-
-  
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
-}
-
-void auton_near_3() {
-
-}
-
-
-
-
-  
 
 // #ifdef ROBOT1
 void runAuton(int auton_choose) {
@@ -183,19 +18,12 @@ void runAuton(int auton_choose) {
   autonFlipper(true);
   autonInit();
 
-
-
-
-
   if (auton_choose == 1) auton_far_1(); 
   else if (auton_choose == 2) auton_near_1();
   else if (auton_choose == 3) auton_far_2();
   else if (auton_choose == 2) auton_near_2();
   // else if (auton_choose == 5) 
   // else if (auton_choose == 6) 
-
-  
-  
 }
 // #endif
 
