@@ -21,6 +21,7 @@ static volatile int target_blue = 0;
   static const float kGyro = 1800.0 / 1800.0;
   static const float CATAPULT_SPEED = 60;
   static const float CATAPULT_RATIO = 3;
+  static const float INTAKEMIDPOS = 50.0;
   
 #endif
 

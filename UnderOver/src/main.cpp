@@ -86,12 +86,14 @@ void usercontrol(void) {
   int autocollide = 0;
   bool RightPressed = 0;
   bool UpPressed = 0;
-  bool BxPressed = 0;
+  bool LeftPressed = 0;
+  bool BXPressed = 0;
   bool R2Pressed = 0;
   bool BAPressed = 0;
   bool rotateStatus = 0;
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
+  bool triballStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
   initCata();
   while(true) {
@@ -190,7 +192,7 @@ void usercontrol(void) {
 //
 int main() {
   wait(1000, msec);
-  setPistonE(false);
+  setPistonTB(false);
   IMU.startCalibration();
   while (IMU.isCalibrating()) {
   }

@@ -9,7 +9,7 @@
 
 
 void autonInit(void) {
-  setPistonE(false);
+  setPistonTB(false);
   resetHeading();
   resetForwardPos();
   MyGps.resetForwardPosGps();
