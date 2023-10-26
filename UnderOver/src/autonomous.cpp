@@ -8,6 +8,7 @@
 
 
 
+
 void autonInit(void) {
   setPistonTB(false);
   resetHeading();
@@ -15,31 +16,6 @@ void autonInit(void) {
   MyGps.resetForwardPosGps();
 }
 
-void auton_near_1_fz()  {
-
-  setPistonTB(true);
-  this_thread::sleep_for(100);
-  PIDAngleRotateAbs(-60, 2.5, 0.1, 3);
-  setPistonTB(false);
-  this_thread::sleep_for(100);
-  PIDAngleRotateAbs(-102.5, 1.2, 0.1, 3);
-
-  MyGps.gpsPIDMove(450, -50, -1);
-  MyGps.gpsPIDMove(600, -130, -1);
-
-
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
-  setIntakeSpeed(0);
-  this_thread::sleep_for(100);
-
-  timerForward(-100, 300);
-  this_thread::sleep_for(300);
-  //PIDPosCurveRel(700, 900);
-  MyGps.gpsPIDMove(-330, -300, 1);
-  this_thread::sleep_for(100);
-  MyGps.gpsPIDMove(-660, -595, 1, 80);
-}
 
 void auton_far_1() { //AWP SAFETY
 
@@ -47,20 +23,15 @@ void auton_far_1() { //AWP SAFETY
   MyTimer autotimer;
   autotimer.reset();
 
-  /***** 1: Push tribal into goal *****/
-  
-  // 1.1
   MyGps.gpsPIDMove(0, 650, 1);
   this_thread::sleep_for(100); 
   timerForward(60, 400);
   
-  // /***** 2: Move back to bar *****/
 
-  // // 2.1
   MyGps.gpsPIDMove(0, 0, -1);
   this_thread::sleep_for(500); 
 
-  // // 2.2
+
   PIDAngleRotateAbs(60);
   this_thread::sleep_for(100); 
   timerForward(-70, 375);
@@ -145,7 +116,31 @@ void auton_near_3() {
 
 
 
-  
+  void auton_near_1_fz()  {
+
+  setPistonTB(true);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-60, 2.5, 0.1, 3);
+  setPistonTB(false);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-102.5, 1.2, 0.1, 3);
+
+  MyGps.gpsPIDMove(450, -50, -1);
+  MyGps.gpsPIDMove(600, -130, -1);
+
+
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(500);
+  setIntakeSpeed(0);
+  this_thread::sleep_for(100);
+
+  timerForward(-100, 300);
+  this_thread::sleep_for(300);
+  //PIDPosCurveRel(700, 900);
+  MyGps.gpsPIDMove(-330, -300, 1);
+  this_thread::sleep_for(100);
+  MyGps.gpsPIDMove(-660, -595, 1, 80);
+}
 
 // #ifdef ROBOT1
 void runAuton(int auton_choose) {
