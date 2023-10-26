@@ -188,16 +188,16 @@ float getPitch() {
   return IMU.pitch();
 }
 
-void setPistonE(bool _input) {
+void setPistonTB(bool _input) {
   // set Expansion piston accordingly
-  if (_input)  PistonE.off();
-  else PistonE.on();
+  if (_input)  PistonTB.off();
+  else PistonTB.on();
 }
 
-void setPistonA(bool _input) {
+void setPistonLH(bool _input) {
   // set Expansion piston accordingly
-  if (_input)  PistonA.off();
-  else PistonA.on();
+  if (_input)  PistonLH.off();
+  else PistonLH.on();
 }
 
 float intake_speed = 0;
