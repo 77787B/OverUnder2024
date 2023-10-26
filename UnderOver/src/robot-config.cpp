@@ -21,10 +21,11 @@ controller Controller1 = controller(primary);
   //motor Motor_Intake2 = motor(PORT21, ratio6_1, false);
   motor Motor_Cata1 = motor(PORT10, ratio36_1, true);
 
-  inertial IMU = inertial(PORT7);
-  led PistonE = led(Brain.ThreeWirePort.F); //Extension 1
-  led PistonA = led(Brain.ThreeWirePort.H); //Extension 2
+  inertial IMU = inertial(PORT9);
+  led PistonTB = led(Brain.ThreeWirePort.H); //Triball
+  led PistonLH = led(Brain.ThreeWirePort.F); //Low Hang
   limit limit1 = limit(Brain.ThreeWirePort.G);//Cata LIMIT
+
   //Vision Sensor 
   signature Vision18__SIG_1 = signature (1, 6605, 9541, 8073, 775, 1489, 1132, 3, 0);
   signature Vision18__SIG_2 = signature (2, 8191, 10083, 9137, -1527, -507, -1017, 3, 0);
