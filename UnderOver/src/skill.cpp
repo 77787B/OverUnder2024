@@ -4,7 +4,7 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-const int pistonInterval = 400;
+
 
 void skillInit() {
 
