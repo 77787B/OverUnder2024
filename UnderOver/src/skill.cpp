@@ -10,7 +10,9 @@ void skillInit() {
 
   MyGps.resetForwardPosGps();
 }
-
+void skill(){
+  
+}
 
 void runSkill(){
     skillInit();

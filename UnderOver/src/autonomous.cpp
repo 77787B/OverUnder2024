@@ -15,7 +15,7 @@ void autonInit(void) {
   MyGps.resetForwardPosGps();
 }
 
-void auton_near_1_FZ()  {
+void auton_near_1_fz()  {
 
   setPistonTB(true);
   this_thread::sleep_for(100);
@@ -42,7 +42,7 @@ void auton_near_1_FZ()  {
 }
 
 void auton_far_1() { //AWP SAFETY
-  printf ("\nauton_scenario_1_far_1:\n");
+
 
   MyTimer autotimer;
   autotimer.reset();
