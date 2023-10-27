@@ -121,7 +121,7 @@ void usercontrol(void) {
     if (BA && !BAPressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
-      if(rotateStatus ==0) setCataStatus(5);
+      if(rotateStatus ==0) initCata();
     }
     BAPressed = BA;
 
