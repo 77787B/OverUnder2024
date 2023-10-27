@@ -16,11 +16,15 @@ void autonInit(void) {
   MyGps.resetForwardPosGps();
 }
 
+/**
+ * Real one
+*/
+void auton_far_1() { //AWP SAFETY   Amy
+  printf ("\nauton_scenario_1_far_1:\n");
 
   MyTimer autotimer;
   autotimer.reset();
 
-  MyGps.gpsPIDMove(0, 650, 1);
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, -40, -1);
   this_thread::sleep_for(850);  
