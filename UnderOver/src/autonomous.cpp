@@ -51,9 +51,13 @@ void auton_far_3() {
   MyTimer autotimer;
   autotimer.reset();
 
-  
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d                            ", autotimer.getTime());
+
+  Brain.Screen.setCursor(8, 1);
+  Brain.Screen.print("Auton Time: %.1f                 ", autotimer.getTime());
+}
+
+void auton_far_4(){ //
+
 }
 
 
@@ -150,16 +154,15 @@ void runAuton(int auton_choose) {
   autonInit();
 
 
+// score means socring triballs into goal
 
 
-
-  if (auton_choose == 1) auton_far_1(); 
-  else if (auton_choose == 2) auton_near_1();
-  else if (auton_choose == 3) auton_far_2();
-  else if (auton_choose == 2) auton_near_2();
-  // else if (auton_choose == 5) 
-  // else if (auton_choose == 6) 
-
+  if (auton_choose == 1) auton_far_1(); //saftey Score
+  else if (auton_choose == 2) auton_near_1(); //saftey
+  else if (auton_choose == 3) auton_far_2(); //AWP score
+  else if (auton_choose == 4) auton_near_2(); //AWP
+  else if (auton_choose == 5) auton_far_3(); //elim score
+  else if (auton_choose == 6) auton_near_3(); //elim
   
   
 }
