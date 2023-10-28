@@ -22,8 +22,8 @@ controller Controller1 = controller(primary);
   motor Motor_Cata1 = motor(PORT10, ratio36_1, true);
 
   inertial IMU = inertial(PORT9);
-  led PistonE = led(Brain.ThreeWirePort.F); //Extension 1
-  led PistonA = led(Brain.ThreeWirePort.H); //Extension 2
+  led PistonTB = led(Brain.ThreeWirePort.H); //Triball
+  led PistonLH = led(Brain.ThreeWirePort.F); //Low Hang
   limit limit1 = limit(Brain.ThreeWirePort.G);//Cata LIMIT
 
   //Vision Sensor 
