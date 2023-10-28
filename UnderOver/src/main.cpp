@@ -95,6 +95,9 @@ void usercontrol(void) {
   bool lowhangStatus = 0;
   bool triballStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
+
+  // initCata();
+
   while(true) {
 
     int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
