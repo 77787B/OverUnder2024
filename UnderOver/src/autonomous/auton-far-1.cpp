@@ -4,6 +4,14 @@
 #include "robot-config.h"
 #include "GPS.h"
 
+void auton_far_1_t() { //AWP SAFETY
+  printf ("\nauton_far_1_test:\n");
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(1000); 
+  setIntakeSpeed(0);
+}
+
+
 /**
  * Real one
 */
@@ -30,7 +38,7 @@ void auton_far_1() { //AWP SAFETY
   PIDAngleRotateAbs(100);
   this_thread::sleep_for(200); 
   setIntakeSpeed(-100);
-  this_thread::sleep_for(700); 
+  this_thread::sleep_for(1000); 
   setIntakeSpeed(0);
   PIDAngleRotateAbs(105);
   this_thread::sleep_for(200); 

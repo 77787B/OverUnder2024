@@ -7,26 +7,16 @@
 /**
  * For testing code
 */
-void auton_near_1_test() {
-  // PIDPosCurveAbs(1200, 700, 50);
-  // timerForward(80, 350); 
-  // timerForward(20, 400); 
-  setPistonA(true);
-
-  // PIDPosForwardAbs(150);
-  // setPistonA(true);
-  // this_thread::sleep_for(1000); 
-
-  // PIDAngleRotateAbs(-90, 0.9, 0.1, 3, 2.5);
-  // setPistonA(false);
+void auton_near_1_t() {
+  PIDPosCurveAbs(1400, 850, 50);
 }
 
 /**
  * Real auton near 1
 */
 void auton_near_1() {
-  PIDPosCurveAbs(1200, 700, 50);
-  timerForward(80, 350); 
+  PIDPosCurveAbs(1400, 850, 50);
+  timerForward(80, 250); 
 
   // PIDAngleRotateAbs(45, 0.9, 0.1, 3, 2.5);
   PIDAngleRotateAbs(45);
