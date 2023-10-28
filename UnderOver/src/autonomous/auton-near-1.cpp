@@ -25,10 +25,10 @@ void auton_near_1() {
   PIDAngleRotateAbs(-45);
   timerForward(20, 450); 
   
-  setPistonA(true);
+  setPistonTB(true);
   this_thread::sleep_for(500);
   PIDAngleRotateAbs(-135);
-  setPistonA(false);
+  setPistonTB(false);
 
   this_thread::sleep_for(500); 
   PIDAngleRotateAbs(-180);
