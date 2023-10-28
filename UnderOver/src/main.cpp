@@ -86,14 +86,18 @@ void usercontrol(void) {
   int autocollide = 0;
   bool RightPressed = 0;
   bool UpPressed = 0;
-  bool BxPressed = 0;
+  bool LeftPressed = 0;
+  bool BXPressed = 0;
   bool R2Pressed = 0;
   bool BAPressed = 0;
   bool rotateStatus = 0;
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
+  bool triballStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
+
   // initCata();
+
   while(true) {
 
     int Ch1 = abbs(C1) < Joystick_LowerDeadzone ? 0 : C1;
@@ -119,38 +123,36 @@ void usercontrol(void) {
     if (BA && !BAPressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
-      if(rotateStatus ==0) setCataStatus(4);
+      if(rotateStatus ==0) setCataStatus(5);
     }
     BAPressed = BA;
 
     if (BY) setCataStatus(4);
     if (BB) setCataStatus(3);
-    if (R1) setCataStatus(2);
-    if (R2) setCataStatus(5);
-    // if (R2 && !R2Pressed) changeCataMode();
-    // R2Pressed = R2;
+    if (R1) setCataStatus(2, 1);
+    if (R2 && !R2Pressed) setCataStatus(5);
+    if (BX && !BXPressed) setCataStatus(6);
+    R2Pressed = R2;
+    BXPressed = BX;
 
     if (UP && !UpPressed){
-      extensionStatus = !extensionStatus;
-      setPistonE(extensionStatus);
+      triballStatus= !triballStatus;
+      setPistonTB(triballStatus);
     }
     UpPressed = UP;
 
-    if (LEFT) setPistonE(false);
-
-
+    if (LEFT && !LeftPressed){
+      lowhangStatus = !lowhangStatus;
+      setPistonLH(lowhangStatus);
+    }
+    LeftPressed = LEFT;
 
     if(DOWN) runAuton(auton_choose);
-    if(RIGHT && !RightPressed) auton_choose = 3;
+    if(DOWN && R2) runSkill();
+    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 6 + 1;
     RightPressed = RIGHT;
 
-    // if(DOWN && R2) runSkill();
-
-    if (BX && !BxPressed){
-      lowhangStatus = !lowhangStatus;
-      setPistonA(lowhangStatus);
-    }
-    BxPressed = BX;
+    // if(DOWN && R2) runSkill()
 
     // if (RIGHT) setPistonA(false);
 
@@ -193,7 +195,7 @@ void usercontrol(void) {
 //
 int main() {
   wait(1000, msec);
-  setPistonE(false);
+  setPistonTB(false);
   IMU.startCalibration();
   while (IMU.isCalibrating()) {
   }

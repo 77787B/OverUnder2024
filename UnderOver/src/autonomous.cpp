@@ -4,8 +4,9 @@
 #include "robot-config.h"
 #include "GPS.h"
 
+
 void autonInit(void) {
-  setPistonE(false);
+  setPistonTB(false);
   resetHeading();
   resetForwardPos();
   MyGps.resetForwardPosGps();
