@@ -149,7 +149,7 @@ void usercontrol(void) {
 
     if(DOWN) runAuton(auton_choose);
     if(DOWN && R2) runSkill();
-    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 6 + 1;
+    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 3 + 1;
     RightPressed = RIGHT;
 
     // if(DOWN && R2) runSkill()
