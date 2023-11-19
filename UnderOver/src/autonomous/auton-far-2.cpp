@@ -57,27 +57,3 @@ void auton_far_2() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
 
-
-void auton_far_2_3rd_ball() {
-  MyTimer autotimer;
-  autotimer.reset();
-
-  PIDAngleRotateAbs(-65); 
-  MyGps.gpsPIDMove(1000, -500, -1); 
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1200, -500, -1); 
-  this_thread::sleep_for(600);  
-  setIntakeSpeed(0); 
-
-  MyGps.gpsPIDMove(700, -900, -1);
-  PIDAngleRotateAbs(90);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-  timerForward(-60, 400);
-
-  //push ball in goal
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}

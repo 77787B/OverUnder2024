@@ -4,30 +4,6 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-void auton_far_3_3rd_ball() {
-  MyTimer autotimer;
-  autotimer.reset();
-
-  PIDAngleRotateAbs(-65); 
-  MyGps.gpsPIDMove(1000, -500, -1); 
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1200, -500, -1); 
-  this_thread::sleep_for(600);  
-  setIntakeSpeed(0); 
-
-  MyGps.gpsPIDMove(700, -900, -1);
-  PIDAngleRotateAbs(90);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-  timerForward(-60, 400);
-
-  //push ball in goal
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}
-
 
 void auton_far_3() {
   printf ("\nauton_scenario_5_far_3:\n");
@@ -76,6 +52,31 @@ void auton_far_3() {
   timerForward(-150, 400);
   this_thread::sleep_for(100);
   timerForward(150, 200);
+
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}
+
+
+void auton_far_3_3rd_ball() {
+  MyTimer autotimer;
+  autotimer.reset();
+
+  PIDAngleRotateAbs(-65); 
+  MyGps.gpsPIDMove(1000, -500, -1); 
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(1200, -500, -1); 
+  this_thread::sleep_for(600);  
+  setIntakeSpeed(0); 
+
+  MyGps.gpsPIDMove(700, -900, -1);
+  PIDAngleRotateAbs(90);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
+  timerForward(-60, 400);
+
+  //push ball in goal
 
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
