@@ -6,8 +6,8 @@
 
 void auton_far_4balls() {
   //pickup first ball
-  setIntakeSpeed(80);
   MyGps.gpsPIDMove(600, -1170, -1, 70);
+  setIntakeSpeed(70);
   PIDAngleRotateAbs(-35.0);
   timerForward(-40, 200);
   PIDAngleRotateAbs(-90.0);
@@ -19,19 +19,21 @@ void auton_far_4balls() {
   MyGps.gpsPIDMove(-820, 0, 1, 70, "heading");
 
   //second ball
-  timerForward(-60, 100);
+  MyGps.gpsPIDMove(-780, 5, -1, 70, "heading");
   PIDAngleRotateAbs(90.0, 1.5);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
+  PIDAngleRotateAbs(95.0, 1.3);
+  this_thread::sleep_for(700);
   timerForward(-100, 250);
 
   //third ball
-   setIntakeSpeed(90);
-   MyGps.gpsPIDMove(-550, 770, -1, 60);
+  this_thread::sleep_for(400);
+  MyGps.gpsPIDMove(-550, 700, -1, 60);
+  setIntakeSpeed(90);
   PIDAngleRotateAbs(-100.0, 2, 0.4, 35, 1.5);
   timerForward(-60, 450);
-   setIntakeSpeed(30);
-   MyGps.gpsPIDMove(-500, 520, -1, 70, "heading");
+  setIntakeSpeed(30);
+  MyGps.gpsPIDMove(-500, 520, -1, 70, "heading");
 
   PIDAngleRotateAbs(90.0, 2, 0.4, 35, 1.5);
   setIntakeSpeed(-100);
