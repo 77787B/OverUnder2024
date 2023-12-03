@@ -188,6 +188,18 @@ float getPitch() {
   return IMU.pitch();
 }
 
+void setPistonHH(bool _input) {
+  // set Expansion piston accordingly
+  if (_input)  {
+    PistonHH1.off();
+    PistonHH2.off();
+  }
+  else { 
+    PistonHH1.on();
+    PistonHH2.on();
+  }
+}
+
 void setPistonTB(bool _input) {
   // set Expansion piston accordingly
   if (_input)  PistonTB.off();

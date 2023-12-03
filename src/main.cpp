@@ -59,7 +59,7 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-int auton_choose = 4;
+int auton_choose = 2;
 
 void autonomous(void) {
   runAuton(auton_choose);
@@ -90,9 +90,11 @@ void usercontrol(void) {
   bool BXPressed = 0;
   bool R2Pressed = 0;
   bool BAPressed = 0;
+  bool BBPressed = 0;
   bool rotateStatus = 0;
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
+  bool highhangStatus = 0;
   bool triballStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
 
@@ -128,7 +130,6 @@ void usercontrol(void) {
     BAPressed = BA;
 
     if (BY) setCataStatus(4);
-    if (BB) setCataStatus(3);
     if (R1) setCataStatus(2, 1);
     if (R2 && !R2Pressed) setCataStatus(5);
     if (BX && !BXPressed) setCataStatus(6);
@@ -136,20 +137,20 @@ void usercontrol(void) {
     BXPressed = BX;
 
     if (UP && !UpPressed){
-      triballStatus= !triballStatus;
-      setPistonTB(triballStatus);
+      lowhangStatus= !lowhangStatus;
+      setPistonLH(lowhangStatus);
     }
     UpPressed = UP;
 
     if (LEFT && !LeftPressed){
-      lowhangStatus = !lowhangStatus;
-      setPistonLH(lowhangStatus);
+      highhangStatus = !highhangStatus;
+      setPistonHH(highhangStatus);
     }
     LeftPressed = LEFT;
 
     if(DOWN) runAuton(auton_choose);
     if(DOWN && R2) runSkill();
-    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 3 + 1;
+    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 6 + 1;
     RightPressed = RIGHT;
 
     // if(DOWN && R2) runSkill()
@@ -195,7 +196,7 @@ void usercontrol(void) {
 //
 int main() {
   wait(1000, msec);
-  setPistonTB(false);
+  setPistonHH(false);
   IMU.startCalibration();
   while (IMU.isCalibrating()) {
   }

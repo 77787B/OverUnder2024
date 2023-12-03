@@ -25,5 +25,5 @@
 #define repeat(iterations)                                                     \
   for (int iterator = 0; iterator < iterations; iterator++)
 
-#define ROBOT2
+#define ROBOT1
 

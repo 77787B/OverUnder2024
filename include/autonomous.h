@@ -8,7 +8,7 @@
 void auton_far_1(void);
 void auton_far_2(void);
 void auton_far_3(void); 
-void auton_far_4balls(void); 
+void auton_far_4balls(void);
 
 void auton_near_1(void);
 void auton_near_2(void);

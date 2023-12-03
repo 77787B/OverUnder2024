@@ -17,7 +17,6 @@ void auton_far_2() {
   setIntakeSpeed(0);
 
   // push red ball in
-  // PIDPosCurveAbs(1240, 1740, 57);
   PIDPosCurveAbs(1235, 1740, 50);  
   this_thread::sleep_for(100);
   timerForward(100, 450); 

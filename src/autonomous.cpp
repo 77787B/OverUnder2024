@@ -8,9 +8,10 @@
 void autonInit(void) {
   setPistonTB(false);
   resetHeading();
+  resetForwardPos();
   MyGps.resetForwardPosGps();
-  MyGps.updateCrtPara();
 }
+
 
 // #ifdef ROBOT1
 void runAuton(int auton_choose) {
@@ -23,9 +24,9 @@ void runAuton(int auton_choose) {
   else if (auton_choose == 2) auton_near_1();
   else if (auton_choose == 3) auton_far_2();
   else if (auton_choose == 4) auton_near_2();
-  else if (auton_choose == 3) auton_far_4balls(); 
-  else if (auton_choose == 5) auton_far_3();
-  else if (auton_choose == 6) auton_near_3();
+  else if (auton_choose == 5) auton_far_4balls(); 
+  // else if (auton_choose == 5) 
+  // else if (auton_choose == 6) 
 }
 // #endif
 

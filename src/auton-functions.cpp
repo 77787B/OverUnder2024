@@ -151,8 +151,8 @@ void PIDPosCurveRel(float left_target, float right_target, float maxPower, float
       moveRight(PIDoutput/ratio +  0.25*maxPower*PID2output/ratio);
     }
     else{
-      moveLeft(PIDoutput * ratio  - 15*PID2output*ratio);
-      moveRight(PIDoutput + 15*PID2output);
+      moveLeft(PIDoutput * ratio  - 0.25*maxPower*PID2output*ratio);
+      moveRight(PIDoutput + 0.25*maxPower*PID2output);
     }
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print("Forward Position: %.1f                           ", getForwardPos());
