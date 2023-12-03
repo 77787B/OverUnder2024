@@ -73,8 +73,11 @@ void catapult();
 void setPistonTB(bool);
 void setPistonLH(bool);
 void setPistonHH(bool);
+void setPistonLW(bool);
+void setPistonRW(bool);
+void setWings(bool);
 
 
-void speed_volt(float, int);
+
 
 #endif

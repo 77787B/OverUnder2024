@@ -96,6 +96,7 @@ void usercontrol(void) {
   bool lowhangStatus = 0;
   bool highhangStatus = 0;
   bool triballStatus = 0;
+  bool wingStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
 
   // initCata();
@@ -131,7 +132,12 @@ void usercontrol(void) {
 
     if (BY) setCataStatus(4);
     if (R1) setCataStatus(2, 1);
-    if (R2 && !R2Pressed) setCataStatus(5);
+    //if (R2 && !R2Pressed) setCataStatus(5);
+
+    if(R2 && !R2Pressed) {
+      wingStatus = !wingStatus;
+      setWings(wingStatus);
+    }
     if (BX && !BXPressed) setCataStatus(6);
     R2Pressed = R2;
     BXPressed = BX;

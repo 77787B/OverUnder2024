@@ -26,6 +26,8 @@ controller Controller1 = controller(primary);
   led PistonHH2 = led(Brain.ThreeWirePort.G); //High Hang
   led PistonTB = led(Brain.ThreeWirePort.E); //Triball
   led PistonLH = led(Brain.ThreeWirePort.F); //Low Hang
+  led PistonLW = led(Brain.ThreeWirePort.A); //Left Wing
+  led PistonRW = led(Brain.ThreeWirePort.C); //Right Wing
 
   limit limit1 = limit(Brain.ThreeWirePort.H);//Cata LIMIT good
 
