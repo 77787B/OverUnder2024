@@ -18,6 +18,8 @@ extern led PistonTB;
 extern led PistonLH;
 extern led PistonHH1;
 extern led PistonHH2;
+extern led PistonLW;
+extern led PistonRW;
 extern limit limit1;
 extern inertial IMU;
 // VEXcode devices

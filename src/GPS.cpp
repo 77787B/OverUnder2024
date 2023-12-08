@@ -83,6 +83,7 @@ void GPS::updateGpsPos(){
   lastHeading = currHeading;
   Brain.Screen.setCursor(9, 1);
   Brain.Screen.print("GPS:  x:  %.1f   y:  %.1f", gpsPosX, gpsPosY);
+  // printf("GPS:  x:  %.1f   y:  %.1f\n", gpsPosX, gpsPosY);
 }
 
 void GPS::gpsPIDCurve(float _xTarget, float _yTarget, float _headingTarget, float _duration){

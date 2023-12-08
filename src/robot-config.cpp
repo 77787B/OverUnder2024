@@ -21,7 +21,7 @@ controller Controller1 = controller(primary);
   //motor Motor_Intake2 = motor(PORT21, ratio6_1, false);
   motor Motor_Cata1 = motor(PORT12, ratio36_1, true);
 
-  inertial IMU = inertial(PORT7);
+  inertial IMU = inertial(PORT4);
   led PistonHH1 = led(Brain.ThreeWirePort.D); //High Hang
   led PistonHH2 = led(Brain.ThreeWirePort.G); //High Hang
   led PistonTB = led(Brain.ThreeWirePort.E); //Triball

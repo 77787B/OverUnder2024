@@ -21,7 +21,7 @@ void runAuton(int auton_choose) {
   autonInit();
 
   if (auton_choose == 1) auton_far_1(); 
-  else if (auton_choose == 2) auton_near_1();
+  else if (auton_choose == 2) auton_near_2_awp_1_ball();
   else if (auton_choose == 3) auton_far_2();
   else if (auton_choose == 4) auton_near_2();
   else if (auton_choose == 5) auton_far_4balls(); 

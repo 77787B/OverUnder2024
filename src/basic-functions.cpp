@@ -212,18 +212,18 @@ void setPistonLH(bool _input) {
   else PistonLH.on();
 }
 
-void setPistonLW(){
+void setPistonLW(bool _input){
   // set Expansion piston accordingly
   if (_input)  PistonLW.off();
   else PistonLW.on();
 }
-void setPistonRW(){
+void setPistonRW(bool _input){
   // set Expansion piston accordingly
   if (_input)  PistonRW.off();
   else PistonRW.on();
 }
 
-void setWings(){
+void setWings(bool _input){
   if(_input) {
     PistonLW.off();
     PistonRW.off();
@@ -232,7 +232,6 @@ void setWings(){
     PistonLW.on();
     PistonRW.on();
   }
-
 }
 
 float intake_speed = 0;

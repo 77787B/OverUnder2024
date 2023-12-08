@@ -568,7 +568,8 @@ compile_commands.json
 *.user
 *.userosscache
 *.sln.docstates
-_[Uu]ser_*
+[._][Uu]ser_*
+[._][Uu]ser/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

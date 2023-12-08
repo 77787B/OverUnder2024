@@ -139,13 +139,19 @@ void PIDPosCurveRel(float left_target, float right_target, float maxPower, float
   pid2.setJumpTime(20);
 
   while (! pid.targetArrived() ){ //} && myTimer.getTime() < 1000 + abbs(target * 10)) {
+ 
     float left_done = (left_target - getLeftPos())/left_target; 
     float right_done = (right_target - getRightPos())/right_target;
-    pid.update(getForwardPos());
+    // printf("PIDPosCurveRel::getLeftPos()=%.1f, getRightPos()=%.1f\n", getLeftPos(), getRightPos());
+    // printf("PIDPosCurveRel::left_done=%.1f, right_done=%.1f\n", left_done, right_done);
+    pid.update(fabs(getForwardPos()));
     pid2.update(left_done-right_done);
     float PIDoutput = pid.getOutput();
     float PID2output = pid2.getOutput();
-    if (fabs(PIDoutput) > maxPower) PIDoutput = sign(PIDoutput) * maxPower;
+    // printf("PIDPosCurveRel::PIDoutput=%.1f, PID2output()=%.1f\n", PIDoutput, PID2output);
+    if (fabs(PIDoutput) > maxPower) {
+      PIDoutput = sign(PIDoutput) * maxPower;
+    }
     if (ratio > 1){
       moveLeft(PIDoutput - 0.25*maxPower*PID2output);
       moveRight(PIDoutput/ratio +  0.25*maxPower*PID2output/ratio);
@@ -156,6 +162,7 @@ void PIDPosCurveRel(float left_target, float right_target, float maxPower, float
     }
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print("Forward Position: %.1f                           ", getForwardPos());
+    // printf("PIDPosCurveRel::Forward Position: %.1f\n", getForwardPos());
     this_thread::sleep_for(5);
   }
   resetForwardPos();
