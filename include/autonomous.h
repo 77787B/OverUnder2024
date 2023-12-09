@@ -10,11 +10,11 @@ void auton_far_2(void);
 void auton_far_3(void); 
 void auton_far_4balls(void);
 
-void auton_near_1_awp(void);
-void auton_near_2_awp_1_ball(void);
-void auton_near_2(void);
-void auton_near_3(void);
+void auton_near_awp_only(void);
+void auton_near_awp_1_goal(void);
+void auton_near_elim_1_goal_3_over(void);
+void auton_near_elim_center_1st_1_goal_3_over(void);
 
-void runAuton(int);
+void runAuton(int = 0);
 
 #endif

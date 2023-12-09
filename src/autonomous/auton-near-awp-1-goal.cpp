@@ -4,12 +4,12 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-void auton_near_2_awp_1_ball_() {
+void auton_near_awp_1_goal_() {
   setPistonTB(true);
 }
 
-void auton_near_2_awp_1_ball() {
-  printf ("\auton_near_2_awp_1_ball:\n");
+void auton_near_awp_1_goal() {
+  printf ("\nauton_near_awp_1_goal:\n");
   setPistonRW(true);
   this_thread::sleep_for(500);
   setPistonTB(true);

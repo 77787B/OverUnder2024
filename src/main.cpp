@@ -59,7 +59,7 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-int auton_choose = 2;
+int auton_choose = 0; // 0 means the actual value will be set inside runAuton
 
 void autonomous(void) {
   runAuton(auton_choose);

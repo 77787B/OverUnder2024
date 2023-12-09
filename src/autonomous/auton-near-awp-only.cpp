@@ -4,12 +4,12 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-void auton_near_1_awp_() {
+void auton_near_awp_only_() {
   PIDAngleRotateAbs(-125);
 }
 
-void auton_near_1_awp() {
-  printf ("\auton_near_1_awp:\n");
+void auton_near_awp_only() {
+  printf ("\n::auton_near_awp_only::\n");
   setPistonTB(true);
   this_thread::sleep_for(500);
   PIDAngleRotateAbs(-125);

@@ -68,6 +68,9 @@ void GPS::updateGpsPos(){
   static float lastPitch = getPitch();
   static float currForwardPos, currHeading;
 
+  static float lastGpsX = gpsPosX;
+  static float lastGpsY = gpsPosY;
+
   currForwardPos = getForwardPosGps();
   currHeading = getHeading();
   lastPitch = getPitch();
@@ -83,7 +86,13 @@ void GPS::updateGpsPos(){
   lastHeading = currHeading;
   Brain.Screen.setCursor(9, 1);
   Brain.Screen.print("GPS:  x:  %.1f   y:  %.1f", gpsPosX, gpsPosY);
-  // printf("GPS:  x:  %.1f   y:  %.1f\n", gpsPosX, gpsPosY);
+
+  if ((lastGpsX - gpsPosX) > 1 || (lastGpsY - gpsPosY) > 1) {
+    printf("Last GPS:  x:  %.1f   y:  %.1f\n", lastGpsX, lastGpsY);
+    printf("GPS:  x:  %.1f   y:  %.1f\n", gpsPosX, gpsPosY);
+    lastGpsX = gpsPosX;
+    lastGpsY = gpsPosY;
+  }
 }
 
 void GPS::gpsPIDCurve(float _xTarget, float _yTarget, float _headingTarget, float _duration){
