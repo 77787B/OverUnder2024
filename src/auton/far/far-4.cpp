@@ -4,7 +4,10 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-void auton_far_4balls() {
+/**
+ * Far 4: 4 goal
+*/
+void far_4() {
   //pickup first ball
   MyGps.gpsPIDMove(600, -1170, -1, 70);
   setIntakeSpeed(70);

@@ -4,8 +4,11 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-void auton_far_1() { //AWP SAFETY
-  printf ("\nauton_scenario_1_far_1:\n");
+/**
+ * Far 1: AWP: 1 goal
+*/
+void far_1() {
+  printf ("\nfar_1:\n");
 
   MyTimer autotimer;
   autotimer.reset();
@@ -39,14 +42,9 @@ void auton_far_1() { //AWP SAFETY
   MyGps.gpsPIDMove(-350, 650, -1);
   this_thread::sleep_for(250); 
   MyGps.gpsPIDMove(-350, 35, -1);
-  
 }
 
-
-/**
- * Real one
-*/
-void auton_far_1_test_for_far3() { //AWP SAFETY
+void far_1_test_for_far3() { //AWP SAFETY
   printf ("\nauton_scenario_1_far_1:\n");
 
   MyTimer autotimer;
@@ -77,13 +75,12 @@ void auton_far_1_test_for_far3() { //AWP SAFETY
   this_thread::sleep_for(250); 
   timerForward(175, 135); 
   this_thread::sleep_for(250); 
-
 }
 
 /**
  * Backup
 */
-void auton_far_1_backup() { //AWP SAFETY
+void far_1_backup() { //AWP SAFETY
   printf ("\nauton_scenario_1_far_1:\n");
 
   MyTimer autotimer;
@@ -118,5 +115,4 @@ void auton_far_1_backup() { //AWP SAFETY
   MyGps.gpsPIDMove(-350, 650, -1);
   this_thread::sleep_for(250); 
   MyGps.gpsPIDMove(-350, 35, -1);
-  
 }

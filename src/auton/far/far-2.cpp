@@ -4,9 +4,11 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-
-void auton_far_2() {
-  printf ("\nauton_scenario_3_far_2:\n");
+/**
+ * Far 2: ? goal
+*/
+void far_2() {
+  printf ("\nfar_2:\n");
 
   MyTimer autotimer;
   autotimer.reset();

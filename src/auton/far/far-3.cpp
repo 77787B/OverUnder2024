@@ -4,9 +4,11 @@
 #include "robot-config.h"
 #include "GPS.h"
 
-
-void auton_far_3() {
-  printf ("\nauton_scenario_5_far_3:\n");
+/**
+ * Far 3: ? goal
+*/
+void far_3() {
+  printf ("\nfar_3:\n");
 
   MyTimer autotimer;
   autotimer.reset();
@@ -57,8 +59,7 @@ void auton_far_3() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
 
-
-void auton_far_3_3rd_ball() {
+void far_3_3rd_ball() {
   MyTimer autotimer;
   autotimer.reset();
 

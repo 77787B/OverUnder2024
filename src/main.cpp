@@ -59,10 +59,8 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-int auton_choose = 0; // 0 means the actual value will be set inside runAuton
-
 void autonomous(void) {
-  runAuton(auton_choose);
+  runAuton();
   // runSkill();
   // ..........................................................................
   // Insert autonomous user code here.
@@ -154,9 +152,9 @@ void usercontrol(void) {
     }
     LeftPressed = LEFT;
 
-    if(DOWN) runAuton(auton_choose);
+    if(DOWN) runAuton();
     if(DOWN && R2) runSkill();
-    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 6 + 1;
+    if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
 
     // if(DOWN && R2) runSkill()
@@ -185,7 +183,7 @@ void usercontrol(void) {
       Brain.Screen.print("ForwardPosition: %.1f                     ", getForwardPos());
 
       Brain.Screen.setCursor(7, 1);
-      Brain.Screen.print("Auton choose: %d                          ", auton_choose);
+      Brain.Screen.print("Auton choose: %d                          ", getAutonChoose());
     }
     print_i += 1;
     print_i %= 100;
