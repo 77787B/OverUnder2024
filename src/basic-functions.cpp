@@ -304,7 +304,7 @@ void catapult(){
     else if (cataStatus == 5){ // R2
       if (cataMode == 1){
         cataTimer.reset();
-        Motor_Cata1.setVelocity(127, percent);
+        Motor_Cata1.setVelocity(30, percent); //127
         while (Motor_Cata1.position(deg)>ready_Pos - INTAKEMIDPOS && cataTimer.getTime() < 500){
           Motor_Cata1.spinToPosition(ready_Pos - INTAKEMIDPOS, deg, false);
         }
@@ -313,7 +313,7 @@ void catapult(){
       }
       else{
         cataTimer.reset();
-        Motor_Cata1.setVelocity(127, percent);
+        Motor_Cata1.setVelocity(127, percent); 
         while (Motor_Cata1.position(deg) < ready_Pos && cataTimer.getTime() < 500){
           Motor_Cata1.spinToPosition(ready_Pos, deg, false);
         }

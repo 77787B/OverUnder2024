@@ -91,6 +91,7 @@ void usercontrol(void) {
   bool R2Pressed = 0;
   bool BAPressed = 0;
   bool BBPressed = 0;
+  bool R1Pressed = 0;
   bool rotateStatus = 0;
   bool extensionStatus = 0;
   bool lowhangStatus = 0;
@@ -122,19 +123,19 @@ void usercontrol(void) {
     else if (L2) setIntakeSpeed(-100);
     else setIntakeSpeed(0);
 
-    if (BA && !BAPressed) {
+    if (R1 && !R1Pressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
-      if(rotateStatus ==0) setCataStatus(5);
+      if(rotateStatus == 0) setCataStatus(5);
     }
-    BAPressed = BA;
+    R1Pressed = R1;
 
-    if (BY) setCataStatus(4);
-    if (R1) setCataStatus(2, 1);
+    // if (BY) setCataStatus(4);
+    // if (R1) setCataStatus(2, 1);
     if (R2 && !R2Pressed) setCataStatus(5);
-    if (BX && !BXPressed) setCataStatus(6);
+    //if (BX && !BXPressed) setCataStatus(6);
     R2Pressed = R2;
-    BXPressed = BX;
+    //BXPressed = BX;
 
     if (UP && !UpPressed){
       lowhangStatus= !lowhangStatus;
