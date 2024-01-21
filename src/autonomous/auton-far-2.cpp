@@ -24,24 +24,24 @@ void auton_far_2() {
   timerForward(-150, 135);  
 
   // push green ball in (the one under the red pole)
-  this_thread::sleep_for(100);  
+  this_thread::sleep_for(100);
   PIDAngleRotateAbs(100);
-  this_thread::sleep_for(100); 
+  this_thread::sleep_for(100);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(750); 
+  this_thread::sleep_for(750);
   setIntakeSpeed(0);
   PIDAngleRotateAbs(105);
   timerForward(-150, 400);
   PIDAngleRotateAbs(105);
-  timerForward(175, 135); 
-  this_thread::sleep_for(100); 
+  timerForward(175, 135);
+  this_thread::sleep_for(100);
 
   // get the second green ball
-  PIDAngleRotateAbs(35); 
+  PIDAngleRotateAbs(35);
   setIntakeSpeed(70);
-  MyGps.gpsPIDMove(-1275, 75, -1); 
-  this_thread::sleep_for(500);  
-  setIntakeSpeed(0); 
+  MyGps.gpsPIDMove(-1275, 75, -1);
+  this_thread::sleep_for(500); 
+  setIntakeSpeed(0);
 
   //push ball in goal
   MyGps.gpsPIDMove(-1525, 575, -1);
