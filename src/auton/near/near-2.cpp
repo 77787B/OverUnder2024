@@ -7,7 +7,7 @@
 /**
  * Near 2: Elim: 1 goal, 3 over
  * 1. Get corner triball
- * 2. Get corner triball
+ * 2. Get center triball
  * 3. Push triballs over barrier
  * 4. Push allowance triball into goal
 */

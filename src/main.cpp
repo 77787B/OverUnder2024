@@ -60,7 +60,7 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  runAuton();
+  runAuton(); // default auton_choose is set in autonomous.cpp
   // runSkill();
   // ..........................................................................
   // Insert autonomous user code here.

@@ -12,6 +12,9 @@
  * 4. Push allowance triball into goal
 */
 void near_3() {
+  MyTimer autotimer;
+  autotimer.reset();
+
   printf ("\n===== near_3: Start =====\n");
 
   //push alliance ball towards goal
@@ -54,7 +57,9 @@ void near_3() {
   
   //get into position for match start
   PIDAngleRotateAbs(165);
-  timerForward(100, 200); 
+  timerForward(100, 200);
+
+  printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
 }
 
 void near_3_previous() {
