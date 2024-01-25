@@ -59,10 +59,8 @@ void pre_auton(void) {
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
-int auton_choose = 2;
-
 void autonomous(void) {
-  runAuton(auton_choose);
+  runAuton(); // default auton_choose is set in autonomous.cpp
   // runSkill();
   // ..........................................................................
   // Insert autonomous user code here.
@@ -97,6 +95,7 @@ void usercontrol(void) {
   bool lowhangStatus = 0;
   bool highhangStatus = 0;
   bool triballStatus = 0;
+  bool wingStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
 
   // initCata();
@@ -149,9 +148,9 @@ void usercontrol(void) {
     }
     LeftPressed = LEFT;
 
-    if(DOWN) runAuton(auton_choose);
+    if(DOWN) runAuton();
     if(DOWN && R2) runSkill();
-    if(RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 6 + 1;
+    if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
 
     // if(DOWN && R2) runSkill()
@@ -180,7 +179,7 @@ void usercontrol(void) {
       Brain.Screen.print("ForwardPosition: %.1f                     ", getForwardPos());
 
       Brain.Screen.setCursor(7, 1);
-      Brain.Screen.print("Auton choose: %d                          ", auton_choose);
+      Brain.Screen.print("Auton choose: %d                          ", getAutonChoose());
     }
     print_i += 1;
     print_i %= 100;

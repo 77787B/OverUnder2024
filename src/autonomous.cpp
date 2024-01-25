@@ -12,21 +12,32 @@ void autonInit(void) {
   MyGps.resetForwardPosGps();
 }
 
+const int num_of_choices = 8;
+
+static int auton_choose = 2; // Default auton_choose
+
+int getAutonChoose() {
+  return auton_choose;
+}
+
+void circulateAutonChoose() {
+  auton_choose = ((auton_choose + 1) - 1) % num_of_choices + 1;
+}
 
 // #ifdef ROBOT1
-void runAuton(int auton_choose) {
-  
+void runAuton() {
   setAutonMode();
   autonFlipper(true);
   autonInit();
 
-  if (auton_choose == 1) auton_far_1(); 
-  else if (auton_choose == 2) auton_near_1();
-  else if (auton_choose == 3) auton_far_2();
-  else if (auton_choose == 4) auton_near_2();
-  else if (auton_choose == 5) auton_far_4balls(); 
-  // else if (auton_choose == 5) 
-  // else if (auton_choose == 6) 
+  if (auton_choose == 1) far_1(); 
+  else if (auton_choose == 2) near_1();
+  else if (auton_choose == 3) far_2();
+  else if (auton_choose == 4) near_2();
+  else if (auton_choose == 5) far_3(); 
+  else if (auton_choose == 6) near_3();
+  else if (auton_choose == 7) far_4();
+  else if (auton_choose == 8) near_4();
 }
 // #endif
 
