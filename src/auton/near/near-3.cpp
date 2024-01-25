@@ -23,12 +23,12 @@ void near_3() {
   //intake middle (first) ball
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, -1250, -1);
-  this_thread::sleep_for(600);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
-  //push center (second) ball across 
-  PIDAngleRotateAbs(80);
-  MyGps.gpsPIDMove(-425, -1325, -1);
+  // //push center (second) ball across 
+  // PIDAngleRotateAbs(80);
+  // MyGps.gpsPIDMove(-425, -1325, -1);
 
   //go to red triangle bar
   MyGps.gpsPIDMove(0, 0, 1);
@@ -38,7 +38,7 @@ void near_3() {
   //get (third) ball out of triangle
   setPistonTB(true);
   PIDAngleRotateAbs(-100);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(450);
   setPistonTB(false);
 
   //push third ball across alley
@@ -48,7 +48,7 @@ void near_3() {
 
   //outtake first ball across alley
   setIntakeSpeed(-100);
-  this_thread::sleep_for(800);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
   //push alliance triball into goal

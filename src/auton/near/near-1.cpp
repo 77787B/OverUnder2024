@@ -28,16 +28,16 @@ void near_1() {
   this_thread::sleep_for(100);
 
   PIDAngleRotateAbs(90);
-  PIDPosCurveAbs(700, 480, 50);
+  PIDPosCurveAbs(650, 400, 50);
   timerForward(100, 200);
   this_thread::sleep_for(500);
 
   MyGps.gpsPIDMove(-75, -50, -1);
   PIDAngleRotateAbs(45);
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(-700, -600, -1);
+  MyGps.gpsPIDMove(-715, -575, -1);
 
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(2000);
   setIntakeSpeed(0);
 
   printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());

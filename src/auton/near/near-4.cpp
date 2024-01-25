@@ -28,7 +28,7 @@ void near_4() {
   //rush to intake center ball
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, -1250, -1);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(600);
   setIntakeSpeed(0);
 
   //push center barrier ball across 
@@ -40,10 +40,10 @@ void near_4() {
   MyGps.gpsPIDMove(100, -100, 1);
   PIDAngleRotateAbs(35);
 
-  printf ("===== MyGps.gpsPIDMove: Get conner tribal =====\n");
+  printf ("===== MyGps.gpsPIDMove: Get corner tribal =====\n");
   timerForward(40, 200); 
   setPistonTB(true);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(400);
   PIDAngleRotateAbs(-100);
   setPistonTB(false);
   PIDAngleRotateAbs(-15); 
@@ -53,18 +53,21 @@ void near_4() {
   printf ("===== MyGps.gpsPIDMove: Push balls across alley=====\n");
   setIntakeSpeed(-100);
   MyGps.gpsPIDMove(-650, -25, -1);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
-  printf ("===== MyGps.gpsPIDMove: Push allowance tribal to goal =====\n");
+  printf ("===== MyGps.gpsPIDMove: Push alliance tribal to goal =====\n");
   MyGps.gpsPIDMove(-100, 10, 1);
 
   printf ("===== MyGps.gpsPIDMove: Push alliance triball: curve =====\n");
-  PIDPosCurveAbs(1125, 600, 50);
+  // PIDPosCurveAbs(1125, 600, 50);
+  // PIDAngleRotateAbs(145);
+  MyGps.gpsPIDMove(100, 50, 1);
+  MyGps.gpsPIDMove(700, -300, 1);
 
   printf ("===== MyGps.gpsPIDMove: Push alliance triball: push =====\n");
+  printf ("\n===== near_4: Before Push: Elased=%.i =====\n", autotimer.getTime());
   timerForward(100, 250); 
-  PIDAngleRotateAbs(75);
 
   printf ("\n===== near_4: End: Elased=%.i =====\n", autotimer.getTime());
 }
