@@ -14,50 +14,46 @@
 void near_3() {
   MyTimer autotimer;
   autotimer.reset();
-
+  
   printf ("\n===== near_3: Start =====\n");
 
-  //push alliance ball towards goal
+  // push alliance ball towards goal
   setPistonRW(true);
 
-  //intake middle (first) ball
+  //rush to intake center ball
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, -1250, -1);
   this_thread::sleep_for(500);
   setIntakeSpeed(0);
+  setPistonRW(false);
 
-  // //push center (second) ball across 
-  // PIDAngleRotateAbs(80);
-  // MyGps.gpsPIDMove(-425, -1325, -1);
-
-  //go to red triangle bar
-  MyGps.gpsPIDMove(0, 0, 1);
-  PIDAngleRotateAbs(30);
-  MyGps.gpsPIDMove(300, 50, 1);
-
-  //get (third) ball out of triangle
+  printf ("===== MyGps.gpsPIDMove: Move to near starting position =====\n");
+  MyGps.gpsPIDMove(275, 0, 1);
+  PIDAngleRotateAbs(25);
+  printf ("===== MyGps.gpsPIDMove: Get corner tribal =====\n");
+  timerForward(40, 100);
   setPistonTB(true);
-  PIDAngleRotateAbs(-100);
-  this_thread::sleep_for(450);
+  this_thread::sleep_for(400);
+
+  PIDAngleRotateAbs(-125);
   setPistonTB(false);
+  PIDAngleRotateAbs(-15); 
 
-  //push third ball across alley
-  PIDAngleRotateAbs(-240);
-  MyGps.gpsPIDMove(-100, 50, -1);
-  MyGps.gpsPIDMove(-580, 50, -1);
-
-  //outtake first ball across alley
+  printf ("===== MyGps.gpsPIDMove: Push balls across alley=====\n");
   setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
+  MyGps.gpsPIDMove(-550, 0, -1);
+  this_thread::sleep_for(600);
   setIntakeSpeed(0);
 
-  //push alliance triball into goal
-  MyGps.gpsPIDMove(100, 50, 1);
-  MyGps.gpsPIDMove(700, -300, 1);
-  
-  //get into position for match start
-  PIDAngleRotateAbs(165);
-  timerForward(100, 200);
+  printf ("===== MyGps.gpsPIDMove: Push alliance tribal to goal =====\n");
+  MyGps.gpsPIDMove(0, 25, 1);
+
+  printf ("===== MyGps.gpsPIDMove: Push alliance triball: curve =====\n");
+  PIDPosCurveAbs(1125, 650, 50);
+
+  printf ("===== MyGps.gpsPIDMove: Push alliance triball: push =====\n");
+  printf ("\n===== near_4: Before Push: Elased=%.i =====\n", autotimer.getTime());
+  timerForward(100, 250); 
 
   printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
 }
