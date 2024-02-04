@@ -17,15 +17,15 @@ void near_3() {
   
   printf ("\n===== near_3: Start =====\n");
 
-  // push alliance ball towards goal
-  setPistonRW(true);
+  // // push alliance ball towards goal
+  // setPistonRW(true);
 
   //rush to intake center ball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, -1250, -1);
-  this_thread::sleep_for(500);
+  MyGps.gpsPIDMove(-30, -1250, -1);
+  this_thread::sleep_for(600);
   setIntakeSpeed(0);
-  setPistonRW(false);
+  // setPistonRW(false);
 
   printf ("===== MyGps.gpsPIDMove: Move to near starting position =====\n");
   MyGps.gpsPIDMove(275, 0, 1);
@@ -37,23 +37,21 @@ void near_3() {
 
   PIDAngleRotateAbs(-125);
   setPistonTB(false);
-  PIDAngleRotateAbs(-15); 
 
   printf ("===== MyGps.gpsPIDMove: Push balls across alley=====\n");
+  PIDAngleRotateAbs(-60);
+  timerForward(60, 300);
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(-550, 0, -1);
-  this_thread::sleep_for(600);
+  MyGps.gpsPIDMove(-330, 50, -1);
+  this_thread::sleep_for(600); 
   setIntakeSpeed(0);
 
-  printf ("===== MyGps.gpsPIDMove: Push alliance tribal to goal =====\n");
-  MyGps.gpsPIDMove(0, 25, 1);
-
-  printf ("===== MyGps.gpsPIDMove: Push alliance triball: curve =====\n");
-  PIDPosCurveAbs(1125, 650, 50);
-
-  printf ("===== MyGps.gpsPIDMove: Push alliance triball: push =====\n");
-  printf ("\n===== near_4: Before Push: Elased=%.i =====\n", autotimer.getTime());
-  timerForward(100, 250); 
+  // go to triangle
+  MyGps.gpsPIDMove(415, 200, 1);
+  PIDAngleRotateAbs(125);
+  timerForward(65, 200);
+  setPistonLW(true);
+  setPistonRW(true);
 
   printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
 }

@@ -11,10 +11,10 @@ void near_4_() {
 /**
  * Near 4: Elim: rush center, 1 goal, 4 over
  * 1. Get center triball
- * 2. Push barrier middle tribal over
- * 2. Get corner triball
- * 3. Push triballs over barrier
- * 4. Push allowance triball into goal
+ * 2. Disrupt the barrier middle triball // Push barrier middle triball over
+ * 3. Get corner triball
+ * 4. Push triballs over barrier
+ * 5. Push allowance triball into goal
 */
 void near_4() {
   MyTimer autotimer;
@@ -22,17 +22,22 @@ void near_4() {
   
   printf ("\n===== near_4: Start =====\n");
 
+  /*** 1. Get center triball ****/
+
   // push alliance ball towards goal
-  setPistonRW(true);
+  // setPistonRW(true);
 
   //rush to intake center ball
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, -1250, -1);
-  this_thread::sleep_for(600);
+  // setPistonRW(false);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
   //push center barrier ball across 
+  setPistonRW(true);
   PIDAngleRotateAbs(80);
+  // timerForward(100, 300);
   MyGps.gpsPIDMove(-425, -1325, -1);
   setPistonRW(false);
 
@@ -50,24 +55,20 @@ void near_4() {
   timerForward(35, 200); 
   PIDAngleRotateAbs(75); 
 
+  /*** 4. Push triballs across alley ***/
+
   printf ("===== MyGps.gpsPIDMove: Push balls across alley=====\n");
   setIntakeSpeed(-100);
   MyGps.gpsPIDMove(-650, -25, -1);
   this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
-  printf ("===== MyGps.gpsPIDMove: Push alliance tribal to goal =====\n");
-  MyGps.gpsPIDMove(-100, 10, 1);
-
-  printf ("===== MyGps.gpsPIDMove: Push alliance triball: curve =====\n");
-  // PIDPosCurveAbs(1125, 600, 50);
-  // PIDAngleRotateAbs(145);
-  MyGps.gpsPIDMove(100, 50, 1);
-  MyGps.gpsPIDMove(700, -300, 1);
-
-  printf ("===== MyGps.gpsPIDMove: Push alliance triball: push =====\n");
-  printf ("\n===== near_4: Before Push: Elased=%.i =====\n", autotimer.getTime());
-  timerForward(100, 250); 
+  // go to triangle
+  MyGps.gpsPIDMove(415, 75, 1);
+  PIDAngleRotateAbs(135);
+  timerForward(100, 200);
+  setPistonLW(true);
+  setPistonRW(true);
 
   printf ("\n===== near_4: End: Elased=%.i =====\n", autotimer.getTime());
 }
