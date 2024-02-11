@@ -5,7 +5,7 @@ using signature = vision::signature;
 using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+brain Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
@@ -22,14 +22,11 @@ controller Controller1 = controller(primary);
   motor Motor_Cata1 = motor(PORT1, ratio36_1, true);
 
   inertial IMU = inertial(PORT4);
-  led PistonHH1 = led(Brain.ThreeWirePort.D); //High Hang
-  led PistonHH2 = led(Brain.ThreeWirePort.G); //High Hang
-  led PistonTB = led(Brain.ThreeWirePort.E); //Triball
-  led PistonLH = led(Brain.ThreeWirePort.F); //Low Hang
-  led PistonLW = led(Brain.ThreeWirePort.H); //Left Wing
-  led PistonRW = led(Brain.ThreeWirePort.C); //Right Wing
+  led PistonHH = led(Brain.ThreeWirePort.D); //High Hang
+  led PistonFW = led(Brain.ThreeWirePort.H); //Front Wing
+  led PistonBW = led(Brain.ThreeWirePort.C); //Back Wing
 
-  limit limit1 = limit(Brain.ThreeWirePort.A);//Cata LIMIT good
+  limit limit1 = limit(Brain.ThreeWirePort.A); //Cata LIMIT 
 
 
  

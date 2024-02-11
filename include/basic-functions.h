@@ -70,12 +70,10 @@ void catapult();
 
 
 //Piston
-void setPistonTB(bool);
-void setPistonLH(bool);
 void setPistonHH(bool);
-void setPistonLW(bool);
-void setPistonRW(bool);
-void setWings(bool);
+void setPistonFW(bool);
+void setPistonBW(bool);
+
 
 
 

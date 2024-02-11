@@ -191,48 +191,25 @@ float getPitch() {
 void setPistonHH(bool _input) {
   // set Expansion piston accordingly
   if (_input)  {
-    PistonHH1.off();
-    PistonHH2.off();
+    PistonHH.off();
   }
   else { 
-    PistonHH1.on();
-    PistonHH2.on();
+    PistonHH.on();
   }
 }
 
-void setPistonTB(bool _input) {
+void setPistonFW(bool _input){
   // set Expansion piston accordingly
-  if (_input)  PistonTB.off();
-  else PistonTB.on();
+  if (_input)  PistonFW.off();
+  else PistonFW.on();
+}
+void setPistonBW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonBW.off();
+  else PistonBW.on();
 }
 
-void setPistonLH(bool _input) {
-  // set Expansion piston accordingly
-  if (_input)  PistonLH.off();
-  else PistonLH.on();
-}
 
-void setPistonLW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonLW.off();
-  else PistonLW.on();
-}
-void setPistonRW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonRW.off();
-  else PistonRW.on();
-}
-
-void setWings(bool _input){
-  if(_input) {
-    PistonLW.off();
-    PistonRW.off();
-  }
-  else{
-    PistonLW.on();
-    PistonRW.on();
-  }
-}
 
 float intake_speed = 0;
 

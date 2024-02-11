@@ -14,23 +14,15 @@ extern motor Motor_Intake1;
 extern motor Motor_Intake2;
 extern motor Motor_Cata1;
 extern motor Motor_Cata2;
-extern led PistonTB;
-extern led PistonLH;
-extern led PistonHH1;
-extern led PistonHH2;
-extern led PistonLW;
-extern led PistonRW;
+extern led PistonHH;
+extern led PistonFW;
+extern led PistonBW;
 extern limit limit1;
 extern inertial IMU;
 // VEXcode devices
 // Andew: as a code practice - can you modify this into an array of signatures?   
 // eg array<signature, 5> signatures;
-extern signature Vision18__SIG_1;
-extern signature Vision18__SIG_2;
-extern signature Vision18__SIG_3;
-extern signature Vision18__SIG_4;
-extern signature Vision18__SIG_5;
-extern vision Vision18;
+
 
 
 

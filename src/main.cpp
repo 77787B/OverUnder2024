@@ -92,10 +92,9 @@ void usercontrol(void) {
   bool R1Pressed = 0;
   bool rotateStatus = 0;
   bool extensionStatus = 0;
-  bool lowhangStatus = 0;
   bool highhangStatus = 0;
-  bool triballStatus = 0;
-  bool wingStatus = 0;
+  bool frontwingStatus = 0;
+  bool backwingStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
 
   // initCata();
@@ -127,17 +126,16 @@ void usercontrol(void) {
       setCataRotateStatus(rotateStatus);
       if(rotateStatus == 0) setCataStatus(5);
     }
+    BAPressed = BA;
 
     if (R1 && !R1Pressed) {
-      rotateStatus = !rotateStatus;
-      setCataRotateStatus(rotateStatus);
-      if(rotateStatus == 0) setCataStatus(5);
+      frontwingStatus = !frontwingStatus;
+      setPistonFW(frontwingStatus);
     }
-    R1Pressed = R1;
-
+    
     if (R2 && !R2Pressed) {
-      wingStatus = !wingStatus;
-      setWings(wingStatus);
+      backwingStatus = !backwingStatus;
+      setPistonBW(backwingStatus);
     }
     R2Pressed = R2;
 
