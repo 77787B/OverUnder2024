@@ -132,6 +132,7 @@ void usercontrol(void) {
       frontwingStatus = !frontwingStatus;
       setPistonFW(frontwingStatus);
     }
+    R1Pressed = R1;
     
     if (R2 && !R2Pressed) {
       backwingStatus = !backwingStatus;
@@ -150,16 +151,8 @@ void usercontrol(void) {
     if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
 
-
-
- 
-
     // if (RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 3 + 1;
 
-
-    m_degree = Motor_Cata1.position(deg)/3;
-    Brain.Screen.setCursor(8, 1);
-    Brain.Screen.print(m_degree);
 
     if (print_i == 0){
       // Brain.Screen.clearScreen();

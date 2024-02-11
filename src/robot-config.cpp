@@ -19,12 +19,12 @@ controller Controller1 = controller(primary);
   motor Motor_BaseRB = motor(PORT11, ratio6_1, false);
   motor Motor_Intake1 = motor(PORT10, ratio6_1, false);
   //motor Motor_Intake2 = motor(PORT21, ratio6_1, false);
-  motor Motor_Cata1 = motor(PORT1, ratio36_1, true);
+  motor Motor_Cata1 = motor(PORT1, ratio36_1, false);
 
   inertial IMU = inertial(PORT4);
-  led PistonHH = led(Brain.ThreeWirePort.D); //High Hang
-  led PistonFW = led(Brain.ThreeWirePort.H); //Front Wing
-  led PistonBW = led(Brain.ThreeWirePort.C); //Back Wing
+  led PistonHH = led(Brain.ThreeWirePort.G); //High Hang
+  led PistonFW = led(Brain.ThreeWirePort.F); //Front Wing
+  led PistonBW = led(Brain.ThreeWirePort.H); //Back Wing
 
   limit limit1 = limit(Brain.ThreeWirePort.A); //Cata LIMIT 
 

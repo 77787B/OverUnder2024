@@ -15,9 +15,9 @@ static const float PI = 3.1416;
 static volatile int target_blue = 0;
 
 #ifdef ROBOT1
-  static const float WHEEL_DIAMETER = 4.0;
-  static const float CHASSIS_GEAR_RATIO = 0.5;
-  static const float CHASSISRADIUS = 205; //mm
+  static const float WHEEL_DIAMETER = 3.25;
+  static const float CHASSIS_GEAR_RATIO = 0.75;
+  static const float CHASSISRADIUS = 170; //mm
   static const float kGyro = 1800.0 / 1800.0;
   static const float CATAPULT_SPEED = 60;
   static const float CATAPULT_RATIO = 3;
