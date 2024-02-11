@@ -122,6 +122,12 @@ void usercontrol(void) {
     else if (L2) setIntakeSpeed(-100);
     else setIntakeSpeed(0);
 
+    if(BA && !BAPressed) {
+      rotateStatus = !rotateStatus;
+      setCataRotateStatus(rotateStatus);
+      if(rotateStatus == 0) setCataStatus(5);
+    }
+
     if (R1 && !R1Pressed) {
       rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
@@ -129,18 +135,11 @@ void usercontrol(void) {
     }
     R1Pressed = R1;
 
-    // if (BY) setCataStatus(4);
-    // if (R1) setCataStatus(2, 1);
-    if (R2 && !R2Pressed) setCataStatus(5);
-    //if (BX && !BXPressed) setCataStatus(6);
-    R2Pressed = R2;
-    //BXPressed = BX;
-
-    if (UP && !UpPressed){
-      lowhangStatus= !lowhangStatus;
-      setPistonLH(lowhangStatus);
+    if (R2 && !R2Pressed) {
+      wingStatus = !wingStatus;
+      setWings(wingStatus);
     }
-    UpPressed = UP;
+    R2Pressed = R2;
 
     if (LEFT && !LeftPressed){
       highhangStatus = !highhangStatus;
@@ -153,18 +152,12 @@ void usercontrol(void) {
     if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
 
-    // if(DOWN && R2) runSkill()
 
-    // if (RIGHT) setPistonA(false);
 
-    //only when down and R2 are both pressed we run auton
-    // if (DOWN && R2) {
-    //   runAuton(auton_choose);
-    //   //runSkill();
-    // }
+ 
 
     // if (RIGHT && !RightPressed) auton_choose = ((auton_choose + 1) - 1) % 3 + 1;
-    // RightPressed = RIGHT;
+
 
     m_degree = Motor_Cata1.position(deg)/3;
     Brain.Screen.setCursor(8, 1);
