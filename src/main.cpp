@@ -97,6 +97,8 @@ void usercontrol(void) {
   bool backwingStatus = 0;
   float m_degree= Motor_Cata1.position(deg);
 
+  
+
   // initCata();
 
   while(true) {
@@ -123,10 +125,18 @@ void usercontrol(void) {
 
     if(BA && !BAPressed) {
       rotateStatus = !rotateStatus;
+      setCatapultSpeed(rotateStatus*100);
+    }
+    BAPressed = BA;
+
+/*
+    if(BA && !BAPressed) {
+      rotateStatus = !rotateStatus;
       setCataRotateStatus(rotateStatus);
       if(rotateStatus == 0) setCataStatus(5);
     }
     BAPressed = BA;
+  */
 
     if (R1 && !R1Pressed) {
       frontwingStatus = !frontwingStatus;

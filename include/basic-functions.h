@@ -52,11 +52,17 @@ float getPitch();
 void setIntakeSpeed(float);
 void intake();
 
+
 //Cata
+void catapult();
+void setCatapultSpeed(float);
+
+/*
 void setCataStatus(int, int=2);
 void setCataRotateStatus(int);
 void catapult();
 void initCata();
+*/
 
 /*
 void catapultStatus(bool);

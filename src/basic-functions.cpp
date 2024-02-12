@@ -223,7 +223,20 @@ void intake() {
     this_thread::sleep_for(1);
   }
 }
+float catapult_speed = 0;
 
+void setCatapultSpeed(float _input){
+  catapult_speed = _input;
+}
+
+void catapult(){
+  while(true){
+    Motor_Cata1.spin(directionType::fwd, (int)130 * catapult_speed, voltageUnits::mV);
+    this_thread::sleep_for(1);
+  }
+  
+}
+/*
 // ---------- cataStatus --------- 
 // 1 = ready to shoot   2 = shooting
 // 0 = pulling down to preshoot position
@@ -333,3 +346,4 @@ void catapult(){
   }
 }
 
+*/
