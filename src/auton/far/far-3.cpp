@@ -9,6 +9,9 @@
 */
 void far_3() {
 
+//Center Rush
+//Andrew ur gonna do this right?
+
 
   MyTimer autotimer;
   autotimer.reset();
