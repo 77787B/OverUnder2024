@@ -125,7 +125,7 @@ void usercontrol(void) {
 
     if(BA && !BAPressed) {
       rotateStatus = !rotateStatus;
-      setCatapultSpeed(rotateStatus*100);
+      setCatapultSpeed(rotateStatus*68);
     }
     BAPressed = BA;
 
