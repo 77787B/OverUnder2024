@@ -156,7 +156,7 @@ void usercontrol(void) {
     }
     LeftPressed = LEFT;
 
-    if(DOWN) runAuton();
+    if(DOWN) runSkill();//runAuton();
     if(DOWN && R2) runSkill();
     if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
