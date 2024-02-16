@@ -6,79 +6,78 @@
 
 /**
  * Far 3: ? goal
+ * //Center Rush
 */
 void far_3() {
-  printf ("\nfar_3:\n");
 
   MyTimer autotimer;
   autotimer.reset();
 
-  setIntakeSpeed(75);
-  MyGps.gpsPIDMove(0, -40, -1);
-  this_thread::sleep_for(600);  
-  setIntakeSpeed(0);
+  setPistonRW(true);
+  this_thread::sleep_for(400);
 
-  // push red ball in
-  PIDPosCurveAbs(1200, 1675, 57);
-  this_thread::sleep_for(100);
-  timerForward(100, 450); 
-  this_thread::sleep_for(100); 
-  timerForward(-150, 135);  
-
-  // push green ball in (the one under the red pole)
-  this_thread::sleep_for(200);  
-  PIDAngleRotateAbs(100);
-  this_thread::sleep_for(100); 
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(650); 
-  setIntakeSpeed(0);
-  PIDAngleRotateAbs(105);
-  timerForward(-150, 400);
-  PIDAngleRotateAbs(105);
-  timerForward(175, 135); 
-  this_thread::sleep_for(100); 
-
-  // get the second green ball
-  PIDAngleRotateAbs(35); 
-  // MyGps.gpsPIDMove(-1100, 300, -1); 
-  setIntakeSpeed(70);
-  MyGps.gpsPIDMove(-1325, 25, -1); 
-  this_thread::sleep_for(500);  
-  setIntakeSpeed(0); 
-
-  //push ball in goal
-  MyGps.gpsPIDMove(-1500, 575, -1);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(650);
-  setIntakeSpeed(0);
-  timerForward(-150, 400);
-  this_thread::sleep_for(100);
-  timerForward(150, 200);
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}
-
-void far_3_3rd_ball() {
-  MyTimer autotimer;
-  autotimer.reset();
-
-  PIDAngleRotateAbs(-65); 
-  MyGps.gpsPIDMove(1000, -500, -1); 
+  //get center triball (1st green ball)
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1200, -500, -1); 
-  this_thread::sleep_for(600);  
-  setIntakeSpeed(0); 
-
-  MyGps.gpsPIDMove(700, -900, -1);
-  PIDAngleRotateAbs(90);
-  setIntakeSpeed(-100);
+  MyGps.gpsPIDMove(-50, 1300, 1);
   this_thread::sleep_for(600);
   setIntakeSpeed(0);
-  timerForward(-60, 400);
 
-  //push ball in goal
+  //go back to starting point and outtake 1st ball
+  MyGps.gpsPIDMove(0, -100, -1);
+  PIDAngleRotateAbs(75);
+  setIntakeSpeed(-75);
+  this_thread::sleep_for(550);
+  setIntakeSpeed(0);
 
+  //get ball under pole (2nd green ball)
+  // PIDAngleRotateAbs(-65);
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(-715, 75, 1);
+  this_thread::sleep_for(400);
+
+  //push in first, second, and third (in triangle) and alliance balls
+  MyGps.gpsPIDMove(75, -100, -1); 
+  PIDAngleRotateAbs(75);
+  setPistonRW(true);
+  //setPistonFW(true);
+  this_thread::sleep_for(400);
+  timerForward(100, 200);
+  // MyGps.gpsPIDMove(200, -100, 1);
+  PIDPosCurveAbs(400, 750, 30);
+  //setPistonFW(false);
+  timerForward(100, 200);
+  PIDAngleRotateAbs(20);
+  timerForward(100, 500);
+  timerForward(-100, 150);
+  PIDAngleRotateAbs(15);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(450);
+  timerForward(100, 350);
+  setIntakeSpeed(0);
+  timerForward(-100, 200);
+  //return for last (fourth and fifth) green balls (near center) & push them in
+  setIntakeSpeed(100);
+  this_thread::sleep_for(400);
+  MyGps.gpsPIDMove(-275, 1100, 1);
+  MyGps.gpsPIDMove(50, 850, -1);
+  PIDAngleRotateAbs(90);
+  setIntakeSpeed(-75);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+
+  return;
+
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(-400, 1800, 1);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(50, 1400, -1);
+  PIDAngleRotateAbs(100);
+  //setPistonFW(true);
+  this_thread::sleep_for(400);
+  timerForward(100, 300);
+  //setPistonFW(false);
+  timerForward(-100, 300);
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
