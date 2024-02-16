@@ -10,34 +10,34 @@
 void far_1() {
 
 setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, -40, -1);
+  MyGps.gpsPIDMove(0, 40, 1);
   this_thread::sleep_for(850);  
-  setIntakeSpeed(0);
+  setIntakeSpeed(0); 
 
   // push red ball in
-  PIDPosCurveAbs(1365, 1850, 50);
+  PIDPosCurveAbs(1850, 1365, -50);
   this_thread::sleep_for(200);
-  timerForward(100, 450); 
+  timerForward(-100, 450); 
   this_thread::sleep_for(250); 
-  timerForward(-150, 135);  
+  timerForward(150, 135);  
 
   // push green ball in
   this_thread::sleep_for(300);  
-  PIDAngleRotateAbs(100);
+  PIDAngleRotateAbs(-80);
   this_thread::sleep_for(200); 
   setIntakeSpeed(-100);
-  this_thread::sleep_for(1000); 
+  this_thread::sleep_for(600); 
   setIntakeSpeed(0);
-  PIDAngleRotateAbs(105);
+  PIDAngleRotateAbs(-75);
   this_thread::sleep_for(200); 
-  timerForward(-150, 400);
+  timerForward(150, 300);
   this_thread::sleep_for(250); 
-  timerForward(175, 135); 
+  timerForward(-175, 135); 
   this_thread::sleep_for(250); 
-  // go back to starting position
-  MyGps.gpsPIDMove(-350, 650, -1);
-  this_thread::sleep_for(250); 
-  MyGps.gpsPIDMove(-350, 35, -1);
+  // go to center
+  MyGps.gpsPIDMove(800, -300, 1);
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(1500, -300, 1);
   
   MyTimer autotimer;
   autotimer.reset();
