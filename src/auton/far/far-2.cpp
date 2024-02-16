@@ -76,7 +76,7 @@ void far_2() {
   MyGps.gpsPIDMove(1375, -600, 1);
   setIntakeSpeed(-75);
   this_thread::sleep_for(400);
-  PIDAngleRotateAbs(155);
+  PIDAngleRotateAbs(150);
   timerForward(-100, 200);
   setIntakeSpeed(0);
 
