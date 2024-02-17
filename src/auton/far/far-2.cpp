@@ -5,102 +5,83 @@
 #include "GPS.h"
 
 /**
- * Far 2: AWP: 6 balls
- * 
- * Route:
- * 1. Get triball-under-bar
- * 1.1. Drive slowly to corner triball so our alliance ball follows a stable path
- * 2. Get corner triball
- * 3. Push in alliance triball and corner triball
- * 3.1. Rotate and push in triball-under-bar
- * 4. Get barrier-triball-on-right 
- * 4.1. Outtake it toward goal
- * 5. Get middle-barrier-triball
- * 6. Push all 3 triballs into goal
+ * Far 2: ? goal
+ * //Center Rush
 */
-
-void far_2_() {
-  PIDAngleRotateAbs(180);
-
-  //get first green ball
-  // setIntakeSpeed(100);
-  // MyGps.gpsPIDMove(0, -40, -1);
-  // this_thread::sleep_for(600);  
-  // setIntakeSpeed(0);
-
-  // //push first, second green balls and alliance ball in
-  // MyGps.gpsPIDMove(0, 800, 1);
-}
-
 void far_2() {
-  printf ("\nfar_2:\n");
 
   MyTimer autotimer;
   autotimer.reset();
 
-  // # get first green ball
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 40, 1);
-  this_thread::sleep_for(600);  
-  setIntakeSpeed(0);
-
-  // # push first, second green balls and alliance ball in
-  // MyGps.gpsPIDMove(-50, 775, 1);
-  MyGps.gpsPIDMove(0, -780, -1);
-  // TODO: open wings here 
-  // simulate open wings
+  setPistonFW(true);
   this_thread::sleep_for(400);
-  MyGps.gpsPIDMove(350, -1175, -1);
-  PIDAngleRotateAbs(-65);
-  timerForward(-75, 250);
-  PIDAngleRotateAbs(-87);
-  timerForward(-100, 400);
-  timerForward(100, 100);
-  PIDAngleRotateAbs(87);
-  setIntakeSpeed(-100);
-  PIDAngleRotateAbs(95);
-  timerForward(100, 300);
-  setIntakeSpeed(0);
-  timerForward(-95, 250);
+  setPistonFW(false);
 
-  //get third green ball
+  //get center triball (1st green ball)
   setIntakeSpeed(100);
-  // MyGps.gpsPIDMove(-1275, 195, -1);
-  MyGps.gpsPIDMove(1175, -180, 1);
-  this_thread::sleep_for(300);
+  MyGps.gpsPIDMove(-50, 1300, 1);
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
 
-  // outtake ball toward goal
-  PIDAngleRotateAbs(145); // TODO: adjust this angle to increase the reliability of the triball's target position
-  this_thread::sleep_for(100); // TODO: try without this
-  // MyGps.gpsPIDMove(-1300, 600, -1);
-  MyGps.gpsPIDMove(1375, -600, 1);
+  //go back to starting point and outtake 1st ball
+  MyGps.gpsPIDMove(0, -100, -1);
+  PIDAngleRotateAbs(75);
+  setIntakeSpeed(-75);
+  this_thread::sleep_for(550);
+  setIntakeSpeed(0);
+
+  //get ball under pole (2nd green ball)
+  // PIDAngleRotateAbs(-65);
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(-715, 75, 1);
+  this_thread::sleep_for(400);
+
+  //push in first, second, and third (in triangle) and alliance balls
+  MyGps.gpsPIDMove(75, -100, -1); 
+  PIDAngleRotateAbs(75);
+  setPistonFW(true);
+  this_thread::sleep_for(400);
+  timerForward(100, 200);
+  // MyGps.gpsPIDMove(200, -100, 1);
+  PIDPosCurveAbs(400, 750, 30);
+  setPistonFW(false);
+  timerForward(100, 200);
+  PIDAngleRotateAbs(20);
+  timerForward(100, 500);
+  timerForward(-100, 150);
+  PIDAngleRotateAbs(15);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(450);
+  timerForward(100, 350);
+  setIntakeSpeed(0);
+  timerForward(-100, 200);
+
+  //get fourth green ball and drop it off next to goal
+  setIntakeSpeed(100);
+  this_thread::sleep_for(400);
+  MyGps.gpsPIDMove(-475, 475, 1);
+  timerForward(-100, 200);
+  MyGps.gpsPIDMove(75, 850, -1);
+  PIDAngleRotateAbs(90);
   setIntakeSpeed(-75);
   this_thread::sleep_for(400);
-  PIDAngleRotateAbs(150);
-  timerForward(-100, 200);
   setIntakeSpeed(0);
 
-  // drive to intake middle barrier triball
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1650, -275, 1, 80);
-  this_thread::sleep_for(500);
-
-  // rotate to push tribals into goal
-  // PIDAngleRotateAbs(180);
-  PIDAngleRotateAbs(175);
-  setPistonFW(true);
-  this_thread::sleep_for(100);
-  setIntakeSpeed(-100); 
-  timerForward(100, 700);
-  // timerForward(100, 200);
-  // PIDAngleRotateAbs(190);
-  // timerForward(-100, 200);
-
-  printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
   return;
+  //get fifth green ball and push in 4th and 5th green balls
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(-400, 1300, 1);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(50, 1100, -1);
+  PIDAngleRotateAbs(100);
+  setIntakeSpeed(-100);
+  setPistonFW(true);
+  this_thread::sleep_for(400);
+  timerForward(100, 300);
+  setIntakeSpeed(0);
+  setPistonFW(false);
+  timerForward(-100, 300);
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
-
-
-
-
-// P.S try PIDPosCurveAbs(5, 400, 100); lol

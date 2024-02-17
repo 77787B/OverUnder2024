@@ -26,10 +26,10 @@ void skill(){
   setCatapultSpeed(0);
   setPistonBW(false);
   
-  PIDAngleRotateAbs(-45);
+  //PIDAngleRotateAbs(-45);
   timerForward(-70, 500);
   PIDPosForwardRel(100);
-  angleRotateAbs(-35);
+  //PIDAngleRotateAbs(-35);
   posForwardAbsWithHeading(80, 400, 0);
   setPistonFW(true);
   
