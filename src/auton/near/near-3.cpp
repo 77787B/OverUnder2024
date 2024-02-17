@@ -36,7 +36,7 @@ void near_3() {
   MyGps.gpsPIDMove(100, -100, 1);
   PIDAngleRotateAbs(35);
 
-  printf ("===== MyGps.gpsPIDMove: Get corner tribal =====\n");
+  printf ("===== MyGps.gpsPIDMove: Get corner triball =====\n");
   timerForward(40, 200); 
   // setPistonTB(true);
   this_thread::sleep_for(400);

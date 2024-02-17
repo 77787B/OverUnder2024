@@ -41,8 +41,8 @@ void near_2() {
   setIntakeSpeed(0);
   //go to triangle
   MyGps.gpsPIDMove(-330, -30, -1);
-  PIDAngleRotateAbs(120);
-  timerForward(-65, 150);
+  PIDAngleRotateAbs(110);
+  timerForward(-65, 125);
   setPistonBW(true);
 
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
