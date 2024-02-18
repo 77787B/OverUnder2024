@@ -16,7 +16,7 @@ void near_1() {
 
   MyTimer autotimer;
   autotimer.reset();
-  printf ("\n===== near_2: Start =====\n");
+  printf ("\n===== near_1: Start =====\n");
 
   //rush to intake center ball
   setIntakeSpeed(100);
