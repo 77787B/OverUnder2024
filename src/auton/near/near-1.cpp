@@ -12,7 +12,7 @@
  * 4. Touch horizontal bar
 */
 
-void near_1() {
+void near_1_comp() {
 
   MyTimer autotimer;
   autotimer.reset();
@@ -20,28 +20,24 @@ void near_1() {
 
   // Push alliance triball into goal
   MyGps.gpsPIDMove(-500, 350, 1, 50);
-  MyGps.gpsPIDMove(-500, 590, 1, 25);
+  MyGps.gpsPIDMove(-500, 570, 1, 25);
   setIntakeSpeed(-100);
   this_thread::sleep_for(600);
   setIntakeSpeed(0);
 
   //get corner triball
-  MyGps.gpsPIDMove(-530, 515, -1, 100);
+  MyGps.gpsPIDMove(-515, 530, -1, 100);
   PIDAngleRotateAbs(180);
-  PIDPosCurveAbs(230, 500, 20);
+  PIDPosCurveAbs(200, 480, 18);
   setPistonFW(true);
   this_thread::sleep_for(400);
-  PIDPosCurveAbs(300, 525, 30);
-  setPistonFW(false);
+  PIDPosCurveAbs(270, 515, 45);
   this_thread::sleep_for(500);
-  timerForward(-50, 200);
-  PIDAngleRotateAbs(145);
-  PIDPosCurveAbs(300, 500, 50);
-  PIDAngleRotateAbs(95);
+  setPistonFW(false);
 
   // Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(630, -245, 1);
+  MyGps.gpsPIDMove(690, -85, 1);
   this_thread::sleep_for(1000);
 
   printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());
@@ -51,15 +47,73 @@ void near_1() {
 }
 
 
-void near_1_elimStart() {
+
+void near_1() {
+  MyTimer autotimer;
+  autotimer.reset();
+ 
+  printf ("\n===== near_2: Start =====\n");
+
+  //rush to intake center ball
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(0, 300, 1);
+  MyGps.gpsPIDMove(250, 1275, 1);
+  this_thread::sleep_for(300);
+  setIntakeSpeed(0);
+
+  //going back and getting the alliance triball
+  MyGps.gpsPIDMove(0, 0, 1);
+  setIntakeSpeed(-80);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(0, 75, -1);
+  setIntakeSpeed(100);
+  PIDAngleRotateAbs(-145);
+  MyGps.gpsPIDMove(-100, 0, 1);
+
+  // Push alliance triball into goal
+  MyGps.gpsPIDMove(-500, 350, 1, 50);
+  MyGps.gpsPIDMove(-500, 570, 1, 25);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
+
+  return;
+
+  //get corner triball
+  MyGps.gpsPIDMove(-515, 530, -1, 100);
+  PIDAngleRotateAbs(180);
+  PIDPosCurveAbs(200, 480, 18);
+  setPistonFW(true);
+  this_thread::sleep_for(400);
+  PIDPosCurveAbs(275, 515, 45);
+  this_thread::sleep_for(500);
+  setPistonFW(false);
+
+  // Push triballs over alley and touch horizontal bar
+  setIntakeSpeed(-100);
+  MyGps.gpsPIDMove(690, -85, 1);
+  this_thread::sleep_for(1000);
+
+  printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());
+
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}
+
+
+
+
+void near_1_probWontUse() {
   MyTimer autotimer;
   autotimer.reset();
  
   printf ("\n===== near_1: Start =====\n");
 
   //push alliance ball in
-  MyGps.gpsPIDMove(-515, 330, 1, 50);
-  MyGps.gpsPIDMove(-515, 575, 1, 25);
+  MyGps.gpsPIDMove(-545, 315, 1, 50);
+  // PIDAngleRotateAbs()
+  MyGps.gpsPIDMove(-615, 375, 1, 25);
   setIntakeSpeed(-100);
   this_thread::sleep_for(600);
   setIntakeSpeed(0);
@@ -89,43 +143,6 @@ void near_1_elimStart() {
 
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
   
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}
-
-
-void near_1_og() {
-
-  MyTimer autotimer;
-  autotimer.reset();
-  printf ("\n===== near_1: Start =====\n");
-
-  // Push alliance triball into goal
-  MyGps.gpsPIDMove(-500, 350, 1, 50);
-  MyGps.gpsPIDMove(-500, 590, 1, 25);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-  MyGps.gpsPIDMove(-500, 450 , -1, 25);
-  PIDAngleRotateAbs(180);
-
-  // Get corner triball
-  setPistonFW(true);
-  PIDPosCurveAbs(400, 725, 20);
-  setPistonFW(false);
-  this_thread::sleep_for(500);
-  timerForward(-50, 200);
-  PIDAngleRotateAbs(145);
-  PIDPosCurveAbs(300, 500, 50);
-  PIDAngleRotateAbs(95);
-
-  // Push triballs over alley and touch horizontal bar
-  setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(630, -245, 1);
-  this_thread::sleep_for(1000);
-
-  printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());
-
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }

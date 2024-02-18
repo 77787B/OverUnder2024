@@ -36,7 +36,7 @@ void far_1_notRush() {
 }
 
 
-void far_1() {
+void far_1_() {
   printf ("\nfar_1:\n");
 
   MyTimer autotimer;
@@ -60,6 +60,8 @@ void far_1() {
   timerForward(100, 300);
   setIntakeSpeed(0);
   timerForward(-95, 250);
+
+  return;
 
   //get third green ball
   setIntakeSpeed(100);
@@ -102,7 +104,7 @@ void far_1() {
 }
 
 
-void far_1_dif() {
+void far_1() {
   printf ("\nfar_1:\n");
 
   MyTimer autotimer;
@@ -115,47 +117,48 @@ void far_1_dif() {
   setIntakeSpeed(0);
 
   // # push first, second green balls and alliance ball in
-  MyGps.gpsPIDMove(100, -800, -1, 70);
-  PIDAngleRotateAbs(-40);
+  MyGps.gpsPIDMove(100, -850, -1, 35);
+  PIDAngleRotateAbs(-30);
   setPistonBW(true);
   this_thread::sleep_for(400);
-  MyGps.gpsPIDMove(275, -1100, -1, 70);
-  return;
-
-  PIDAngleRotateAbs(-65);
+  MyGps.gpsPIDMove(250, -1100, -1, 70);
   setPistonBW(false);
-  timerForward(-75, 250);
-  PIDAngleRotateAbs(-87);
+  this_thread::sleep_for(300);
+  timerForward(-60, 300);
+  PIDAngleRotateAbs(-75);
   timerForward(-100, 400);
   timerForward(100, 100);
-  PIDAngleRotateAbs(87);
+  PIDAngleRotateAbs(97);
   setIntakeSpeed(-100);
-  PIDAngleRotateAbs(95);
+  this_thread::sleep_for(300);
   timerForward(100, 300);
   setIntakeSpeed(0);
-  timerForward(-95, 250);
+  timerForward(-100, 250);
 
-  //get third green ball
-  setIntakeSpeed(100);
-  // MyGps.gpsPIDMove(1175, -180, 1);
-  MyGps.gpsPIDMove(1150, -150, 1);
-  this_thread::sleep_for(300);
-  setIntakeSpeed(0);
+  return;
 
-  // outtake ball toward goal
-  PIDAngleRotateAbs(145); // TODO: adjust this angle to increase the reliability of the triball's target position
-  this_thread::sleep_for(100); // TODO: try without this
-  // MyGps.gpsPIDMove(-1300, 600, -1);
-  MyGps.gpsPIDMove(1375, -600, 1);
-  setIntakeSpeed(-75);
-  this_thread::sleep_for(400);
-  PIDAngleRotateAbs(150);
-  timerForward(-100, 200);
-  setIntakeSpeed(0);
+  timerForward(-100, 300);
+  // //get third green ball
+  // setIntakeSpeed(100);
+  // // MyGps.gpsPIDMove(1175, -180, 1);
+  // MyGps.gpsPIDMove(1150, -150, 1);
+  // this_thread::sleep_for(300);
+  // setIntakeSpeed(0);
+
+  // // outtake ball toward goal
+  // PIDAngleRotateAbs(145); // TODO: adjust this angle to increase the reliability of the triball's target position
+  // this_thread::sleep_for(100); // TODO: try without this
+  // // MyGps.gpsPIDMove(-1300, 600, -1);
+  // MyGps.gpsPIDMove(1300, -600, 1);
+  // setIntakeSpeed(-75);
+  // this_thread::sleep_for(400);
+  // PIDAngleRotateAbs(150);
+  // timerForward(-100, 200);
+  // setIntakeSpeed(0);
 
   // drive to intake middle barrier triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1650, -275, 1, 80);
+  MyGps.gpsPIDMove(1600, -275, 1, 80);
   this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
