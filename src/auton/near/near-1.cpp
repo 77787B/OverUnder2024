@@ -12,6 +12,62 @@
  * 4. Touch horizontal bar
 */
 
+void near_1() {
+
+  MyTimer autotimer;
+  autotimer.reset();
+  printf ("\n===== near_2: Start =====\n");
+
+  //rush to intake center ball
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(0, 300, 1);
+  MyGps.gpsPIDMove(300, 1225, 1);
+  //can make all the intakes 300 with new robot
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(275, 1100, -1);
+
+  //drop off middle ball
+  MyGps.gpsPIDMove(25, 345, 1);
+  PIDAngleRotateAbs(-218);
+  setIntakeSpeed(-80);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+
+  // Push alliance triball into goal
+  //note: gps is very off on old robot, fix next few lines
+  setIntakeSpeed(100);
+  // PIDAngleRotateAbs(-145);
+  MyGps.gpsPIDMove(-75, 215, 1);
+  this_thread::sleep_for(600);
+  setIntakeSpeed(0);
+  MyGps.gpsPIDMove(-500, 500, 1, 50);
+  MyGps.gpsPIDMove(-500, 615, 1, 25);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+
+  //get corner triball
+  MyGps.gpsPIDMove(-515, 530, -1, 100);
+  PIDAngleRotateAbs(180);
+  PIDPosCurveAbs(200, 480, 50);
+  //setPistonFW(true);
+  this_thread::sleep_for(400);
+  PIDPosCurveAbs(275, 515, 50);
+  this_thread::sleep_for(500);
+  //setPistonFW(false);
+
+  // Push triballs over alley and touch horizontal bar
+  setIntakeSpeed(-100);
+  MyGps.gpsPIDMove(690, -15, 1);
+  this_thread::sleep_for(500);
+
+  printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}
+
+
 void near_1_comp() {
 
   MyTimer autotimer;
@@ -46,104 +102,4 @@ void near_1_comp() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
 
-
-
-void near_1() {
-  MyTimer autotimer;
-  autotimer.reset();
- 
-  printf ("\n===== near_2: Start =====\n");
-
-  //rush to intake center ball
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 300, 1);
-  MyGps.gpsPIDMove(250, 1275, 1);
-  this_thread::sleep_for(300);
-  setIntakeSpeed(0);
-
-  //going back and getting the alliance triball
-  MyGps.gpsPIDMove(0, 0, 1);
-  setIntakeSpeed(-80);
-  this_thread::sleep_for(400);
-  setIntakeSpeed(0);
-  MyGps.gpsPIDMove(0, 75, -1);
-  setIntakeSpeed(100);
-  PIDAngleRotateAbs(-145);
-  MyGps.gpsPIDMove(-100, 0, 1);
-
-  // Push alliance triball into goal
-  MyGps.gpsPIDMove(-500, 350, 1, 50);
-  MyGps.gpsPIDMove(-500, 570, 1, 25);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-
-  return;
-
-  //get corner triball
-  MyGps.gpsPIDMove(-515, 530, -1, 100);
-  PIDAngleRotateAbs(180);
-  PIDPosCurveAbs(200, 480, 18);
-  setPistonFW(true);
-  this_thread::sleep_for(400);
-  PIDPosCurveAbs(275, 515, 45);
-  this_thread::sleep_for(500);
-  setPistonFW(false);
-
-  // Push triballs over alley and touch horizontal bar
-  setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(690, -85, 1);
-  this_thread::sleep_for(1000);
-
-  printf ("\n===== near_1: End: Elased=%.i =====\n", autotimer.getTime());
-
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}
-
-
-
-
-void near_1_probWontUse() {
-  MyTimer autotimer;
-  autotimer.reset();
- 
-  printf ("\n===== near_1: Start =====\n");
-
-  //push alliance ball in
-  MyGps.gpsPIDMove(-545, 315, 1, 50);
-  // PIDAngleRotateAbs()
-  MyGps.gpsPIDMove(-615, 375, 1, 25);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-
-  //rush to intake center ball
-  MyGps.gpsPIDMove(0, 0, -1);
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 1200, 1);
-  this_thread::sleep_for(600);
-  setIntakeSpeed(0);
-
-  printf ("===== MyGps.gpsPIDMove: Move to near starting position =====\n");
-  MyGps.gpsPIDMove(-275, 275, -1);
-  MyGps.gpsPIDMove(-600, 300, -1);
-  PIDAngleRotateAbs(170);
-  printf ("===== MyGps.gpsPIDMove: Get corner tribal =====\n");
-  PIDPosCurveAbs(230, 500, 20);
-  setPistonFW(true);
-  this_thread::sleep_for(400);
-  PIDPosCurveAbs(300, 525, 30);
-  setPistonFW(false);
-  printf ("===== MyGps.gpsPIDMove: Push balls across alley=====\n");
-  timerForward(100, 275);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(800); 
-  setIntakeSpeed(0);
-
-  printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
-  
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-}
 
