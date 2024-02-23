@@ -5,9 +5,9 @@
 #include "basic-functions.h"
 #include "auton-functions.h"
 
-
 void skillInit();
-void skill();
+void skill_1();
+void skill_2();
 void runSkill();
 
 #endif
