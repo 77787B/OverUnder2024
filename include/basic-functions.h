@@ -78,10 +78,8 @@ void catapult();
 //Piston
 void setPistonHH(bool);
 void setPistonFW(bool);
+void setPistonFLW(bool);
+void setPistonFRW(bool);
 void setPistonBW(bool);
-
-
-
-
 
 #endif
