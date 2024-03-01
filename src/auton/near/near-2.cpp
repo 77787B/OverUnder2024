@@ -13,7 +13,7 @@
 */
 
 
-void near_2() {
+void near_2_original() {
   MyTimer autotimer;
   autotimer.reset();
  
@@ -52,9 +52,7 @@ void near_2() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
 
-
-
-void near_2_comp() {
+void near_2() {
 
   MyTimer autotimer;
   autotimer.reset();
@@ -68,37 +66,45 @@ void near_2_comp() {
 
   //drop off center ball
   MyGps.gpsPIDMove(-15, 200, -1);
-  PIDAngleRotateAbs(142);
+  PIDAngleRotateAbs(100);
   setIntakeSpeed(-80);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
   // Push alliance triball into goal
   setIntakeSpeed(100);
   // PIDAngleRotateAbs(-145);
-  MyGps.gpsPIDMove(-175, -150, 1, 30);
+  // MyGps.gpsPIDMove(-175, -150, 1, 30);
+  // MyGps.gpsPIDMove(-150, -150, 1, 20);
+  // MyGps.gpsPIDMove(-130, -130, 1, 20);
+  MyGps.gpsPIDMove(-145, -130, 1, 20);
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  MyGps.gpsPIDMove(-500, 300, 1, 50);
-  MyGps.gpsPIDMove(-500, 415, 1, 25);
+  MyGps.gpsPIDMove(0, 0, -1, 20);
+  // MyGps.gpsPIDMove(-500, 300, 1, 50);
+  // MyGps.gpsPIDMove(-500, 415, 1, 25);
+  MyGps.gpsPIDMove(-600, 230, 1, 50);
+  MyGps.gpsPIDMove(-625, 361, 1, 25);
   setIntakeSpeed(-100);
   this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
   //get corner triball
-  MyGps.gpsPIDMove(-515, 480, -1, 100);
-  PIDAngleRotateAbs(180);
-  PIDPosCurveAbs(200, 480, 50);
-  setPistonFW(true);
+  // MyGps.gpsPIDMove(-640, 295, -1, 50);
+  MyGps.gpsPIDMove(-600, 230, -1, 25);
+  PIDAngleRotateAbs(150);
+  PIDPosCurveAbs(200, 450, 50);
+  setPistonFRW(true);
   this_thread::sleep_for(400);
   PIDPosCurveAbs(275, 515, 50);
-  this_thread::sleep_for(500);
-  setPistonFW(false);
+  // this_thread::sleep_for(500);
 
   // Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(690, 100, 1);
+  // MyGps.gpsPIDMove(690, 100, 1);
+  MyGps.gpsPIDMove(745, 125, 1);
+  setPistonFW(false);
   this_thread::sleep_for(500);
 
   // //go to triangle
@@ -111,8 +117,6 @@ void near_2_comp() {
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
-
-
 
 void near_2_rushV2() {
 
