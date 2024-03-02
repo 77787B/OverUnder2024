@@ -52,58 +52,68 @@ void near_2_original() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
 
+void near_2_() {
+  // PIDAngleRotateAbs(180, 0.75, 0.05, 0.3, 0.8);
+  PIDAngleRotateAbs(180, 4, 0.1, 35, 1.5); // trying with PID used in gpsPIDMove
+}
+
 void near_2() {
 
   MyTimer autotimer;
   autotimer.reset();
   printf ("\n===== near_2: Start =====\n");
 
-  //rush to intake center ball
+  // ## Rush to intake center ball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 1200, 1);
+  MyGps.gpsPIDMove(0, 1200, 1, 100);
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  //drop off center ball
-  MyGps.gpsPIDMove(-15, 200, -1);
+  // ## drop off center ball
+  MyGps.gpsPIDMove(-15, 200, -1, 100);
   PIDAngleRotateAbs(100);
   setIntakeSpeed(-80);
   this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
-  // Push alliance triball into goal
+  // ## Push alliance triball into goal
   setIntakeSpeed(100);
   // PIDAngleRotateAbs(-145);
-  // MyGps.gpsPIDMove(-175, -150, 1, 30);
-  // MyGps.gpsPIDMove(-150, -150, 1, 20);
-  // MyGps.gpsPIDMove(-130, -130, 1, 20);
-  MyGps.gpsPIDMove(-145, -130, 1, 20);
+  // MyGps.gpsPIDMove(-145, -130, 1, 20); // end up (135, 123)
+  // MyGps.gpsPIDMove(-150, -120, 1, 20); // end up (138, 115)
+  // MyGps.gpsPIDMove(-170, -120, 1, 20); // end up (162, 124)
+  // MyGps.gpsPIDMove(-175, -120, 1, 20); // end up (166, 117)
+  MyGps.gpsPIDMove(-180, -120, 1, 20); // end up (173, 122)
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  MyGps.gpsPIDMove(0, 0, -1, 20);
-  // MyGps.gpsPIDMove(-500, 300, 1, 50);
-  // MyGps.gpsPIDMove(-500, 415, 1, 25);
+  // MyGps.gpsPIDMove(0, 0, -1, 20);
   MyGps.gpsPIDMove(-600, 230, 1, 50);
-  MyGps.gpsPIDMove(-625, 361, 1, 25);
+  // MyGps.gpsPIDMove(-625, 361, 1, 25); // works on near side of blue goal's left side
+  MyGps.gpsPIDMove(-625, 329, 1, 25); // end up (635, 317)
   setIntakeSpeed(-100);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
-  //get corner triball
+  // ## get corner triball
   // MyGps.gpsPIDMove(-640, 295, -1, 50);
   MyGps.gpsPIDMove(-600, 230, -1, 25);
-  PIDAngleRotateAbs(150);
-  PIDPosCurveAbs(200, 450, 50);
+  // PIDAngleRotateAbs(150); // very unstable rotation
+  PIDAngleRotateAbs(150, 4, 0.1, 35, 1.5); // trying with PID used in gpsPIDMove
+  this_thread::sleep_for(100);
+  PIDPosCurveAbs(200, 450, 50);  // works on near side of blue goal's left side
   setPistonFRW(true);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(500);
+
   PIDPosCurveAbs(275, 515, 50);
+  // PIDPosCurveAbs(290, 515, 50);
   // this_thread::sleep_for(500);
 
-  // Push triballs over alley and touch horizontal bar
+  // ## Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
   // MyGps.gpsPIDMove(690, 100, 1);
-  MyGps.gpsPIDMove(745, 125, 1);
+  // MyGps.gpsPIDMove(745, 125, 1); // works on near side of blue goal's left side
+  MyGps.gpsPIDMove(766, 170, 1); // works on near side of blue goal's left side
   setPistonFW(false);
   this_thread::sleep_for(500);
 
