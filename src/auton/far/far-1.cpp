@@ -36,7 +36,7 @@ void far_1_notRush() {
 }
 
 
-void far_1_() {
+void far_1_5ball() {
   printf ("\nfar_1:\n");
 
   MyTimer autotimer;
@@ -138,23 +138,23 @@ void far_1() {
   return;
 
   timerForward(-100, 300);
-  // //get third green ball
-  // setIntakeSpeed(100);
-  // // MyGps.gpsPIDMove(1175, -180, 1);
-  // MyGps.gpsPIDMove(1150, -150, 1);
-  // this_thread::sleep_for(300);
-  // setIntakeSpeed(0);
+  //get third green ball
+  setIntakeSpeed(100);
+  // MyGps.gpsPIDMove(1175, -180, 1);
+  MyGps.gpsPIDMove(1150, -150, 1);
+  this_thread::sleep_for(300);
+  setIntakeSpeed(0);
 
-  // // outtake ball toward goal
-  // PIDAngleRotateAbs(145); // TODO: adjust this angle to increase the reliability of the triball's target position
-  // this_thread::sleep_for(100); // TODO: try without this
-  // // MyGps.gpsPIDMove(-1300, 600, -1);
-  // MyGps.gpsPIDMove(1300, -600, 1);
-  // setIntakeSpeed(-75);
-  // this_thread::sleep_for(400);
-  // PIDAngleRotateAbs(150);
-  // timerForward(-100, 200);
-  // setIntakeSpeed(0);
+  // outtake ball toward goal
+  PIDAngleRotateAbs(145); // TODO: adjust this angle to increase the reliability of the triball's target position
+  this_thread::sleep_for(100); // TODO: try without this
+  // MyGps.gpsPIDMove(-1300, 600, -1);
+  MyGps.gpsPIDMove(1300, -600, 1);
+  setIntakeSpeed(-75);
+  this_thread::sleep_for(400);
+  PIDAngleRotateAbs(150);
+  timerForward(-100, 200);
+  setIntakeSpeed(0);
 
   // drive to intake middle barrier triball
   setIntakeSpeed(100);
