@@ -6,7 +6,6 @@
 
 
 void autonInit(void) {
-  setPistonTB(false);
   resetHeading();
   resetForwardPos();
   MyGps.resetForwardPosGps();
@@ -14,7 +13,7 @@ void autonInit(void) {
 
 const int num_of_choices = 8;
 
-static int auton_choose = 4; // Default auton_choose
+static int auton_choose = 1; // Default auton_choose
 
 int getAutonChoose() {
   return auton_choose;

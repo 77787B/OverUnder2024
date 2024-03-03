@@ -191,48 +191,37 @@ float getPitch() {
 void setPistonHH(bool _input) {
   // set Expansion piston accordingly
   if (_input)  {
-    PistonHH1.off();
-    PistonHH2.off();
+    PistonHH.off();
   }
   else { 
-    PistonHH1.on();
-    PistonHH2.on();
+    PistonHH.on();
   }
 }
 
-void setPistonTB(bool _input) {
-  // set Expansion piston accordingly
-  if (_input)  PistonTB.off();
-  else PistonTB.on();
+void setPistonFW(bool _input){
+  setPistonFLW(_input);
+  setPistonFRW(_input);
 }
 
-void setPistonLH(bool _input) {
+void setPistonFLW(bool _input){
   // set Expansion piston accordingly
-  if (_input)  PistonLH.off();
-  else PistonLH.on();
+  if (_input)  PistonFLW.off();
+  else PistonFLW.on();
 }
 
-void setPistonLW(bool _input){
+void setPistonFRW(bool _input){
   // set Expansion piston accordingly
-  if (_input)  PistonLW.off();
-  else PistonLW.on();
-}
-void setPistonRW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonRW.off();
-  else PistonRW.on();
+  if (_input)  PistonFRW.off();
+  else PistonFRW.on();
 }
 
-void setWings(bool _input){
-  if(_input) {
-    PistonLW.off();
-    PistonRW.off();
-  }
-  else{
-    PistonLW.on();
-    PistonRW.on();
-  }
+void setPistonBW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonBW.off();
+  else PistonBW.on();
 }
+
+
 
 float intake_speed = 0;
 
@@ -246,7 +235,20 @@ void intake() {
     this_thread::sleep_for(1);
   }
 }
+float catapult_speed = 0;
 
+void setCatapultSpeed(float _input){
+  catapult_speed = _input;
+}
+
+void catapult(){
+  while(true){
+    Motor_Cata1.spin(directionType::fwd, (int)130 * catapult_speed, voltageUnits::mV);
+    this_thread::sleep_for(1);
+  }
+  
+}
+/*
 // ---------- cataStatus --------- 
 // 1 = ready to shoot   2 = shooting
 // 0 = pulling down to preshoot position
@@ -356,3 +358,4 @@ void catapult(){
   }
 }
 
+*/

@@ -52,11 +52,17 @@ float getPitch();
 void setIntakeSpeed(float);
 void intake();
 
+
 //Cata
+void catapult();
+void setCatapultSpeed(float);
+
+/*
 void setCataStatus(int, int=2);
 void setCataRotateStatus(int);
 void catapult();
 void initCata();
+*/
 
 /*
 void catapultStatus(bool);
@@ -70,14 +76,10 @@ void catapult();
 
 
 //Piston
-void setPistonTB(bool);
-void setPistonLH(bool);
 void setPistonHH(bool);
-void setPistonLW(bool);
-void setPistonRW(bool);
-void setWings(bool);
-
-
-
+void setPistonFW(bool);
+void setPistonFLW(bool);
+void setPistonFRW(bool);
+void setPistonBW(bool);
 
 #endif

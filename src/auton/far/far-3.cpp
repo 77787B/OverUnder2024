@@ -5,79 +5,84 @@
 #include "GPS.h"
 
 /**
- * Far 3: ? goal
- * //Center Rush
+ * Far 3: AWP: 5 balls
+ * 
+ * Route:
+ * 1. Get alley triball
+ * 1.1. Drive slowly to corner triball so our alliance ball follows a stable path
+ * 2. Get corner triball
+ * 3. Push in alliance triball and corner triball
+ * 3.1. Rotate and push in triball-under-bar
+ * 4. Get barrier-triball-on-right 
+ * 4.1. Outtake it toward goal
+ * 5. Get middle-barrier-triball
+ * 6. Push all 3 triballs into goal
 */
+
 void far_3() {
+  printf ("\nfar_4:\n");
 
   MyTimer autotimer;
   autotimer.reset();
 
-  setPistonRW(true);
-  this_thread::sleep_for(400);
-
-  //get center triball (1st green ball)
+  // # get alley triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-50, 1300, 1);
-  this_thread::sleep_for(600);
+  MyGps.gpsPIDMove(0, 40, 1);
+  this_thread::sleep_for(300);  
   setIntakeSpeed(0);
 
-  //go back to starting point and outtake 1st ball
-  MyGps.gpsPIDMove(0, -100, -1);
-  PIDAngleRotateAbs(75);
-  setIntakeSpeed(-75);
-  this_thread::sleep_for(550);
-  setIntakeSpeed(0);
+  // * 2. Get corner triball
 
-  //get ball under pole (2nd green ball)
-  // PIDAngleRotateAbs(-65);
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-715, 75, 1);
-  this_thread::sleep_for(400);
-
-  //push in first, second, and third (in triangle) and alliance balls
-  MyGps.gpsPIDMove(75, -100, -1); 
-  PIDAngleRotateAbs(75);
-  setPistonRW(true);
-  //setPistonFW(true);
-  this_thread::sleep_for(400);
-  timerForward(100, 200);
-  // MyGps.gpsPIDMove(200, -100, 1);
-  PIDPosCurveAbs(400, 750, 30);
-  //setPistonFW(false);
-  timerForward(100, 200);
-  PIDAngleRotateAbs(20);
-  timerForward(100, 500);
-  timerForward(-100, 150);
-  PIDAngleRotateAbs(15);
+  // # push first, second tiballs and alliance tiball into goal
+  // MyGps.gpsPIDMove(0, -780, -1, 70);
+  MyGps.gpsPIDMove(275, -1100, -1, 70);
+  PIDAngleRotateAbs(-65, 4, 0.1, 35, 1.5);
+  // setPistonBW(false); // TOTO: skip getting corner triball for now
+  timerForward(-75, 250);
+  PIDAngleRotateAbs(-87, 4, 0.1, 35, 1.5);
+  timerForward(-100, 400);
+  timerForward(100, 100);
+  PIDAngleRotateAbs(87, 4, 0.1, 35, 1.5);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(450);
-  timerForward(100, 350);
+  PIDAngleRotateAbs(95, 4, 0.1, 35, 1.5);
+  timerForward(100, 300);
   setIntakeSpeed(0);
-  timerForward(-100, 200);
-  //return for last (fourth and fifth) green balls (near center) & push them in
+  timerForward(-95, 250);
+
+  //get third green ball
   setIntakeSpeed(100);
-  this_thread::sleep_for(400);
-  MyGps.gpsPIDMove(-275, 1100, 1);
-  MyGps.gpsPIDMove(50, 850, -1);
-  PIDAngleRotateAbs(90);
+  // MyGps.gpsPIDMove(1175, -180, 1);
+  MyGps.gpsPIDMove(1150, -175, 1);
+  this_thread::sleep_for(300);
+  setIntakeSpeed(0);
+
+  // outtake ball toward goal
+  PIDAngleRotateAbs(145, 4, 0.1, 35, 1.5); // TODO: adjust this angle to increase the reliability of the triball's target position
+  this_thread::sleep_for(100); // TODO: try without this
+  // MyGps.gpsPIDMove(-1300, 600, -1);
+  MyGps.gpsPIDMove(1375, -600, 1);
   setIntakeSpeed(-75);
   this_thread::sleep_for(400);
+  PIDAngleRotateAbs(150, 4, 0.1, 35, 1.5);
+  timerForward(-100, 200);
   setIntakeSpeed(0);
 
-  return;
-
+  // drive to intake middle barrier triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-400, 1800, 1);
-  this_thread::sleep_for(400);
+  MyGps.gpsPIDMove(1675, -275, 1, 80);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
-  MyGps.gpsPIDMove(50, 1400, -1);
-  PIDAngleRotateAbs(100);
-  //setPistonFW(true);
-  this_thread::sleep_for(400);
-  timerForward(100, 300);
-  //setPistonFW(false);
-  timerForward(-100, 300);
-  Brain.Screen.setCursor(11, 1);
-  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+
+  // rotate to push tribals into goal
+  PIDAngleRotateAbs(175, 4, 0.1, 35, 1.5);
+  setPistonFW(true);
+  this_thread::sleep_for(100);
+  setIntakeSpeed(-100); 
+  timerForward(100, 700);
+  // timerForward(100, 200);
+  // PIDAngleRotateAbs(190);
+  // timerForward(-100, 200);
+
+  printf ("\n===== far_4: End: Elased=%.i =====\n", autotimer.getTime());
+  return;
 }

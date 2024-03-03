@@ -5,39 +5,32 @@
 #include "GPS.h"
 #include "basic-functions.h"
 
-
-
 void skillInit() {
-
   MyGps.resetForwardPosGps();
 }
 
-
-void skill(){
-  //Push two balls into goal, rotate and ready for catapult
-  PIDPosCurveAbs(605, 1024, 80);
-  moveLeft(-65);
-  this_thread::sleep_for(500);
-  PIDAngleRotateAbs(-115);
-
-  //Begin firing catapult
-  setCataRotateStatus(1);
-  this_thread::sleep_for(25000); //30000
-  setCataRotateStatus(0);
-
-//Drives away to push balls in
-  angleRotateAbs(50, -145);
-  PIDPosCurveAbs(1300, 1175, 60);
-  PIDPosForwardAbs(850);
-  PIDPosCurveAbs(1730, 1239, 60);
-  timerForward(100, 500);
-  PIDAngleRotateAbs(220);
-  setIntakeSpeed(160);
-
-  //Zigzag pattern - Intake triballs and push into goal
-  PIDPosForwardAbs(70);
-}
 void runSkill(){
     skillInit();
-    skill();
+    skill_1();
+}
+
+void scrappedSkills(){
+    //push in alliance triballs
+  MyGps.gpsPIDMove(275, 325, 1, 100);
+  MyGps.gpsPIDMove(275, 375, 1, 100);
+  timerForward(80, 275);
+  MyGps.gpsPIDMove(275, 430, -1, 100);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+
+  //catapult balls to other side
+  MyGps.gpsPIDMove(275, 325, -1, 100);
+  PIDAngleRotateAbs(-55);
+  setPistonBW(true);
+  setCatapultSpeed(70);
+  // this_thread::sleep_for(28000);
+  this_thread::sleep_for(1000);
+  setCatapultSpeed(0);
+  setPistonBW(false);
 }
