@@ -103,6 +103,10 @@ void far_1_5ball() {
   return;
 }
 
+void far_1_() {
+  // PIDAngleRotateAbs(45, 0.75, 0.05, 0.3, 0.8);
+  // PIDAngleRotateAbs(45, 4, 0.1, 35, 1.5);
+}
 
 void far_1() {
   printf ("\nfar_1:\n");
@@ -113,24 +117,22 @@ void far_1() {
   // # get first green ball
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(0, 40, 1);
-  this_thread::sleep_for(600);  
+  this_thread::sleep_for(300);  
   setIntakeSpeed(0);
 
   // # push first, second green balls and alliance ball in
-  // MyGps.gpsPIDMove(100, -850, -1, 35);
   MyGps.gpsPIDMove(100, -850, -1, 50);
   PIDAngleRotateAbs(-30, 4, 0.1, 35, 1.5);
   setPistonBW(true);
   this_thread::sleep_for(400);
-  MyGps.gpsPIDMove(250, -1100, -1, 70);
+  MyGps.gpsPIDMove(250, -1100, -1, 60);
   setPistonBW(false);
-  return;
   this_thread::sleep_for(300);
-  timerForward(-60, 150);
-  PIDAngleRotateAbs(-75, 4, 0.1, 35, 1.5);
-  timerForward(-100, 500);
+  MyGps.gpsPIDMove(425, -1250, -1, 50);
+  PIDAngleRotateAbs(-85, 4, 0.1, 35, 1.5);
+  timerForward(-100, 300);
   timerForward(80, 150);
-  PIDAngleRotateAbs(97, 4, 0.1, 35, 1.5);
+  PIDAngleRotateAbs(105, 4, 0.1, 35, 1.5);
   setIntakeSpeed(-100);
   this_thread::sleep_for(400);
   timerForward(100, 350);
@@ -139,29 +141,26 @@ void far_1() {
 
   //get third green ball and drop it off at goal
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1150, -200, 1);
+  MyGps.gpsPIDMove(1150, -215, 1, 100);
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
   PIDAngleRotateAbs(145, 4, 0.1, 35, 1.5); // TODO: adjust this angle to increase the reliability of the triball's target position
-  this_thread::sleep_for(100); // TODO: try without this
-  // MyGps.gpsPIDMove(-1300, 600, -1);
-  MyGps.gpsPIDMove(1200, -650, 1);
+  MyGps.gpsPIDMove(1200, -650, 1, 100);
   setIntakeSpeed(-75);
   this_thread::sleep_for(400);
   PIDAngleRotateAbs(150, 4, 0.1, 35, 1.5);
-  timerForward(-100, 100);
+  timerForward(-100, 150);
   setIntakeSpeed(0);
 
   // push in fourth and fifth green balls in
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1600, -275, 1, 80);
-  this_thread::sleep_for(500);
+  MyGps.gpsPIDMove(1500, -345, 1, 100);
+  this_thread::sleep_for(250);
   setIntakeSpeed(0);
-  PIDAngleRotateAbs(180, 4, 0.1, 35, 1.5);
+  PIDAngleRotateAbs(195, 4, 0.1, 35, 1.5);
   setPistonFW(true);
-  this_thread::sleep_for(100);
   setIntakeSpeed(-100); 
-  timerForward(100, 700);
+  timerForward(100, 600);
 
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
