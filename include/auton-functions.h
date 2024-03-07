@@ -17,7 +17,7 @@ void timerRotate(float, int);
 void angleRotateRel(float, float);
 void angleRotateAbs(float, float);
 void PIDAngleRotateRel(float);
-void PIDAngleRotateAbs(float, float=4, float=0.1, float=35, float=1.5); // 4, 0.1, 35, 1.5 // previously: 0.75, 0.05, 0.3, 0.8
+void PIDAngleRotateAbs(float, float=4, float=0.1, float=35, float=1.5); // previously: 0.75, 0.05, 0.3, 0.8 - which shakes when rotation ends
 void softStartTimerRotate(float, float, int);
 void autonShoot(int, float, float=0, float=3600, float=0, float=3600);
 void timerWait(float);
