@@ -11,12 +11,12 @@ brain Brain;
 controller Controller1 = controller(primary);
 
 #ifdef ROBOT1
-  motor Motor_BaseLF = motor(PORT18, ratio6_1, true);
-  motor Motor_BaseLM = motor(PORT19, ratio6_1, true);
-  motor Motor_BaseLB = motor(PORT20, ratio6_1, true);
-  motor Motor_BaseRF = motor(PORT13, ratio6_1, false);
-  motor Motor_BaseRM = motor(PORT12, ratio6_1, false);
-  motor Motor_BaseRB = motor(PORT11, ratio6_1, false);
+  motor Motor_BaseLF = motor(PORT20, ratio6_1, true);
+  motor Motor_BaseLM = motor(PORT19, ratio6_1, false);
+  motor Motor_BaseLB = motor(PORT18, ratio6_1, true);
+  motor Motor_BaseRF = motor(PORT12, ratio6_1, false);
+  motor Motor_BaseRM = motor(PORT13, ratio6_1, true);
+  motor Motor_BaseRB = motor(PORT14, ratio6_1, false);
   motor Motor_Intake1 = motor(PORT7, ratio6_1, false);
   //motor Motor_Intake2 = motor(PORT21, ratio6_1, false);
   motor Motor_Cata1 = motor(PORT1, ratio36_1, false);
