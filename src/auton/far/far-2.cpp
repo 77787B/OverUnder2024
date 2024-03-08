@@ -72,8 +72,6 @@ void far_2() {
   setIntakeSpeed(0);
   timerForward(-100, 200);
 
-  return;
-
   //get fourth green ball and drop it off next to goal
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(-430, 1200, 1);
@@ -107,5 +105,3 @@ void far_2() {
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
 }
-
-
