@@ -32,43 +32,32 @@ void near_2() {
 
   // ## Push alliance triball into goal
   setIntakeSpeed(100);
-  // PIDAngleRotateAbs(-145);
   MyGps.gpsPIDMove(-180, -100, 1, 20);
-  this_thread::sleep_for(300);
+  // this_thread::sleep_for(100);
   setIntakeSpeed(0);
-  MyGps.gpsPIDMove(-600, 150, 1, 100);
-  MyGps.gpsPIDMove(-645, 275, 1, 50);
+  MyGps.gpsPIDMove(-600, 200, 1, 50);
+  MyGps.gpsPIDMove(-645, 390, 1, 20);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(500);
   setIntakeSpeed(0);
 
   // ## Get corner triball
-  MyGps.gpsPIDMove(-600, 175, -1, 100);
-  PIDAngleRotateAbs(-60);
+  MyGps.gpsPIDMove(-600, 175, -1);
+  PIDAngleRotateAbs(-45);
   setPistonBW(true);
-  this_thread::sleep_for(200);
-  MyGps.gpsPIDMove(100, -75, -1, 40);
+  this_thread::sleep_for(100);
+  MyGps.gpsPIDMove(-300, -118, -1, 50);
   setPistonBW(false);
-  PIDAngleRotateAbs(75);
-  setPistonFW(true);
-  // PIDAngleRotateAbs(150);
-  // this_thread::sleep_for(100);
-  // PIDPosCurveAbs(200, 450, 50);
-  // setPistonFRW(true);
-  // this_thread::sleep_for(500);
-  // PIDPosCurveAbs(275, 515, 50);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(85);
+  setPistonFRW(true);
+  MyGps.gpsPIDMove(-65, -135, 1, 40);
 
   // ## Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(765, 170, 1);
-  setPistonFW(false);
-  this_thread::sleep_for(200);
-
-  // //go to triangle
-  // MyGps.gpsPIDMove(-330, -80, -1);
-  // PIDAngleRotateAbs(110);
-  // timerForward(-65, 125);
-  // setPistonBW(true);
+  MyGps.gpsPIDMove(615, 0, 1, 100);
+  // setPistonFRW(false);
+  // this_thread::sleep_for(200);
 
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
