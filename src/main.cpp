@@ -119,8 +119,8 @@ void usercontrol(void) {
       moveRight(autocollide * 15);
     }
         
-    if (L1) setIntakeSpeed(-100);
-    else if (L2) setIntakeSpeed(100);
+    if (L1) setIntakeSpeed(100);
+    else if (L2) setIntakeSpeed(-100);
     else setIntakeSpeed(0);
 
     if(BA && !BAPressed) {

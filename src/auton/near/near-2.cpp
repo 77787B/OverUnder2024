@@ -19,7 +19,7 @@ void near_2() {
 
   // ## Rush to intake center ball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 1200, 1, 100);
+  MyGps.gpsPIDMove(0, 1250, 1, 100);
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
@@ -33,32 +33,36 @@ void near_2() {
   // ## Push alliance triball into goal
   setIntakeSpeed(100);
   // PIDAngleRotateAbs(-145);
-  MyGps.gpsPIDMove(-180, -120, 1, 20);
-  this_thread::sleep_for(400);
+  MyGps.gpsPIDMove(-180, -100, 1, 20);
+  this_thread::sleep_for(300);
   setIntakeSpeed(0);
-  MyGps.gpsPIDMove(-600, 150, 1, 50);
+  MyGps.gpsPIDMove(-600, 150, 1, 100);
   MyGps.gpsPIDMove(-645, 275, 1, 50);
-  timerForward(30, 150); //probably only need on old robot
   setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
   // ## Get corner triball
-  MyGps.gpsPIDMove(-600, 175, -1, 25);
-  // PIDAngleRotateAbs(150); // very unstable rotation
-  PIDAngleRotateAbs(150);
-  this_thread::sleep_for(100);
-  PIDPosCurveAbs(200, 450, 50);
-  setPistonFRW(true);
-  this_thread::sleep_for(500);
-
-  PIDPosCurveAbs(275, 515, 50);
+  MyGps.gpsPIDMove(-600, 175, -1, 100);
+  PIDAngleRotateAbs(-60);
+  setPistonBW(true);
+  this_thread::sleep_for(200);
+  MyGps.gpsPIDMove(100, -75, -1, 40);
+  setPistonBW(false);
+  PIDAngleRotateAbs(75);
+  setPistonFW(true);
+  // PIDAngleRotateAbs(150);
+  // this_thread::sleep_for(100);
+  // PIDPosCurveAbs(200, 450, 50);
+  // setPistonFRW(true);
+  // this_thread::sleep_for(500);
+  // PIDPosCurveAbs(275, 515, 50);
 
   // ## Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
   MyGps.gpsPIDMove(765, 170, 1);
   setPistonFW(false);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(200);
 
   // //go to triangle
   // MyGps.gpsPIDMove(-330, -80, -1);

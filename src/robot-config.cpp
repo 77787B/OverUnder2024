@@ -23,8 +23,8 @@ controller Controller1 = controller(primary);
 
   inertial IMU = inertial(PORT11);
   led PistonHH = led(Brain.ThreeWirePort.D); //High Hang
-  led PistonFLW = led(Brain.ThreeWirePort.B); //Front Left Wing
-  led PistonFRW = led(Brain.ThreeWirePort.F); //Front Right Wing
+  led PistonFLW = led(Brain.ThreeWirePort.F); //Front Left Wing
+  led PistonFRW = led(Brain.ThreeWirePort.B); //Front Right Wing
   led PistonBW = led(Brain.ThreeWirePort.E); //Back Wing
 
   limit limit1 = limit(Brain.ThreeWirePort.A); //Cata LIMIT 
