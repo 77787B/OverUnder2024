@@ -14,12 +14,13 @@ void far_2() {
   autotimer.reset();
 
   setPistonFRW(true);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(100);
   setPistonFRW(false);
 
   //get center triball (1st green ball)
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-0, 1300, 1);
+  // MyGps.gpsPIDMove(-0, 1300, 1);
+  MyGps.gpsPIDMove(-0, 1200, 1, 100);
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
@@ -29,6 +30,8 @@ void far_2() {
   setIntakeSpeed(-75);
   this_thread::sleep_for(550);
   setIntakeSpeed(0);
+
+  return;
 
   //get ball under pole (2nd green ball)
   // PIDAngleRotateAbs(-65);
