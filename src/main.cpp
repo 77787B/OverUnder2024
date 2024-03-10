@@ -125,7 +125,7 @@ void usercontrol(void) {
 
     if(BA && !BAPressed) {
       rotateStatus = !rotateStatus;
-      setCatapultSpeed(rotateStatus*68);
+      setCatapultSpeed(rotateStatus*75);
     }
     BAPressed = BA;
 
@@ -156,8 +156,8 @@ void usercontrol(void) {
     }
     LeftPressed = LEFT;
 
-    if(DOWN) runAuton();
-    // if(DOWN) runSkill();
+    // if(DOWN) runAuton();
+    if(DOWN) runSkill();
     if(DOWN && R2) runSkill();
     if(RIGHT && !RightPressed) circulateAutonChoose();
     RightPressed = RIGHT;
