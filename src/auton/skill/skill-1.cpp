@@ -85,7 +85,7 @@ void skill_1() {
   // # 2nd push: on left of front of goal
   // MyGps.gpsPIDMove(2866, -400, -1, 50);
   timerForward(-50, 200);
-  MyGps.gpsPIDMove(2300, -500, 1, 50);
+  MyGps.gpsPIDMove(2300, -550, 1, 50); // try -600 if get stuck on barrier
 
   setPistonFW(true);
   PIDPosCurveAbs(500, 1000, 50);
@@ -148,7 +148,7 @@ void skill_1() {
 
   // # 5th push: on right side of goal
   MyGps.gpsPIDMove(2360, -2250, -1, 50);
-  MyGps.gpsPIDMove(2400, -3000, 1, 50);
+  // MyGps.gpsPIDMove(2400, -3000, 1, 50);
 
   // MyGps.gpsPIDMove(2600, -2500, -1, 50);
   // MyGps.gpsPIDMove(2600, -3220, 1, 50);
