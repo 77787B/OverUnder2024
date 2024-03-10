@@ -12,21 +12,25 @@
  * 4. Push triballs over alley
 */
 
-void near_2() {
+void near_2(bool isRush) {
   MyTimer autotimer;
   autotimer.reset();
   printf ("\n===== near_2: Start =====\n");
 
   // ## Rush to intake center ball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 1250, 1, 100);
+  if (isRush) {
+    MyGps.gpsPIDMove(0, 1250, 1, 100);
+  } else {
+    MyGps.gpsPIDMove(0, 600, 1);
+  }
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
   // ## Drop off center ball
   MyGps.gpsPIDMove(-15, 200, -1, 100);
   PIDAngleRotateAbs(115);
-  setIntakeSpeed(-80);
+  setIntakeSpeed(-100);
   this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
@@ -36,7 +40,8 @@ void near_2() {
   // this_thread::sleep_for(100);
   setIntakeSpeed(0);
   MyGps.gpsPIDMove(-600, 200, 1, 50);
-  MyGps.gpsPIDMove(-645, 390, 1, 20);
+  // MyGps.gpsPIDMove(-645, 390, 1, 20); // If the robot DO NOT slide when getting alliance tribal, use this.
+  MyGps.gpsPIDMove(-645, 324, 1, 20); // If the robot slides when getting alliance tribal, use this.
   setIntakeSpeed(-100);
   this_thread::sleep_for(500);
   setIntakeSpeed(0);
@@ -55,7 +60,8 @@ void near_2() {
 
   // ## Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(615, 0, 1, 100);
+  // MyGps.gpsPIDMove(615, 0, 1, 100); // If the robot DO NOT slide when getting alliance tribal, use this.
+  MyGps.gpsPIDMove(670, -25, 1, 100); // If the robot slides when getting alliance tribal, use this.
   // setPistonFRW(false);
   // this_thread::sleep_for(200);
 

@@ -5,7 +5,8 @@
 #include "GPS.h"
 
 /**
- * Near 1: AWP (safe): 1 goal, 1 over
+ * SHOULD use near-2 whenever possible
+ * Near 1: AWP (super safe): 1 goal, 1 over
  * 1. Get corner triball
  * 2. Push alliance triball into goal
  * 3. Push other triballs over alley
