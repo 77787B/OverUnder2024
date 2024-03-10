@@ -150,12 +150,12 @@ void far_1() {
 
   // # Push alliance and corner triballs into goal
   MyGps.gpsPIDMove(455, -1300, -1);
-  PIDAngleRotateAbs(-90);
-  timerForward(-100, 250);
+  PIDAngleRotateAbs(-85);
+  timerForward(-100, 300);
 
   // # Push alley triball into goal
   timerForward(80, 150);
-  PIDAngleRotateAbs(95);
+  PIDAngleRotateAbs(97);
   setIntakeSpeed(-100);
   timerForward(100, 350);
   this_thread::sleep_for(300);
@@ -177,11 +177,12 @@ void far_1() {
 
   // Get barrier middle triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1425, -20, 1, 100);
-  this_thread::sleep_for(250);
+  MyGps.gpsPIDMove(1380, -30, 1, 100);
+  this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  PIDAngleRotateAbs(195);
+  // push last three balls in
+  PIDAngleRotateAbs(190);
   setPistonFW(true);
   setIntakeSpeed(-100); 
   timerForward(100, 600);

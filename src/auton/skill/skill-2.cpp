@@ -21,12 +21,7 @@ void skill_2(){
   // this_thread::sleep_for(2000);
   setCatapultSpeed(0);
   setPistonBW(false);
-  this_thread::sleep_for(100);
   setIntakeSpeed(0);
-
-  // // # push alliance triballs into goal
-  PIDAngleRotateAbs(0);
-  timerForward(-100, 300);
 
   printf ("\n===== skill_driver: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
