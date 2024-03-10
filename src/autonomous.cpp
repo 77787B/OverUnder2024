@@ -13,7 +13,7 @@ void autonInit(void) {
 
 const int num_of_choices = 8;
 
-static int auton_choose = 2; // Default auton_choose
+static int auton_choose = 6; // Default auton_choose
 
 int getAutonChoose() {
   return auton_choose;
@@ -40,3 +40,8 @@ void runAuton() {
 }
 // #endif
 
+void printElased(MyTimer autotimer) {
+  printf ("\nElased=%.i =====\n", autotimer.getTime());
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}

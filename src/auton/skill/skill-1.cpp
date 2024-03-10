@@ -59,6 +59,7 @@ void skill_1() {
   timerForward(-100, 300);
 
   // # drive thru alley
+  setIntakeSpeed(-100);
   MyGps.gpsPIDMove(200, 50, 1);
   MyGps.gpsPIDMove(1500, 50, 1);
   this_thread::sleep_for(100); // Drive long distance slides. Pause in middle to prevent sliding.
@@ -82,9 +83,10 @@ void skill_1() {
   printf ("\n===== 1st push: on left side of goal: Elased=%.i =====\n", autotimer.getTime());
 
   // # 2nd push: on left of front of goal
-  MyGps.gpsPIDMove(2866, -400, -1, 50);
+  // MyGps.gpsPIDMove(2866, -400, -1, 50);
+  timerForward(-50, 200);
   MyGps.gpsPIDMove(2300, -500, 1, 50);
-  // setPistonFW(true);
+
   setPistonFW(true);
   PIDPosCurveAbs(500, 1000, 50);
   PIDAngleRotateAbs(115);
@@ -147,6 +149,7 @@ void skill_1() {
   // # 5th push: on right side of goal
   MyGps.gpsPIDMove(2360, -2250, -1, 50);
   MyGps.gpsPIDMove(2400, -3000, 1, 50);
+
   // MyGps.gpsPIDMove(2600, -2500, -1, 50);
   // MyGps.gpsPIDMove(2600, -3220, 1, 50);
   // PIDAngleRotateAbs(145);
@@ -156,7 +159,7 @@ void skill_1() {
   // PIDPosCurveAbs(550, 1250, 50);
   PIDPosCurveAbs(500, 1000, 50);
   // PIDPosCurveAbs(450, 900, 50);
-  PIDAngleRotateAbs(10);
+  PIDAngleRotateAbs(30);
   setIntakeSpeed(-100);
   timerForward(100, 300);
   this_thread::sleep_for(100);

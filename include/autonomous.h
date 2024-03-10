@@ -4,6 +4,7 @@
 #include "vex.h"
 #include "basic-functions.h"
 #include "auton-functions.h"
+#include "my-timer.h"
 
 void far_1(void);
 void far_2(void);
@@ -18,5 +19,6 @@ void near_4(void);
 int getAutonChoose();
 void circulateAutonChoose();
 void runAuton();
+void printElased(MyTimer autotimer);
 
 #endif
