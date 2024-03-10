@@ -5,14 +5,29 @@
 #include "GPS.h"
 #include "basic-functions.h"
 
+//driver
+
 void skill_2(){
   MyTimer autotimer;
   autotimer.reset();
 
-  MyGps.gpsPIDMove(0, -400);
+  MyGps.gpsPIDMove(-315, -310, -1, 50);
+  PIDAngleRotateAbs(116);
+  setPistonBW(true);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(100);
+  setCatapultSpeed(75);
+  this_thread::sleep_for(25000); // TODO: use this for real run
+  // this_thread::sleep_for(2000);
+  setCatapultSpeed(0);
+  setPistonBW(false);
+  this_thread::sleep_for(100);
+  setIntakeSpeed(0);
 
+  // // # push alliance triballs into goal
+  PIDAngleRotateAbs(0);
+  timerForward(-100, 300);
 
-
-  printf ("\n===== skill_2: End: Elased=%.i =====\n", autotimer.getTime());
+  printf ("\n===== skill_driver: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
