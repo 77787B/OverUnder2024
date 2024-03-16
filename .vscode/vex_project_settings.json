@@ -1,18 +1,19 @@
 {
+	"extension": {
+		"version": "0.5.0",
+		"json": 2
+	},
 	"project": {
 		"name": "77787B_2_3",
-		"slot": 1,
 		"description": "",
+		"creationDate": "01/30/2023, 00:49:50 GMT",
 		"platform": "V5",
-		"creationDate": "Mon, 30 Jan 2023 00:49:50 GMT",
 		"language": "cpp",
-		"sdkVersion": "V5_20220726_10_00_00",
+		"slot": 1,
+		"sdkVersion": "V5_20240223_11_00_00",
 		"cpp": {
-			"includePath": []
+			"includePath": [],
+			"printf_float": true
 		}
-	},
-	"extension": {
-		"version": "0.3.0",
-		"json": 1
 	}
 }
