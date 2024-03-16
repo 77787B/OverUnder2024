@@ -65,7 +65,7 @@ void near_2(bool isRush) {
   // ## Push triballs over alley and touch horizontal bar
   setIntakeSpeed(-100);
   // MyGps.gpsPIDMove(615, 0, 1, 100); // If the robot DO NOT slide when getting alliance tribal, use this.
-  MyGps.gpsPIDMove(640, -25, 1, 90); // If the robot slides when getting alliance tribal, use this.
+  MyGps.gpsPIDMove(610, -35, 1, 90); // If the robot slides when getting alliance tribal, use this.
   // setPistonFRW(false);
   // this_thread::sleep_for(200);
 

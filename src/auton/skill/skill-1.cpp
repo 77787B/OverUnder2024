@@ -63,7 +63,7 @@ void skill_1() {
   MyGps.gpsPIDMove(200, 50, 1);
   MyGps.gpsPIDMove(1500, 50, 1);
   this_thread::sleep_for(100); // Drive long distance slides. Pause in middle to prevent sliding.
-  MyGps.gpsPIDMove(2350, 50, 1);
+  MyGps.gpsPIDMove(2200, -50, 1);
 
   // # 1st push: on left side of goal
   setPistonFRW(true);
@@ -85,8 +85,7 @@ void skill_1() {
   // # 2nd push: on left of front of goal
   // MyGps.gpsPIDMove(2866, -400, -1, 50);
   timerForward(-50, 200);
-  MyGps.gpsPIDMove(2300, -550, 1, 50); // try -600 if get stuck on barrier
-
+  MyGps.gpsPIDMove(2300, -650, 1, 50);
   setPistonFW(true);
   PIDPosCurveAbs(500, 1000, 50);
   PIDAngleRotateAbs(115);
@@ -111,7 +110,7 @@ void skill_1() {
   PIDAngleRotateAbs(90);
   setIntakeSpeed(-100);
   this_thread::sleep_for(50);
-  timerForward(100, 600);
+  timerForward(100, 800);
   setPistonFW(false);
   this_thread::sleep_for(50);
   timerForward(-100, 100);
@@ -122,7 +121,9 @@ void skill_1() {
   timerForward(-100, 400);
   PIDAngleRotateAbs(180);
   setPistonFW(true);
-  MyGps.gpsPIDMove(1800, -2500, 1, 50);
+  MyGps.gpsPIDMove(1900, -2100, 1, 50);
+  PIDAngleRotateAbs(125);
+  timerForward(70, 150);
   PIDAngleRotateAbs(70);
   setIntakeSpeed(-100);
   timerForward(100, 700);
@@ -147,9 +148,8 @@ void skill_1() {
   printf ("\n=====  4th push: on right of front of goal: Elased=%.i =====\n", autotimer.getTime());
 
   // # 5th push: on right side of goal
-  MyGps.gpsPIDMove(2360, -2250, -1, 50);
+  MyGps.gpsPIDMove(2300, -2250, -1, 50);
   // MyGps.gpsPIDMove(2400, -3000, 1, 50);
-
   // MyGps.gpsPIDMove(2600, -2500, -1, 50);
   // MyGps.gpsPIDMove(2600, -3220, 1, 50);
   // PIDAngleRotateAbs(145);

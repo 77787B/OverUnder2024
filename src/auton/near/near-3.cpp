@@ -33,7 +33,7 @@ void near_3() {
   // ## Get barrier middle triball
   // MyGps.gpsPIDMove(325, 1150, 1, 100); // end up (339, 1135)
   // MyGps.gpsPIDMove(300, 1200, 1, 100); // end up (339, 1135)
-  MyGps.gpsPIDMove(325, 1175, 1, 100); // end up (339, 1135)
+  MyGps.gpsPIDMove(365, 1215, 1, 100); // end up (339, 1135)
   // MyGps.gpsPIDMove(345, 1175, 1, 100); // end up (339, 1135)
   // PIDAngleRotateAbs(75);
   PIDAngleRotateAbs(110);
@@ -54,19 +54,19 @@ void near_3() {
   this_thread::sleep_for(10);
 
   // MyGps.gpsPIDMove(-206, -7, 1, 100);
-  MyGps.gpsPIDMove(-226, -120, 1, 100);
+  MyGps.gpsPIDMove(-225, -75, 1, 100);
   // ## Get corner triball
   setPistonBW(false);
   setPistonFRW(true);
-  this_thread::sleep_for(300);
+  this_thread::sleep_for(400);
   PIDAngleRotateAbs(110);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(400);
   
   // // ## Push all triballs over alley
-  MyGps.gpsPIDMove(50, -215, 1, 50);
-
+  MyGps.gpsPIDMove(50, -150, 1, 50);
   setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(670, -50, 1, 100); // If the robot slides when getting alliance tribal, use this.
+  MyGps.gpsPIDMove(690, -100, 1, 100); // If the robot slides when getting alliance tribal, use this.
   printElased(autotimer);
   return;
+
 }

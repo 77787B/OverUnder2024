@@ -123,6 +123,7 @@ void far_1_() {
  * 6. Push all 3 triballs into goal
 */
 
+
 void far_1() {
   printf ("\nfar_1:\n");
 
@@ -140,18 +141,21 @@ void far_1() {
   // PIDAngleRotateAbs(-30); <=
   setPistonBW(true);
   // this_thread::sleep_for(300);
-  MyGps.gpsPIDMove(250, -1135, -1, 70);
+  MyGps.gpsPIDMove(250, -1135, -1, 50);
   // this_thread::sleep_for(300);
   // PIDAngleRotateAbs(-70);
   PIDAngleRotateAbs(-65);
   // MyGps.gpsPIDMove(275, -1135, -1, 60);
   setPistonBW(false);
+  //READ
+  //MAYBE DELETE THE SLEEP FOR
   this_thread::sleep_for(300);
 
   // # Push alliance and corner triballs into goal
   MyGps.gpsPIDMove(455, -1300, -1);
   PIDAngleRotateAbs(-85);
   timerForward(-100, 300);
+  this_thread::sleep_for(200);
 
   // # Push alley triball into goal
   timerForward(80, 150);
@@ -177,12 +181,12 @@ void far_1() {
 
   // Get barrier middle triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1380, -30, 1, 100);
-  this_thread::sleep_for(300);
+  MyGps.gpsPIDMove(1430, -20, 1, 100);
+  this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
   // push last three balls in
-  PIDAngleRotateAbs(190);
+  PIDAngleRotateAbs(187);
   setPistonFW(true);
   setIntakeSpeed(-100); 
   timerForward(100, 600);
