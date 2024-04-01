@@ -21,8 +21,7 @@ extern led PistonBW;
 extern limit limit1;
 extern inertial IMU;
 // VEXcode devices
-// Andew: as a code practice - can you modify this into an array of signatures?   
-// eg array<signature, 5> signatures;
+
 
 
 

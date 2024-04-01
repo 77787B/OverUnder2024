@@ -232,6 +232,7 @@ void setIntakeSpeed(float _input){
 void intake() {
   while(true){
     Motor_Intake1.spin(directionType::fwd, (int)130 * intake_speed, voltageUnits::mV);
+    Motor_Intake2.spin(directionType::fwd, (int)130 * intake_speed, voltageUnits::mV);
     this_thread::sleep_for(1);
   }
 }
