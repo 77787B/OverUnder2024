@@ -15,9 +15,9 @@ extern motor Motor_Intake2;
 extern motor Motor_Cata1;
 extern motor Motor_Cata2;
 extern led PistonHH;
-extern led PistonFLW;
-extern led PistonFRW;
-extern led PistonBW;
+extern led PistonBLW;
+extern led PistonBRW;
+extern led PistonFW;
 extern limit limit1;
 extern inertial IMU;
 // VEXcode devices

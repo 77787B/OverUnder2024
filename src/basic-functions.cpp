@@ -198,27 +198,27 @@ void setPistonHH(bool _input) {
   }
 }
 
-void setPistonFW(bool _input){
-  setPistonFLW(_input);
-  setPistonFRW(_input);
-}
-
-void setPistonFLW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonFLW.off();
-  else PistonFLW.on();
-}
-
-void setPistonFRW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonFRW.off();
-  else PistonFRW.on();
-}
-
 void setPistonBW(bool _input){
+  setPistonBLW(_input);
+  setPistonBRW(_input);
+}
+
+void setPistonBLW(bool _input){
   // set Expansion piston accordingly
-  if (_input)  PistonBW.off();
-  else PistonBW.on();
+  if (_input)  PistonBLW.off();
+  else PistonBLW.on();
+}
+
+void setPistonBRW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonBRW.off();
+  else PistonBRW.on();
+}
+
+void setPistonFW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonFW.off();
+  else PistonFW.on();
 }
 
 

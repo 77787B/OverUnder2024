@@ -11,7 +11,7 @@ brain Brain;
 controller Controller1 = controller(primary);
 
 #ifdef ROBOT1
-  motor Motor_BaseLF = motor(PORT18, ratio6_1, true);
+  motor Motor_BaseLF = motor(PORT15, ratio6_1, true);
   motor Motor_BaseLM = motor(PORT19, ratio6_1, true);
   motor Motor_BaseLB = motor(PORT17, ratio6_1, true);
   motor Motor_BaseRF = motor(PORT13, ratio6_1, false);
@@ -22,10 +22,10 @@ controller Controller1 = controller(primary);
   motor Motor_Cata1 = motor(PORT16, ratio36_1, true);
 
   inertial IMU = inertial(PORT11);
-  led PistonHH = led(Brain.ThreeWirePort.D); //High Hang
-  led PistonFLW = led(Brain.ThreeWirePort.F); //Front Left Wing
-  led PistonFRW = led(Brain.ThreeWirePort.B); //Front Right Wing
-  led PistonBW = led(Brain.ThreeWirePort.E); //Back Wing
+  led PistonHH = led(Brain.ThreeWirePort.E); //High Hang
+  led PistonFW = led(Brain.ThreeWirePort.H); //Front Wing
+  led PistonBLW = led(Brain.ThreeWirePort.G); //Back Left Wing
+  led PistonBRW = led(Brain.ThreeWirePort.F); //Back Right Wing
 
   limit limit1 = limit(Brain.ThreeWirePort.A); //Cata LIMIT 
 #endif
