@@ -49,7 +49,7 @@ FRONT WINGS
   // MyGps.gpsPIDMove();
   //setPistonBRW(false);
 
-  PIDPosCurveAbs(750, 800, 90);
+  PIDPosCurveAbs(650, 700, 90);
   // PIDAngleRotateAbs(180);
   // setIntakeSpeed(0);
 
