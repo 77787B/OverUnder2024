@@ -7,7 +7,7 @@
 void far_3_amanda() {
 
 /* POSITIONING:
-CENTER (A FACE) OF BLUE BALL --> TIP OF FRONT WING (3rd hole )
+CENTER (Any face) OF BLUE BALL --> TIP OF FRONT WING (3rd hole)
 ORANGE BOX --> EDGE OF POLE (LEFT SIDE)
 BACK SLEDS --> EDGE AND RIGHT ON TOP OF BOX
 
@@ -37,19 +37,20 @@ FRONT WINGS
   PIDAngleRotateAbs(290);
   setIntakeSpeed(100);
   MyGps.gpsPIDMove(-800, 550, 1, 100);
-  this_thread::sleep_for(400);this_thread::sleep_for(400);
-  MyGps.gpsPIDMove(64, 90, -1, 80);
-  // MyGps.gpsPIDMove(0, 0, -1, 100);
   setIntakeSpeed(0);
+  this_thread::sleep_for(200);//300
+  //move backwards to bar after grabbing triball
+  MyGps.gpsPIDMove(-30, -25, -1, 90);
+  PIDAngleRotateAbs(-90);
+  //grab triball in corner with backwing
+  setPistonBW(true);
+  MyGps.gpsPIDMove(-10, -25, -1, 80);
+  setPistonBLW(false);
   PIDAngleRotateAbs(65);
   setIntakeSpeed(-100);
   this_thread::sleep_for(400);
-  //INSERT BACKWING TRIBALL CORNER GRAB THING HERE
-  // setPistonBRW(true);
-  // MyGps.gpsPIDMove();
-  //setPistonBRW(false);
 
-  PIDPosCurveAbs(750, 900, 90);
+  // PIDPosCurveAbs(750, 900, 90);
   // PIDAngleRotateAbs(180);
   // setIntakeSpeed(0);
 
