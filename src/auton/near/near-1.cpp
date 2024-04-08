@@ -17,10 +17,10 @@ void near_1() {
 
   // ## Get corner triball out
   MyGps.gpsPIDMove(0, 75, 1);
-  setPistonBW(true);
+  setPistonBLW(true);
   this_thread::sleep_for(400);
   MyGps.gpsPIDMove(0, 0, -1, 60);
-  setPistonBW(false);
+  setPistonBLW(false);
 
   // ## Push alliance triball into goal
   MyGps.gpsPIDMove(75, 400, 1);

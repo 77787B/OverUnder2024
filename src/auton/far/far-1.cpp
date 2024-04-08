@@ -125,70 +125,60 @@ void far_1_() {
 
 
 void far_1() {
-  printf ("\nfar_1:\n");
 
   MyTimer autotimer;
   autotimer.reset();
+  printf ("\nfar_1:\n");
 
   // # Get alley triball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 30, 1, 50);
+  MyGps.gpsPIDMove(0, 60, 1, 50);
   this_thread::sleep_for(300);  
   setIntakeSpeed(0);
 
   // # Get corner triball
-  MyGps.gpsPIDMove(106, -880, -1);
-  // PIDAngleRotateAbs(-30); <=
+  MyGps.gpsPIDMove(105, -880, -1, 95); 
   setPistonBW(true);
-  // this_thread::sleep_for(300);
-  MyGps.gpsPIDMove(250, -1135, -1, 50);
-  // this_thread::sleep_for(300);
-  // PIDAngleRotateAbs(-70);
-  PIDAngleRotateAbs(-65);
-  // MyGps.gpsPIDMove(275, -1135, -1, 60);
-  setPistonBW(false);
-  //READ
-  //MAYBE DELETE THE SLEEP FOR
-  this_thread::sleep_for(300);
+  MyGps.gpsPIDMove(250, -1125, -1, 55);
+  PIDAngleRotateAbs(-70);
+  setPistonBLW(false);
 
   // # Push alliance and corner triballs into goal
-  MyGps.gpsPIDMove(455, -1300, -1);
-  PIDAngleRotateAbs(-85);
-  timerForward(-100, 300);
-  this_thread::sleep_for(200);
+  MyGps.gpsPIDMove(455, -1375, -1, 40);
+  PIDAngleRotateAbs(-80);
+  timerForward(-100, 350);
+  setPistonBRW(false);
 
-  // # Push alley triball into goal
-  timerForward(80, 150);
-  PIDAngleRotateAbs(97);
+  //drop off alley triball
+  MyGps.gpsPIDMove(500, -1250, 1, 80);
+  MyGps.gpsPIDMove(975, -600, 1, 100);
+  PIDAngleRotateAbs(151);
   setIntakeSpeed(-100);
-  timerForward(100, 350);
-  this_thread::sleep_for(300);
-  // setIntakeSpeed(0);
-  // timerForward(-100, 300);
-  MyGps.gpsPIDMove(650, -1230, -1);
-
-  // # Get barrier left triball
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1000, -55, 1);
-  setIntakeSpeed(0);
-
-  // # Drop barrier left triball
-  MyGps.gpsPIDMove(1200, -600, 1, 100);
-  setIntakeSpeed(-80);
-  this_thread::sleep_for(300);
-  MyGps.gpsPIDMove(1035, -315, -1);
-  // setIntakeSpeed(0);
-
-  // Get barrier middle triball
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(1430, -20, 1, 100);
   this_thread::sleep_for(400);
   setIntakeSpeed(0);
 
+  // # Get barrier left triball
+  setIntakeSpeed(90);
+  MyGps.gpsPIDMove(975, -270, 1, 55);
+  this_thread::sleep_for(150);
+  setIntakeSpeed(0);
+
+  // # Drop barrier left triball
+  PIDAngleRotateAbs(155);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+
+  // Get barrier middle triball
+  setIntakeSpeed(100);
+  MyGps.gpsPIDMove(1330, -175, 1, 100);
+  this_thread::sleep_for(200);
+
   // push last three balls in
-  PIDAngleRotateAbs(187);
   setPistonFW(true);
+  PIDAngleRotateAbs(177);
   setIntakeSpeed(-100); 
+  this_thread::sleep_for(75);
   timerForward(100, 600);
 
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
