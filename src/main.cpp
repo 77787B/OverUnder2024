@@ -197,6 +197,7 @@ int main() {
   }
   wait(1000, msec);
 
+  thread FlapFW(flapFW);
   thread Intake(intake);
   // thread FrontWings(frontwings);
   thread Catapult(catapult);

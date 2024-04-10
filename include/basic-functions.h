@@ -48,6 +48,10 @@ float getPitch();
 
 //OverUnder
 
+//Flap
+void setFlapFW(float);
+void flapFW();
+
 //Intake
 void setIntakeSpeed(float);
 void intake();

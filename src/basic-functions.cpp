@@ -222,6 +222,25 @@ void setPistonFW(bool _input){
 }
 
 
+float flaptime = 0.0;
+void setFlapFW(float _input){
+  flaptime = _input;
+}
+
+void flapFW()
+{
+    while (true)
+    {
+        if (flaptime > 0)
+        {
+            PistonFW.off();
+            this_thread::sleep_for(flaptime);
+            PistonFW.on();
+            flaptime = 0;
+        }
+        this_thread::sleep_for(1);
+    }
+}
 
 float intake_speed = 0;
 

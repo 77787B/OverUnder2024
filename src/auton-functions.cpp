@@ -73,7 +73,6 @@ void posForwardRelWithHeading(float _power, float _targetPos, float _targetHeadi
   }
   unlockBase();
 }
-
 void posForwardAbsWithHeading(float _power, float _targetPos, float _targetHeading) {
   // move forward with _power to _target position while sticking to _targetHeading angle
   // does not stop base when finishing
@@ -82,6 +81,7 @@ void posForwardAbsWithHeading(float _power, float _targetPos, float _targetHeadi
   float power = sign(targetPosRel) * fabs(_power);
   posForwardRelWithHeading(power, targetPosRel, _targetHeading);
 }
+
 
 void PIDPosForwardAbs(float _target) {
   // move forward to _target position
