@@ -48,10 +48,10 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   //BALL 3 - get ball under hang pole
   PIDAngleRotateAbs(-48);
   setIntakeSpeed(100);
-  posForwardAbsWithHeading(90, 400, -50);
+  posForwardAbsWithHeading(90, 450, -50);
   posForwardAbsWithHeading(30, 850, -50);
   //move backwards to bar after grabbing triball
-  PIDPosForwardAbs(-300);
+  PIDPosForwardAbs(-350);
   setIntakeSpeed(0);
 
   //BALL 4 - grab ball in corner with backwing
@@ -61,21 +61,30 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   setPistonBLW(false);
   setIntakeSpeed(0);
 
-  //PUSH 3 BALLS INTO GOAL
-  // posForwardAbsWithHeading(80, 1450, 5); //speed, distance, angle
-  // this_thread::sleep_for(300);
-  // MyGps.gpsPIDMove(440, 20, 1, 70);//move forward away from goal
-  // PIDAngleRotateAbs(45);
-  // this_thread::sleep_for(200);
+  //PUSH 3 BALLS INTO GOAL - FIX THIS
+  PIDAngleRotateAbs(-105);
+  this_thread::sleep_for(200);
+  timerForward(-80, 400);
+  timerForward(60, 400);
+  PIDAngleRotateAbs(-120);
+  this_thread::sleep_for(200);
+  timerForward(-100, 500);
+  //ADD A CURVE HERE INSTEAD OF THE TURN BACK TURN? - IF ANDREW SAYS IS GOOD
+  // PIDPosCurveAbs(200, 400, -70);//CURVE ISNT WORKING PROPERLY
+  // MyGps.gpsPIDCurve(700, 60, -133, 10);//x, y, heading, duration
+
+
+  //STUFF AFTER PUSHING BALLS (OUTTAKE INTAKE TRIBALL AND PUSH IN FROM FRONT) - FIX THIS
+  // timerForward(60, 500);
+  // PIDAngleRotateAbs(55);
   // setIntakeSpeed(-100);
-  // MyGps.gpsPIDMove(670, 200, 1, 80);
-  // MyGps.gpsPIDMove(440, 20, -1, 70);
-  // setIntakeSpeed(0);
-  // PIDAngleRotateAbs(-135);
-  // MyGps.gpsPIDMove(670, 200, -1, 100);
+  // this_thread::sleep_for(400);
+  // timerForward(100, 400);
+  
+
 
   //BALL 5 - go to center and scoop
-  // MyGps.gpsPIDMove();
+
 
   setPistonBW(false);
 
