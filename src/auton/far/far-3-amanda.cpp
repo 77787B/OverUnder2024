@@ -31,7 +31,8 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   //BALL 1 - kick blue ball at start
 
   //BALL 2 - get ball in middle
-  posForwardAbsWithHeading(90, 1400, 13);
+  posForwardAbsWithHeading(90, 1350, 13);//middle term 1305
+  posForwardAbsWithHeading(50, 1450, 13);//middle term 1450 
   setIntakeSpeed(100);
 
   // posForwardAbsWithHeading(90, 1380, 13); //speed, distance, angle //DISTANCE - 1335
@@ -43,15 +44,14 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   setIntakeSpeed(0);
   setIntakeSpeed(-100);
   PIDAngleRotateAbs(85);
-  setIntakeSpeed(0);
 
   //BALL 3 - get ball under hang pole
-  PIDAngleRotateAbs(-48);
   setIntakeSpeed(100);
+  PIDAngleRotateAbs(-48);
   posForwardAbsWithHeading(90, 450, -50);
-  posForwardAbsWithHeading(30, 850, -50);
+  posForwardAbsWithHeading(30, 1000, -50);
   //move backwards to bar after grabbing triball
-  PIDPosForwardAbs(-350);
+  PIDPosForwardAbs(-300);
   setIntakeSpeed(0);
 
   //BALL 4 - grab ball in corner with backwing
@@ -60,28 +60,14 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   this_thread::sleep_for(300);
   setPistonBLW(false);
   setIntakeSpeed(0);
-
-  //PUSH 3 BALLS INTO GOAL - FIX THIS
+  //PUSH 3 BALLS INTO GOAL
   PIDAngleRotateAbs(-105);
-  this_thread::sleep_for(200);
-  timerForward(-80, 400);
-  timerForward(60, 400);
-  PIDAngleRotateAbs(-120);
-  this_thread::sleep_for(200);
-  timerForward(-100, 500);
-  //ADD A CURVE HERE INSTEAD OF THE TURN BACK TURN? - IF ANDREW SAYS IS GOOD
-  // PIDPosCurveAbs(200, 400, -70);//CURVE ISNT WORKING PROPERLY
-  // MyGps.gpsPIDCurve(700, 60, -133, 10);//x, y, heading, duration
-
-
-  //STUFF AFTER PUSHING BALLS (OUTTAKE INTAKE TRIBALL AND PUSH IN FROM FRONT) - FIX THIS
-  // timerForward(60, 500);
-  // PIDAngleRotateAbs(55);
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(400);
-  // timerForward(100, 400);
-  
-
+  posForwardAbsWithHeading(70, -500, 120);
+  //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT
+  MyGps.gpsPIDMove(800, -100, 1, 60); //WEIRD - MAKES OWN ANGLE HEADING, HOW TO FIX?
+  PIDAngleRotateAbs(55);
+  setIntakeSpeed(-100);
+  timerForward(100, 400);
 
   //BALL 5 - go to center and scoop
 
