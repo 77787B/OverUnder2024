@@ -48,31 +48,51 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   //BALL 3 - get ball under hang pole
   setIntakeSpeed(100);
   PIDAngleRotateAbs(-48);
-  posForwardAbsWithHeading(90, 450, -50);
+  posForwardAbsWithHeading(90, 420, -50);
   posForwardAbsWithHeading(30, 1000, -50);
   //move backwards to bar after grabbing triball
-  PIDPosForwardAbs(-300);
+  PIDPosForwardAbs(-250);
   setIntakeSpeed(0);
 
-  //BALL 4 - grab ball in corner with backwing
+  //BALL 4 - grab ball in corner with backwing - NEED CHANGES TO THE CURVE AND EVERYTHING AFTER THE CURVE AFTER DROPPING THE BACKWING, TRY ADDING A FAST AND SLOW TIMERFORWARD
   setPistonBLW(true);
-  posForwardAbsWithHeading(30, -450, -90);
+  posForwardAbsWithHeading(15, -475, -90);
   this_thread::sleep_for(300);
   setPistonBLW(false);
+
+
+  posForwardAbsWithHeading(15, -525, -90);
+
+
+
   setIntakeSpeed(0);
   //PUSH 3 BALLS INTO GOAL
-  PIDAngleRotateAbs(-105);
-  posForwardAbsWithHeading(70, -500, 120);
+  PIDAngleRotateAbs(-90);
+  posForwardAbsWithHeading(50, -300, 120);
+  PIDAngleRotateAbs(-135);
+  timerForward(60, 100);
+  timerForward(-70, 400);
   //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT
-  MyGps.gpsPIDMove(800, -100, 1, 60); //WEIRD - MAKES OWN ANGLE HEADING, HOW TO FIX?
+  timerForward(50, 100);
   PIDAngleRotateAbs(55);
   setIntakeSpeed(-100);
-  timerForward(100, 400);
+  timerForward(50, 250);
+  timerForward(80, 300);
+  PIDAngleRotateAbs(-135);
+  timerForward(-80, 350);
 
   //BALL 5 - go to center and scoop
-
-
-  setPistonBW(false);
+  timerForward(-100, 300);
+  PIDAngleRotateAbs(-30);
+  setIntakeSpeed(100);
+  posForwardAbsWithHeading(80, 450, -30);
+  posForwardAbsWithHeading(50, 700, -30);
+  // setPistonFW(true);
+  // PIDAngleRotateAbs(80);
+  // setIntakeSpeed(0);
+  // posForwardAbsWithHeading(70, 800, 250);
+  // this_thread::sleep_for(400);
+  // setPistonFW(false);
 
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
