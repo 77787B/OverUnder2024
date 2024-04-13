@@ -54,7 +54,7 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   setIntakeSpeed(100);
   PIDAngleRotateAbs(-48);
   posForwardAbsWithHeading(80, 550, -50);
-  posForwardAbsWithHeading(30, 750, -50);
+  posForwardAbsWithHeading(30, 825, -50);
   //move backwards to bar after grabbing triball
   PIDPosForwardAbs(-260);
 
@@ -88,21 +88,21 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   PIDAngleRotateAbs(-115);
   timerForward(-70, 300);
 
-  // //BALL 5 - go to center and scoop - FIX THIS WHOLE CHUNK
-  // timerForward(-100, 500);
-  // PIDAngleRotateAbs(-30);
-  // setIntakeSpeed(100);
-  // posForwardAbsWithHeading(80, 750, -30);
-  // posForwardAbsWithHeading(50, 950, -30);
-  // PIDAngleRotateAbs(50);
-  // setIntakeSpeed(0);
-  // setPistonFW(true);
-  // PIDPosCurveAbs(1000, 600, 60);
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(400);
-  // setIntakeSpeed(0);
-  // PIDPosForwardAbs(800);
-  // setPistonFW(false);
+  //BALL 5 - go to center and scoop - FIX THIS WHOLE CHUNK
+  timerForward(-100, 500);
+  PIDAngleRotateAbs(-30);
+  setIntakeSpeed(100);
+  posForwardAbsWithHeading(80, 750, -30);
+  posForwardAbsWithHeading(50, 950, -30);
+  PIDAngleRotateAbs(50);
+  setIntakeSpeed(0);
+  setPistonFW(true);
+  PIDPosCurveAbs(1000, 600, 60);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(0);
+  PIDPosForwardAbs(800);
+  setPistonFW(false);
 
 
   Brain.Screen.setCursor(11, 1);
