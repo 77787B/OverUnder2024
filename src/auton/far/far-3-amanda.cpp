@@ -41,7 +41,7 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
 
 
   // go back to red pole and spit out ball
-  MyGps.gpsPIDMove(-200, -50, -1, 100);
+  MyGps.gpsPIDMove(-200, -90, -1, 100);
   setIntakeSpeed(0);
   setIntakeSpeed(-100);
   this_thread::sleep_for(50);
@@ -53,15 +53,17 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   //BALL 3 - get ball under hang pole
   setIntakeSpeed(100);
   PIDAngleRotateAbs(-48);
-  posForwardAbsWithHeading(90, 420, -50);
-  posForwardAbsWithHeading(30, 1000, -50);
+  posForwardAbsWithHeading(80, 550, -50);
+  posForwardAbsWithHeading(30, 750, -50);
   //move backwards to bar after grabbing triball
-  PIDPosForwardAbs(-220);
+  PIDPosForwardAbs(-260);
+
+
   setIntakeSpeed(0);
 
   //BALL 4 - grab ball in corner with backwing - NEED CHANGES TO THE CURVE AND EVERYTHING AFTER THE CURVE AFTER DROPPING THE BACKWING, TRY ADDING A FAST AND SLOW TIMERFORWARD
   setPistonBLW(true);
-  posForwardAbsWithHeading(15, -475, -90);
+  posForwardAbsWithHeading(15, -520, -95);
   this_thread::sleep_for(300);
   setPistonBLW(false);
   posForwardAbsWithHeading(15, -525, -90);
@@ -72,7 +74,7 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   PIDAngleRotateAbs(-135);
   timerForward(60, 100);
   timerForward(-70, 400);
-  //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT - FIX THIS WHOLE CHUNK
+  //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT
   timerForward(50, 100);
   PIDAngleRotateAbs(65);
   setIntakeSpeed(-100);
@@ -84,18 +86,24 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   setIntakeSpeed(0);
   timerForward(-90, 60);
   PIDAngleRotateAbs(-115);
-  timerForward(-90, 300);
+  timerForward(-70, 300);
 
-  // //BALL 5 - go to center and scoop
-  // timerForward(-100, 300);
+  // //BALL 5 - go to center and scoop - FIX THIS WHOLE CHUNK
+  // timerForward(-100, 500);
   // PIDAngleRotateAbs(-30);
   // setIntakeSpeed(100);
-  // posForwardAbsWithHeading(80, 450, -30);
-  // posForwardAbsWithHeading(50, 700, -30);
+  // posForwardAbsWithHeading(80, 750, -30);
+  // posForwardAbsWithHeading(50, 950, -30);
+  // PIDAngleRotateAbs(50);
+  // setIntakeSpeed(0);
+  // setPistonFW(true);
+  // PIDPosCurveAbs(1000, 600, 60);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(400);
+  // setIntakeSpeed(0);
+  // PIDPosForwardAbs(800);
+  // setPistonFW(false);
 
-  // //END POINT - REACHED FAR LEFT BALL AT HORIZONTAL BAR 4/11
-  // PIDAngleRotateAbs(45);
-  // posForwardAbsWithHeading(90, 500, 135);
 
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
