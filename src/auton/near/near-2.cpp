@@ -12,8 +12,69 @@
  * 4. Push triballs over alley
 */
 
-
 void near_2(bool isRush) {
+  MyTimer autotimer;
+  autotimer.reset();
+  printf ("\n===== near_2: Start =====\n");
+
+  // ## Rush to intake center ball
+  setIntakeSpeed(100);
+  if (isRush) {
+    PIDPosForwardAbs(1215);
+  } else {
+    PIDPosForwardAbs(600);
+  }
+
+  // ## Drop off center ball
+  PIDPosForwardAbs(50);
+  PIDAngleRotateAbs(115);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(800);
+
+  // ## Intake alliance triball
+  PIDAngleRotateAbs(220);
+  setIntakeSpeed(100);
+  PIDPosForwardAbs(200);
+  setIntakeSpeed(0);
+
+  // ## Outtake alliance triball into goal
+  PIDAngleRotateAbs(-60);
+  PIDPosForwardAbs(575);
+  PIDAngleRotateAbs(-18);
+  PIDPosForwardAbs(120);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(800);
+  setIntakeSpeed(0);
+
+  // ## Get corner triball
+  PIDPosForwardAbs(-75);
+  PIDAngleRotateAbs(-54);
+  // PIDPosForwardAbs(-275);
+  PIDPosForwardAbs(-300);
+  setPistonBLW(true);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-100);
+  setPistonBLW(false);
+  this_thread::sleep_for(10);
+
+  // ## Push triballs over alley and touch horizontal bar
+  PIDAngleRotateAbs(110);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(100);
+  setPistonFW(true);
+  PIDPosForwardAbs(350);
+
+  PIDAngleRotateAbs(78);
+  setPistonFLW(false);
+  this_thread::sleep_for(50);
+  PIDPosForwardAbs(835);
+
+  printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}
+
+void near_2_gps(bool isRush) {
   MyTimer autotimer;
   autotimer.reset();
   printf ("\n===== near_2: Start =====\n");
