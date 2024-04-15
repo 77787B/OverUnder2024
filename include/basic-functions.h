@@ -81,5 +81,7 @@ void setPistonBW(bool);
 void setPistonBLW(bool);
 void setPistonBRW(bool);
 void setPistonFW(bool);
+void setPistonFLW(bool);
+void setPistonFRW(bool);
 
 #endif

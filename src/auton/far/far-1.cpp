@@ -166,7 +166,7 @@ void far_1() {
   // # Drop barrier left triball
   PIDAngleRotateAbs(155);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(400);
+  this_thread::sleep_for(400); //used to be 300, change back if going to move forward before outtaking
   setIntakeSpeed(0);
 
   // Get barrier middle triball

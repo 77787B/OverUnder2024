@@ -216,11 +216,21 @@ void setPistonBRW(bool _input){
 }
 
 void setPistonFW(bool _input){
-  // set Expansion piston accordingly
-  if (_input)  PistonFW.off();
-  else PistonFW.on();
+  setPistonFLW(_input);
+  setPistonFRW(_input);
 }
 
+void setPistonFLW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonFLW.off();
+  else PistonFLW.on();
+}
+
+void setPistonFRW(bool _input){
+  // set Expansion piston accordingly
+  if (_input)  PistonFRW.off();
+  else PistonFRW.on();
+}
 
 
 float intake_speed = 0;
