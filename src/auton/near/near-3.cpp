@@ -17,55 +17,79 @@ void near_3() {
   autotimer.reset();
   printf ("\n===== near_3: Start =====\n");
 
-  // ## Rush to intake center triball
+  // ## Rush to intake center ball
   setIntakeSpeed(100);
-  MyGps.gpsPIDMove(0, 1250, 1, 100);
-  this_thread::sleep_for(300);
-  setIntakeSpeed(0);
+  PIDPosForwardAbs(1215);
 
-  // ## Drop off center triball
-  MyGps.gpsPIDMove(-15, 200, -1, 100);
-  PIDAngleRotateAbs(115);
+  // ## Push center triball over barrier
+  resetForwardPos();
+  PIDPosForwardAbs(-100);
+  PIDAngleRotateAbs(75);
+  
+  PIDPosForwardAbs(200);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(500);
+  this_thread::sleep_for(200);
+  setIntakeSpeed(-50);
+  this_thread::sleep_for(100);
+  this_thread::sleep_for(100);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(100);
+  resetForwardPos();
+  PIDPosForwardAbs(150);
+  setPistonBLW(true); // prepare for next step
+  this_thread::sleep_for(100);
   setIntakeSpeed(0);
 
-  // ## Get barrier middle triball
-  // MyGps.gpsPIDMove(325, 1150, 1, 100); // end up (339, 1135)
-  // MyGps.gpsPIDMove(300, 1200, 1, 100); // end up (339, 1135)
-  MyGps.gpsPIDMove(365, 1215, 1, 100); // end up (339, 1135)
-  // MyGps.gpsPIDMove(345, 1175, 1, 100); // end up (339, 1135)
-  // PIDAngleRotateAbs(75);
-  PIDAngleRotateAbs(110);
-  setPistonBW(true);
-  this_thread::sleep_for(50);
-  MyGps.gpsPIDMove(375, 1100, 1, 20);
-  this_thread::sleep_for(50);
-
-  // MyGps.gpsPIDMove(375, 1100, 1, 20);
-  // MyGps.gpsPIDMove(380, 1100, 1, 20);
-  // MyGps.gpsPIDMove(345, 1130, 1, 20);
-
+  // ## capture barrier middle triball
+  PIDAngleRotateAbs(135);
+  // this_thread::sleep_for(1000); // pause longer if triball is bouncy
+  this_thread::sleep_for(500);
+  PIDPosForwardAbs(-75);
+  PIDAngleRotateAbs(145);
+  this_thread::sleep_for(10);
+  PIDAngleRotateAbs(155);
+  this_thread::sleep_for(10);
   PIDAngleRotateAbs(165);
+  this_thread::sleep_for(10);
+
+  // ## barrier middle triball - prepare safe drop off
+  PIDPosForwardAbs(50); 
+  this_thread::sleep_for(10);
+  PIDPosForwardAbs(100); 
   this_thread::sleep_for(10);
   PIDAngleRotateAbs(175);
   this_thread::sleep_for(10);
   PIDAngleRotateAbs(185);
   this_thread::sleep_for(10);
+  PIDAngleRotateAbs(195);
+  this_thread::sleep_for(10);
+  PIDAngleRotateAbs(209);
+  this_thread::sleep_for(100);
 
-  // MyGps.gpsPIDMove(-206, -7, 1, 100);
-  MyGps.gpsPIDMove(-225, -75, 1, 100);
+  // ## Drop off barrier middle triball
+  // PIDPosForwardAbs(1400);
+  PIDPosForwardAbs(1350);
+  setPistonBLW(false);
+  this_thread::sleep_for(100);
+
   // ## Get corner triball
+  PIDAngleRotateAbs(-45);
+  setPistonBW(true);
+  this_thread::sleep_for(200);
+  PIDAngleRotateAbs(-90);
+  PIDPosForwardAbs(-480);
   setPistonBW(false);
-  this_thread::sleep_for(400);
-  PIDAngleRotateAbs(110);
-  this_thread::sleep_for(400);
-  
-  // // ## Push all triballs over alley
-  MyGps.gpsPIDMove(50, -150, 1, 50);
-  setIntakeSpeed(-100);
-  MyGps.gpsPIDMove(690, -100, 1, 100); // If the robot slides when getting alliance tribal, use this.
-  printElased(autotimer);
-  return;
+  this_thread::sleep_for(100);
 
+  // ## Push triballs over alley and touch horizontal bar
+  PIDAngleRotateAbs(110);
+  setPistonFRW(true);
+  setIntakeSpeed(-50);
+  PIDPosForwardAbs(100);
+  PIDAngleRotateAbs(75);
+  PIDPosForwardAbs(500);
+
+  printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
 }
