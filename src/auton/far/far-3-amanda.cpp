@@ -33,7 +33,7 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   // this_thread::sleep_for(100000);
   //BALL 1 - get ball in middle
   setIntakeSpeed(100);
-  posForwardAbsWithHeading(90, 1400, 15);
+  posForwardAbsWithHeading(90, 1400, 14.5);
   PIDPosForwardAbs(1550);
   this_thread::sleep_for(200);
 
@@ -71,47 +71,15 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   timerForward(-100, 300);
 
   //BALL 4 - go to center and scoop
-  PIDPosForwardRel(150);
+  PIDPosForwardRel(225);
   PIDAngleRotateAbs(-45);
   setPistonFW(true);
-  posForwardAbsWithHeading(60, 950, 45);
+  posForwardAbsWithHeading(60, 850, 45);
   PIDAngleRotateAbs(135);
   setIntakeSpeed(-100);
   timerForward(100, 400);
-  // PIDAngleRotateAbs();
-  // setIntakeSpeed(0);
-  setPistonFW(false);
 
-
-
-  // setPistonFW(true);
-  // setIntakeSpeed(-100);
-  // timerForward(100, 300)
-  // setIntakeSpeed(0);
-  // timerForward(-100, 300);
-  // setPistonFW(false);
-
-
-  // setIntakeSpeed(100);
-  // setPistonFW(true);
-  // posForwardAbsWithHeading(80, 1000, 45);
-  // setIntakeSpeed(0);
-  // posForwardAbsWithHeading(90, 700, 35);
-  // setIntakeSpeed(-100);
-  // setPistonFW(false);
-
-
-  // posForwardAbsWithHeading(80, 750, -130);
-  // posForwardAbsWithHeading(50, 950, -30);
-  // PIDAngleRotateAbs(50);
-  // setIntakeSpeed(0);
-  // setPistonFW(true);
-  // PIDPosCurveAbs(1000, 600, 60);
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(600);
-  // setIntakeSpeed(0);
-  // timerForward(100, 700);
-  // setPistonFW(false);
+  //ENDING POINT - 5TH BALL PUSHED INTO GOAL, GOING FOR 6TH ONE ON TOP LEFT CORNER OF HORIZONTAL POLE
 
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
