@@ -29,81 +29,72 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   MyTimer autotimer;
   autotimer.reset();
 
-  //BALL 1 - kick blue ball at start
-
-  //BALL 2 - get ball in middle
-  posForwardAbsWithHeading(90, 1350, 13);//middle term 1305
-  posForwardAbsWithHeading(50, 1450, 13);//middle term 1450 
+  // posForwardAbsWithHeading(40, -600, -135);
+  // this_thread::sleep_for(100000);
+  //BALL 1 - get ball in middle
   setIntakeSpeed(100);
-
-  // posForwardAbsWithHeading(90, 1380, 13); //speed, distance, angle //DISTANCE - 1335
-  // PIDAngleRotateAbs(13);
-
+  posForwardAbsWithHeading(90, 1400, 15);
+  PIDPosForwardAbs(1550);
+  this_thread::sleep_for(200);
 
   // go back to red pole and spit out ball
-  MyGps.gpsPIDMove(-200, -90, -1, 100);
-  setIntakeSpeed(0);
+  posForwardAbsWithHeading(-100, 170, 50);
+  PIDPosForwardAbs(170);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(50);
-  setIntakeSpeed(0);
   PIDAngleRotateAbs(85);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(300);
 
-  //BALL 3 - get ball under hang pole
+  //BALL 2 - get ball under hang pole
   setIntakeSpeed(100);
-  PIDAngleRotateAbs(-48);
-  posForwardAbsWithHeading(80, 550, -50);
-  posForwardAbsWithHeading(30, 825, -50);
+  PIDAngleRotateAbs(-55);
+  // posForwardAbsWithHeading(80, 600, -55);
+  // posForwardAbsWithHeading(30, 850, -30);
+  PIDPosForwardAbs(880);
+  this_thread::sleep_for(200);
+
+
   //move backwards to bar after grabbing triball
-  PIDPosForwardAbs(-260);
-
-
+  PIDAngleRotateAbs(-45);
   setIntakeSpeed(0);
 
-  //BALL 4 - grab ball in corner with backwing - NEED CHANGES TO THE CURVE AND EVERYTHING AFTER THE CURVE AFTER DROPPING THE BACKWING, TRY ADDING A FAST AND SLOW TIMERFORWARD
+  //BALL 3 - grab ball in corner with backwing
+  PIDPosForwardAbs(-950);
+  PIDAngleRotateAbs(-75);
   setPistonBLW(true);
-  posForwardAbsWithHeading(15, -520, -95);
-  this_thread::sleep_for(300);
+  PIDPosForwardRel(-400);
   setPistonBLW(false);
-  posForwardAbsWithHeading(15, -525, -90);
-  setIntakeSpeed(0);
+
   //PUSH 3 BALLS INTO GOAL
-  PIDAngleRotateAbs(-90);
-  posForwardAbsWithHeading(50, -300, 120);
-  PIDAngleRotateAbs(-135);
-  timerForward(60, 100);
-  timerForward(-70, 400);
+  posForwardAbsWithHeading(40, -900, -135);
+  timerForward(-70, 100);
+  timerForward(100, 200);
   //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT
-  timerForward(50, 100);
-  PIDAngleRotateAbs(65);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(100);
-  setIntakeSpeed(0);
-  this_thread::sleep_for(100);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(300);
-  setIntakeSpeed(0);
-  timerForward(-90, 60);
-  PIDAngleRotateAbs(-115);
-  timerForward(-70, 300);
+  // PIDAngleRotateAbs(65);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(100);
+  // setIntakeSpeed(0);
+  // this_thread::sleep_for(100);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(300);
+  // setIntakeSpeed(0);
+  // timerForward(-90, 60);
+  // PIDAngleRotateAbs(-115);
+  // timerForward(-70, 300);
 
-  //BALL 5 - go to center and scoop - FIX THIS WHOLE CHUNK
-  timerForward(-100, 500);
-  PIDAngleRotateAbs(-30);
-  setIntakeSpeed(100);
-  posForwardAbsWithHeading(80, 750, -30);
-  posForwardAbsWithHeading(50, 950, -30);
-  PIDAngleRotateAbs(50);
-  setIntakeSpeed(0);
-  setPistonFW(true);
-  PIDPosCurveAbs(1000, 600, 60);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(400);
-  setIntakeSpeed(0);
-  PIDPosForwardAbs(800);
-  setPistonFW(false);
-
+  // //BALL 4 - go to center and scoop - FIX THIS WHOLE CHUNK
+  // timerForward(-100, 500);
+  // PIDAngleRotateAbs(-30);
+  // setIntakeSpeed(100);
+  // posForwardAbsWithHeading(80, 750, -30);
+  // posForwardAbsWithHeading(50, 950, -30);
+  // PIDAngleRotateAbs(50);
+  // setIntakeSpeed(0);
+  // setPistonFW(true);
+  // PIDPosCurveAbs(1000, 600, 60);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(600);
+  // setIntakeSpeed(0);
+  // timerForward(100, 700);
+  // setPistonFW(false);
 
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
