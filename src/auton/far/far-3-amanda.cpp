@@ -39,9 +39,10 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
 
   // go back to red pole and spit out ball
   posForwardAbsWithHeading(-100, 170, 50);
-  PIDPosForwardAbs(170);
+  PIDPosForwardAbs(150);
   setIntakeSpeed(-100);
   PIDAngleRotateAbs(85);
+  this_thread::sleep_for(200);
 
   //BALL 2 - get ball under hang pole
   setIntakeSpeed(100);
@@ -57,34 +58,50 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
   setIntakeSpeed(0);
 
   //BALL 3 - grab ball in corner with backwing
-  PIDPosForwardAbs(-950);
+  PIDPosForwardAbs(-930);
   PIDAngleRotateAbs(-75);
   setPistonBLW(true);
-  PIDPosForwardRel(-400);
+  // posForwardAbs(20, -);
+  PIDPosForwardRel(-420);
   setPistonBLW(false);
+  this_thread::sleep_for(100);
 
   //PUSH 3 BALLS INTO GOAL
-  posForwardAbsWithHeading(40, -900, -135);
-  timerForward(-70, 100);
-  timerForward(100, 200);
-  //PUSH IN BALL (FROM INTAKE) INTO GOAL FROM FRONT
-  // PIDAngleRotateAbs(65);
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(100);
-  // setIntakeSpeed(0);
-  // this_thread::sleep_for(100);
-  // setIntakeSpeed(-100);
-  // this_thread::sleep_for(300);
-  // setIntakeSpeed(0);
-  // timerForward(-90, 60);
-  // PIDAngleRotateAbs(-115);
-  // timerForward(-70, 300);
+  posForwardAbsWithHeading(20, -700, -145);
+  timerForward(-100, 300);
 
-  // //BALL 4 - go to center and scoop - FIX THIS WHOLE CHUNK
-  // timerForward(-100, 500);
-  // PIDAngleRotateAbs(-30);
+  //BALL 4 - go to center and scoop
+  PIDPosForwardRel(150);
+  PIDAngleRotateAbs(-45);
+  setPistonFW(true);
+  posForwardAbsWithHeading(60, 950, 45);
+  PIDAngleRotateAbs(135);
+  setIntakeSpeed(-100);
+  timerForward(100, 400);
+  // PIDAngleRotateAbs();
+  // setIntakeSpeed(0);
+  setPistonFW(false);
+
+
+
+  // setPistonFW(true);
+  // setIntakeSpeed(-100);
+  // timerForward(100, 300)
+  // setIntakeSpeed(0);
+  // timerForward(-100, 300);
+  // setPistonFW(false);
+
+
   // setIntakeSpeed(100);
-  // posForwardAbsWithHeading(80, 750, -30);
+  // setPistonFW(true);
+  // posForwardAbsWithHeading(80, 1000, 45);
+  // setIntakeSpeed(0);
+  // posForwardAbsWithHeading(90, 700, 35);
+  // setIntakeSpeed(-100);
+  // setPistonFW(false);
+
+
+  // posForwardAbsWithHeading(80, 750, -130);
   // posForwardAbsWithHeading(50, 950, -30);
   // PIDAngleRotateAbs(50);
   // setIntakeSpeed(0);
