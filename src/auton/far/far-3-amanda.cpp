@@ -53,7 +53,7 @@ CHANGE THIS SO THE ROBOT IS CONSISTENT IN GRABBING TRIBALL!!!
 
  //BALL 2 - get ball under hang pole
  setIntakeSpeed(100);
- PIDAngleRotateAbs(-55);
+ PIDAngleRotateAbs(-50);
  // posForwardAbsWithHeading(80, 600, -55);
  // posForwardAbsWithHeading(30, 850, -30);
  PIDPosForwardAbs(900);
@@ -76,6 +76,10 @@ setPistonBLW(false);
  setPistonBRW(true);//TEST
  this_thread::sleep_for(600);
  timerForward(-90, 350);
+ timerForward(90, 100);
+ this_thread::sleep_for(100);
+ timerForward(-100, 350);
+ this_thread::sleep_for(150);
 
 
  //BALL 4 - go to center and scoop
@@ -95,7 +99,7 @@ setPistonBLW(false);
 //  setIntakeSpeed(100);
 //  PIDAngleRotateAbs(253);
 //  posForwardAbsWithHeading(20, 500, 253);
-//  setPistonFW(false);
+ setPistonFW(false);
 
 
 
