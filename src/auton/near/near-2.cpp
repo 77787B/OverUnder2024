@@ -48,12 +48,11 @@ void near_2(bool isRush) {
 
   // ## Get corner triball
   PIDPosForwardAbs(-75);
-  PIDAngleRotateAbs(-54);
-  // PIDPosForwardAbs(-275);
+  PIDAngleRotateAbs(-53);
   PIDPosForwardAbs(-300);
   setPistonBLW(true);
   this_thread::sleep_for(100);
-  PIDAngleRotateAbs(-100);
+  PIDAngleRotateAbs(-110);
   setPistonBLW(false);
   this_thread::sleep_for(10);
 
@@ -62,12 +61,13 @@ void near_2(bool isRush) {
   setIntakeSpeed(-100);
   this_thread::sleep_for(100);
   setPistonFW(true);
-  PIDPosForwardAbs(350);
+  PIDPosForwardAbs(370);
 
-  PIDAngleRotateAbs(78);
+  PIDAngleRotateAbs(76);
   setPistonFLW(false);
   this_thread::sleep_for(50);
   PIDPosForwardAbs(835);
+  this_thread::sleep_for(500);
 
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
