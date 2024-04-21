@@ -83,9 +83,13 @@ void posForwardAbsWithHeading(float _power, float _targetPos, float _targetHeadi
   posForwardRelWithHeading(power, targetPosRel, _targetHeading);
 }
 
-void PIDPosForwardAbs(float _target) {
+void PIDPosForwardAbs(float _target, float maxPower, int maxTime) {
   // move forward to _target position
   // stops base when finishing
+
+  MyTimer forwardTimer;
+  forwardTimer.reset();
+
   auto pid = PID();
   pid.setCoefficient(0.45, 0.03, 5);
   pid.setTarget(_target);
@@ -94,9 +98,14 @@ void PIDPosForwardAbs(float _target) {
   pid.setErrorTolerance(5);
   pid.setDTolerance(20);
   pid.setJumpTime(20);
-  while (!pid.targetArrived()){ //} && myTimer.getTime() < 1000 + abbs(target * 10)) {
+  while (!pid.targetArrived() 
+    && (maxTime < 0 || forwardTimer.getTime() < maxTime)) {
     pid.update(getForwardPos());
-    moveForward(pid.getOutput());
+    float power = pid.getOutput();
+    if (power > maxPower) {
+      power = maxPower;
+    }
+    moveForward(power);
     Brain.Screen.setCursor(2, 1);
     Brain.Screen.print("Forward Position: %.1f                           ", getForwardPos());
     this_thread::sleep_for(5);
@@ -218,7 +227,7 @@ void PIDAngleRotateRel(float _target) {
   PIDAngleRotateAbs(getHeading() + _target);
 }
 
-void PIDAngleRotateAbs(float _target, float kp, float ki, float kd, float tolerance) {
+void PIDAngleRotateAbs(float _target, float maxPower, float kp, float ki, float kd, float tolerance) {
   printf ("PIDAngleRotateAbs: target=%.1f, \n", _target);
 
   // rotate clockwise with _power to _target angle
@@ -238,7 +247,11 @@ void PIDAngleRotateAbs(float _target, float kp, float ki, float kd, float tolera
   pid.setType("turn");
   while (!pid.targetArrived()){ // &&  myTimer.getTime() < 1000 + abbs(target * 3)) {
     pid.update(getHeading());
-    moveClockwise(pid.getOutput());
+    float power = pid.getOutput();
+    if (power > maxPower) {
+      power = maxPower;
+    }
+    moveClockwise(power);
     Brain.Screen.setCursor(1, 1);
     Brain.Screen.print("Heading: %.2f            ", getHeading());
     this_thread::sleep_for(5);
