@@ -13,46 +13,60 @@
 */
 
 void near_2(bool isRush) {
+  // PIDPosForwardAbs(120);
+  // PIDPosForwardAbs(120, 150);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(500);
+  // return;
+
   MyTimer autotimer;
   autotimer.reset();
   printf ("\n===== near_2: Start =====\n");
 
   // ## Rush to intake center ball
   setIntakeSpeed(100);
-  if (isRush) {
-    PIDPosForwardAbs(1215);
-  } else {
-    PIDPosForwardAbs(600);
+  float forwardTarget = 1175;
+  // float forwardTarget = 1215;
+  // float forwardTarget = 1230;
+  if (isRush == false) {
+    forwardTarget = 900;
   }
+  PIDPosForwardAbs(forwardTarget);
+  this_thread::sleep_for(300);
+  setIntakeSpeed(0);
 
   // ## Drop off center ball
-  PIDPosForwardAbs(50);
+  resetForwardPos();
+  PIDPosForwardAbs(50 - forwardTarget);
   PIDAngleRotateAbs(115);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(800);
+  this_thread::sleep_for(400);
 
   // ## Intake alliance triball
   PIDAngleRotateAbs(220);
   setIntakeSpeed(100);
   PIDPosForwardAbs(200);
+  this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
   // ## Outtake alliance triball into goal
   PIDAngleRotateAbs(-60);
   PIDPosForwardAbs(575);
   PIDAngleRotateAbs(-18);
-  PIDPosForwardAbs(120);
+  PIDPosForwardAbs(120, 200);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(800);
+  this_thread::sleep_for(1000);
   setIntakeSpeed(0);
 
   // ## Get corner triball
   PIDPosForwardAbs(-75);
-  PIDAngleRotateAbs(-53);
+  PIDAngleRotateAbs(-50);
+  // PIDPosForwardAbs(-325);
   PIDPosForwardAbs(-300);
   setPistonBLW(true);
   this_thread::sleep_for(100);
-  PIDAngleRotateAbs(-110);
+
+  PIDAngleRotateAbs(-80);
   setPistonBLW(false);
   this_thread::sleep_for(10);
 
@@ -61,12 +75,13 @@ void near_2(bool isRush) {
   setIntakeSpeed(-100);
   this_thread::sleep_for(100);
   setPistonFW(true);
-  PIDPosForwardAbs(370);
+  PIDPosForwardAbs(380);
 
   PIDAngleRotateAbs(76);
   setPistonFLW(false);
   this_thread::sleep_for(50);
-  PIDPosForwardAbs(835);
+  PIDPosForwardAbs(775);
+  setPistonFW(false);
   this_thread::sleep_for(500);
 
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
@@ -75,6 +90,7 @@ void near_2(bool isRush) {
 }
 
 void near_2_gps(bool isRush) {
+/*
   MyTimer autotimer;
   autotimer.reset();
   printf ("\n===== near_2: Start =====\n");
@@ -132,5 +148,5 @@ void near_2_gps(bool isRush) {
   printf ("\n===== near_2: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+*/
 }
-
