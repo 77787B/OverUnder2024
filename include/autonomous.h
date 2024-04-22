@@ -11,7 +11,6 @@ void far_2(void);
 void far_3(void); 
 void far_4(void);
 void far_3_amanda(void);
-
 void near_1(void);
 void near_2(bool = true);
 void near_3(void);
