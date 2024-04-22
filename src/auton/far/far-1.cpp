@@ -47,11 +47,11 @@ void far_1() {
   setPistonBRW(false);
 
   //drop off alley triball
-  this_thread::sleep_for(100);
+  // this_thread::sleep_for(100);
   PIDAngleRotateAbs(-15);
   PIDPosForwardAbs(450);
   PIDAngleRotateAbs(50);
-  PIDPosForwardAbs(650);
+  PIDPosForwardAbs(650, 350);
   PIDAngleRotateAbs(152);
   setIntakeSpeed(-100);
   this_thread::sleep_for(325);
@@ -60,7 +60,9 @@ void far_1() {
   // # Get barrier left triball
   PIDAngleRotateAbs(-19);
   setIntakeSpeed(100);
+  printf ("\n===== far_1: Before move=%.i =====\n", autotimer.getTime());
   PIDPosForwardAbs(375);
+  printf ("\n===== far_1: After move=%.i =====\n", autotimer.getTime());
   this_thread::sleep_for(100);
   setIntakeSpeed(0);
 
@@ -72,16 +74,17 @@ void far_1() {
   setIntakeSpeed(0);
 
   // Get barrier middle triball
-  PIDAngleRotateAbs(55);
+  PIDAngleRotateAbs(60);
   setIntakeSpeed(100);
   PIDPosForwardAbs(350);
 
   // push last three balls in
-  setPistonFW(true);
   PIDAngleRotateAbs(175);
-  setIntakeSpeed(-100); 
+  setPistonFW(true);
+  setIntakeSpeed(-70); 
   this_thread::sleep_for(75);
-  timerForward(100, 375);
+  printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
+  timerForward(100, 600);
 
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);

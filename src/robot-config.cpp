@@ -22,7 +22,7 @@ controller Controller1 = controller(primary);
   motor Motor_Cata1 = motor(PORT16, ratio36_1, true);
 
   inertial IMU = inertial(PORT2);
-  led PistonHH = led(Brain.ThreeWirePort.D); //High Hang
+  led PistonHH = led(Brain.ThreeWirePort.F); //High Hang
   // led PistonFW = led(Brain.ThreeWirePort.H); //Front Wing
   led PistonFLW = led(Brain.ThreeWirePort.H);
   led PistonFRW = led(Brain.ThreeWirePort.D);
