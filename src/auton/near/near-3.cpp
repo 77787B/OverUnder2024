@@ -30,8 +30,7 @@ void near_3() {
   setIntakeSpeed(-100);
   this_thread::sleep_for(200);
   setIntakeSpeed(-50);
-  this_thread::sleep_for(100);
-  this_thread::sleep_for(100);
+  this_thread::sleep_for(200);
   setIntakeSpeed(-100);
   this_thread::sleep_for(100);
   resetForwardPos();
@@ -42,38 +41,28 @@ void near_3() {
 
   // ## capture barrier middle triball
   PIDAngleRotateAbs(135);
-  // this_thread::sleep_for(1000); // pause longer if triball is bouncy
   this_thread::sleep_for(500);
-  PIDPosForwardAbs(-75);
-  PIDAngleRotateAbs(145);
-  this_thread::sleep_for(10);
-  PIDAngleRotateAbs(155);
-  this_thread::sleep_for(10);
-  PIDAngleRotateAbs(165);
-  this_thread::sleep_for(10);
+  PIDPosForwardAbs(-50);
+  PIDAngleRotateAbs(180, 30);
 
   // ## barrier middle triball - prepare safe drop off
-  PIDPosForwardAbs(50); 
+  PIDPosForwardAbs(150, 30);
   this_thread::sleep_for(10);
-  PIDPosForwardAbs(100); 
+  PIDAngleRotateAbs(195, 20);
   this_thread::sleep_for(10);
-  PIDAngleRotateAbs(175);
-  this_thread::sleep_for(10);
-  PIDAngleRotateAbs(185);
-  this_thread::sleep_for(10);
-  PIDAngleRotateAbs(195);
-  this_thread::sleep_for(10);
-  PIDAngleRotateAbs(209);
-  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(211, 20);
 
   // ## Drop off barrier middle triball
-  // PIDPosForwardAbs(1400);
-  PIDPosForwardAbs(1350);
+  PIDPosForwardAbs(1250);
   setPistonBLW(false);
   this_thread::sleep_for(100);
 
   // ## Get corner triball
-  PIDAngleRotateAbs(-45);
+  PIDAngleRotateAbs(45);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-35);
+  PIDPosForwardAbs(-75);
+
   setPistonBW(true);
   this_thread::sleep_for(200);
   PIDAngleRotateAbs(-90);
@@ -83,11 +72,12 @@ void near_3() {
 
   // ## Push triballs over alley and touch horizontal bar
   PIDAngleRotateAbs(110);
-  setPistonFRW(true);
+  setPistonFW(true);
   setIntakeSpeed(-50);
   PIDPosForwardAbs(100);
+  setPistonFLW(false);
   PIDAngleRotateAbs(75);
-  PIDPosForwardAbs(500);
+  PIDPosForwardAbs(590);
 
   printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
