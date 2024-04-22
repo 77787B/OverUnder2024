@@ -97,15 +97,15 @@ PIDPosForwardRel(-200);
 setPistonBRW(false);
 PIDAngleRotateAbs(-45);
 setIntakeSpeed(100);
-posForwardAbsWithHeading(60, 680, -20);
+posForwardAbsWithHeading(65, 1050, -360);
+PIDAngleRotateAbs(-360);
 this_thread::sleep_for(300);
+
 setIntakeSpeed(0);
 PIDAngleRotateAbs(120);
 setIntakeSpeed(-100);
 setPistonFW(true);
 posForwardAbsWithHeading(70, 900, 100);
-// PIDAngleRotateAbs(120);
-// PIDPosForwardAbs(900);
 
 Brain.Screen.setCursor(11, 1);
 Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
