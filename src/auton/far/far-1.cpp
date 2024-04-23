@@ -20,7 +20,6 @@
 */
 
 void far_1() {
-
   MyTimer autotimer;
   autotimer.reset();
   printf ("\nfar_1:\n");
@@ -41,29 +40,32 @@ void far_1() {
 
   // # Push alliance and corner triballs into goal
   PIDAngleRotateAbs(-42);
-  PIDPosForwardAbs(-260);
+  PIDPosForwardAbs(-260, 150);
+  PIDAngleRotateAbs(-75);
+  // timerForward(-100, 350);
+  PIDPosForwardAbs(-200, 50, 100);
   PIDAngleRotateAbs(-87);
-  timerForward(-100, 350);
+  timerForward(-100, 300);
   setPistonBRW(false);
+  this_thread::sleep_for(100);
 
-  //drop off alley triball
-  // this_thread::sleep_for(100);
+  // # Drop off alley triball
   PIDAngleRotateAbs(-15);
   PIDPosForwardAbs(450);
   PIDAngleRotateAbs(50);
   PIDPosForwardAbs(650, 350);
   PIDAngleRotateAbs(152);
   setIntakeSpeed(-100);
-  this_thread::sleep_for(325);
+  this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
   // # Get barrier left triball
   PIDAngleRotateAbs(-19);
   setIntakeSpeed(100);
   printf ("\n===== far_1: Before move=%.i =====\n", autotimer.getTime());
-  PIDPosForwardAbs(375);
+  PIDPosForwardAbs(375, 600);
   printf ("\n===== far_1: After move=%.i =====\n", autotimer.getTime());
-  this_thread::sleep_for(100);
+  this_thread::sleep_for(50);
   setIntakeSpeed(0);
 
   // # Drop barrier left triball
@@ -73,18 +75,29 @@ void far_1() {
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  // Get barrier middle triball
-  PIDAngleRotateAbs(60);
+  // # Get center triball
+  PIDAngleRotateAbs(115);
   setIntakeSpeed(100);
   PIDPosForwardAbs(350);
-
-  // push last three balls in
-  PIDAngleRotateAbs(175);
+  PIDAngleRotateAbs(180);
   setPistonFW(true);
-  setIntakeSpeed(-70); 
-  this_thread::sleep_for(75);
-  printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
-  timerForward(100, 600);
+  setIntakeSpeed(-75);
+  this_thread::sleep_for(100);
+  timerForward(100, 300);
+
+  // ## THIS IS FOR 6 BALLS BUT OVERTIME
+  // // Get barrier middle triball
+  // PIDAngleRotateAbs(60);
+  // setIntakeSpeed(100);
+  // PIDPosForwardAbs(350);
+
+  // // Push last three triballs into goal
+  // PIDAngleRotateAbs(175);
+  // setPistonFW(true);
+  // setIntakeSpeed(-70); 
+  // // this_thread::sleep_for(75);
+  // printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
+  // timerForward(100, 600);
 
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
@@ -94,7 +107,7 @@ void far_1() {
 
 
 void far_1_gps() {
-
+/*
   MyTimer autotimer;
   autotimer.reset();
   printf ("\nfar_1:\n");
@@ -153,9 +166,5 @@ void far_1_gps() {
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+*/
 }
-
-
-
-
-// P.S try PIDPosCurveAbs(5, 400, 100); lol
