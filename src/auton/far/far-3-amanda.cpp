@@ -33,7 +33,7 @@ autotimer.reset();
 //BALL 1 - get ball in middle
 setIntakeSpeed(100);
 // posForwardAbsWithHeading(90, 1400, 15); - SLOWER CODE FOR GRABBING, UPDATED TO 100 SPEED
-posForwardAbsWithHeading(100, 1285, 15);
+posForwardAbsWithHeading(100, 1295, 13);
 PIDPosForwardAbs(1550);
 this_thread::sleep_for(100);
 // go back to red pole and spit out ball
@@ -47,7 +47,7 @@ this_thread::sleep_for(100);
 setIntakeSpeed(100);
 PIDAngleRotateAbs(-50);
 PIDPosForwardAbs(850);
-this_thread::sleep_for(150);
+this_thread::sleep_for(100);
 //move backwards to bar after grabbing triball
 PIDAngleRotateAbs(-45);
 setIntakeSpeed(0);
@@ -58,16 +58,14 @@ PIDPosForwardAbs(-930);//-920
 PIDAngleRotateAbs(-75);
 setPistonBLW(true);
 PIDPosForwardRel(-370);//-400
-setPistonBLW(false);
 PIDAngleRotateAbs(-75);
-
-
-
+setPistonBLW(false);
 
 //PUSH 3 BALLS INTO GOAL
-posForwardAbsWithHeading(30, -250, -125);//?, ?, -130
 setPistonBRW(true);
+posForwardAbsWithHeading(20, -250, -125);//?, ?, -130
 timerForward(-100, 350);
+this_thread::sleep_for(50);
 timerForward(40, 200);//125
 this_thread::sleep_for(50);
 // PIDAngleRotateAbs(-35);//TEST
@@ -78,7 +76,6 @@ timerForward(100, 400);
 this_thread::sleep_for(100);//200
 setIntakeSpeed(0);
 setPistonFW(false);
-
 
 //BALL 4 - left triball at black pole
 PIDPosForwardRel(-200);
@@ -95,7 +92,7 @@ PIDAngleRotateAbs(105);
 setPistonFW(true);
 // posForwardAbsWithHeading(60, 900, 135);
 setIntakeSpeed(-100);
-PIDPosForwardAbs(1200);
+PIDPosForwardAbs(1000);
 setIntakeSpeed(0);
 
 
