@@ -5,84 +5,89 @@
 #include "GPS.h"
 
 /**
- * Far 2: ? goal
- * //Center Rush
+ * Far 2: 6 goal
 */
 void far_2() {
-
   MyTimer autotimer;
   autotimer.reset();
+  printf ("\nfar_1:\n");
 
-  setPistonFW(true);
-  this_thread::sleep_for(300);
-  setPistonFW(false);
-
-  //get center triball (1st green ball)
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-0, 1300, 1);
-  this_thread::sleep_for(300);
+  // # Get alley triball
+  setIntakeSpeed(80);
+  PIDPosForwardAbs(80);
+  this_thread::sleep_for(50);
   setIntakeSpeed(0);
 
-  //go back to starting point and outtake 1st ball
-  MyGps.gpsPIDMove(0, -100, -1);
-  PIDAngleRotateAbs(75);
-  setIntakeSpeed(-75);
-  this_thread::sleep_for(550);
-  setIntakeSpeed(0);
-
-  //get ball under pole (2nd green ball)
-  // PIDAngleRotateAbs(-65);
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-715, 75, 1);
-  this_thread::sleep_for(300);
-  setIntakeSpeed(0);
-
-  //push in first, second, and third (in triangle) and alliance balls
-  MyGps.gpsPIDMove(150, -100, -1); 
-  PIDAngleRotateAbs(-135);
+  // # Get corner triball
+  PIDAngleRotateAbs(-8);
+  PIDPosForwardAbs(-1050);
   setPistonBW(true);
-  MyGps.gpsPIDMove(500, 200, -1, 70);
-  setPistonBW(false);
-  PIDAngleRotateAbs(-120);
-  timerForward(-80, 200);
-  PIDAngleRotateAbs(-140);
-  timerForward(-100, 300);
-  timerForward(100, 150);
-  MyGps.gpsPIDMove(650, 450, 1);
-  PIDAngleRotateAbs(30);
-  setIntakeSpeed(-100);
-  this_thread::sleep_for(450);
-  setIntakeSpeed(0);
-  timerForward(-100, 200);
+  PIDAngleRotateAbs(-37);
+  PIDPosForwardAbs(-150);
+  PIDAngleRotateAbs(-80);
+  setPistonBLW(false);
 
-  //get fourth green ball and drop it off next to goal
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-430, 1200, 1);
-  this_thread::sleep_for(400);
-  // timerForward(-100, 100);
-  MyGps.gpsPIDMove(75, 1300, 1);
+  // # Push alliance and corner triballs into goal
+  PIDAngleRotateAbs(-42);
+  PIDPosForwardAbs(-260, 150);
+  PIDAngleRotateAbs(-75);
+  PIDPosForwardAbs(-200, 50, 100);
+  PIDAngleRotateAbs(-87);
+  timerForward(-100, 300);
+  setPistonBRW(false);
+  this_thread::sleep_for(100);
+  PIDPosForwardAbs(30);
   PIDAngleRotateAbs(90);
   setIntakeSpeed(-80);
-  this_thread::sleep_for(400);
-  setIntakeSpeed(0);
-
-  //get fifth green ball and push in 4th and 5th green balls
-  timerForward(-100, 200);
-  setIntakeSpeed(100);
-  MyGps.gpsPIDMove(-275, 1750, 1);
-  this_thread::sleep_for(400);
-  setIntakeSpeed(0);
-  MyGps.gpsPIDMove(0, 1600, -1);
-  PIDAngleRotateAbs(100);
-  setIntakeSpeed(-100);
-  setPistonFW(true);
-  this_thread::sleep_for(400);
-  timerForward(100, 300);
-  setIntakeSpeed(0);
-  setPistonFW(false);
+  this_thread::sleep_for(300);
+  PIDAngleRotateAbs(-87);
   timerForward(-100, 300);
+  printf ("\n===== far_1: Before move=%.i =====\n", autotimer.getTime());
 
+  // // # Drop off alley triball
+  // PIDAngleRotateAbs(-15);
+  // PIDPosForwardAbs(450);
+  // PIDAngleRotateAbs(50);
+  // PIDPosForwardAbs(650, 350);
+  // PIDAngleRotateAbs(152);
+  // setIntakeSpeed(-100);
+  // this_thread::sleep_for(300);
+  // setIntakeSpeed(0);
+
+  // # Get barrier left triball
+  PIDPosForwardAbs(75);
+  PIDAngleRotateAbs(19);
+  setIntakeSpeed(100);
+  printf ("\n===== far_1: Before move=%.i =====\n", autotimer.getTime());
+  PIDPosForwardAbs(1200, 1000);
+  printf ("\n===== far_1: After move=%.i =====\n", autotimer.getTime());
+  this_thread::sleep_for(50);
+  setIntakeSpeed(0);
+
+  // # Drop barrier left triball
+  PIDAngleRotateAbs(155);
+  PIDPosForwardAbs(100);
+  setIntakeSpeed(-100);
+  this_thread::sleep_for(300);
+  setIntakeSpeed(0);
+
+  // Get barrier middle triball
+  PIDAngleRotateAbs(60);
+  setIntakeSpeed(100);
+
+  printf ("\n===== far_1: barrier middle triball Before move=%.i =====\n", autotimer.getTime());
+  PIDPosForwardAbs(425);
+  printf ("\n===== far_1: barrier middle triball After move=%.i =====\n", autotimer.getTime());
+
+  // Push last three triballs into goal
+  PIDAngleRotateAbs(175);
+  setPistonFW(true);
+  setIntakeSpeed(-70); 
+  // this_thread::sleep_for(75);
+  printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
+  timerForward(100, 600);
+
+  printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);
   Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
-  printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
 }
