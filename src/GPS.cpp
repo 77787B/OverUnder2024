@@ -88,8 +88,8 @@ void GPS::updateGpsPos(){
   Brain.Screen.print("GPS:  x:  %.1f   y:  %.1f", gpsPosX, gpsPosY);
 
   if ((lastGpsX - gpsPosX) > 1 || (lastGpsY - gpsPosY) > 1) {
-    printf("Last GPS:  x:  %.1f   y:  %.1f\n", lastGpsX, lastGpsY);
-    printf("GPS:  x:  %.1f   y:  %.1f\n", gpsPosX, gpsPosY);
+    // printf("Last GPS:  x:  %.1f   y:  %.1f\n", lastGpsX, lastGpsY);
+    // printf("GPS:  x:  %.1f   y:  %.1f\n", gpsPosX, gpsPosY);
     lastGpsX = gpsPosX;
     lastGpsY = gpsPosY;
   }

@@ -16,6 +16,8 @@ void near_2(bool = true);
 void near_3(void);
 void near_4(void);
 
+void testTurnPid();
+
 int getAutonChoose();
 void circulateAutonChoose();
 void runAuton();

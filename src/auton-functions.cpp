@@ -221,10 +221,10 @@ void angleRotateAbs(float _power, float _target) {
   angleRotateRel(_power, _target - getHeading());
 }
 
-void PIDAngleRotateRel(float _target) {
+void PIDAngleRotateRel(float _target, float maxPower, float kp, float ki, float kd, float tolerance) {
   // rotate clockwise with _power for _target angle
   // stops base when finishing
-  PIDAngleRotateAbs(getHeading() + _target);
+  PIDAngleRotateAbs(getHeading() + _target, maxPower, kp, ki, kd, tolerance);
 }
 
 void PIDAngleRotateAbs(float _target, float maxPower, float kp, float ki, float kd, float tolerance) {

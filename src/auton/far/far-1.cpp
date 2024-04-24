@@ -75,29 +75,30 @@ void far_1() {
   this_thread::sleep_for(300);
   setIntakeSpeed(0);
 
-  // # Get center triball
-  PIDAngleRotateAbs(115);
-  setIntakeSpeed(100);
-  PIDPosForwardAbs(350);
-  PIDAngleRotateAbs(180);
-  setPistonFW(true);
-  setIntakeSpeed(-75);
-  this_thread::sleep_for(100);
-  timerForward(100, 300);
-
-  // ## THIS IS FOR 6 BALLS BUT OVERTIME
-  // // Get barrier middle triball
-  // PIDAngleRotateAbs(60);
+  // ## THIS IS FOR 5 BALLS WHEN 6 BALLS WAS OVERTIME
+  // // # Get center triball
+  // PIDAngleRotateAbs(115);
   // setIntakeSpeed(100);
   // PIDPosForwardAbs(350);
-
-  // // Push last three triballs into goal
-  // PIDAngleRotateAbs(175);
+  // PIDAngleRotateAbs(180);
   // setPistonFW(true);
-  // setIntakeSpeed(-70); 
-  // // this_thread::sleep_for(75);
-  // printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
-  // timerForward(100, 600);
+  // setIntakeSpeed(-75);
+  // this_thread::sleep_for(100);
+  // timerForward(100, 300);
+
+  // ## THIS IS FOR 6 BALLS BUT OVERTIME
+  // Get barrier middle triball
+  PIDAngleRotateAbs(60);
+  setIntakeSpeed(100);
+  PIDPosForwardAbs(350);
+
+  // Push last three triballs into goal
+  PIDAngleRotateAbs(175);
+  setPistonFW(true);
+  setIntakeSpeed(-70); 
+  // this_thread::sleep_for(75);
+  printf ("\n===== far_1: Before Push=%.i =====\n", autotimer.getTime());
+  timerForward(100, 600);
 
   printf ("\n===== far_1: End: Elased=%.i =====\n", autotimer.getTime());
   Brain.Screen.setCursor(11, 1);

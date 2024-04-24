@@ -13,7 +13,7 @@ void autonInit(void) {
 
 const int num_of_choices = 8;
 
-static int auton_choose = 2; // Default auton_choose
+static int auton_choose = 1; // Default auton_choose
 
 int getAutonChoose() {
   return auton_choose;
@@ -29,7 +29,8 @@ void runAuton() {
   autonFlipper(true);
   autonInit();
 
-  if (auton_choose == 1) far_1(); 
+  if (auton_choose == 0) testTurnPid(); 
+  else if (auton_choose == 1) far_1(); 
   else if (auton_choose == 2) near_2(true);
   else if (auton_choose == 3) far_2();
   else if (auton_choose == 4) near_2(false);
