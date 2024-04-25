@@ -1,0 +1,75 @@
+#include "autonomous.h"
+#include "parameters.h"
+#include "my-timer.h"
+#include "robot-config.h"
+#include "GPS.h"
+
+/**
+ * Near 3: Elim: rush center, 1 goal, 3 over
+ * 1. Rush to interrupt barrier middle triball (by using back wing)
+ * 2. Get center triball
+ * 3. Push center triball over alley toward our goal
+ * 4. Get corner triball
+ * 5. Push triballs over barrier
+*/
+
+void near_3_interrupt() {
+  MyTimer autotimer;
+  autotimer.reset();
+  printf ("\n===== near_3: Start =====\n");
+
+  // ## Rush to interrupt barrier middle triball
+  // back right wing should open between center triball and barrier middle triball 
+  PIDPosForwardAbs(-900);
+  setPistonBRW(true);
+  PIDAngleRotateAbs(45);
+return;
+
+  // ## Capture center triball
+  setPistonBRW(false);
+  setIntakeSpeed(100);
+  resetForwardPos();
+  PIDPosForwardAbs(100);
+
+  // ## Push center triball over barrier
+  resetForwardPos();
+  PIDPosForwardAbs(-100);
+  PIDAngleRotateAbs(225);
+  setIntakeSpeed(-50);
+  this_thread::sleep_for(400);
+  setIntakeSpeed(-100);
+  PIDPosForwardAbs(50);
+  
+  // ## Get corner triball
+  resetForwardPos();
+  PIDPosForwardAbs(-50); // need this if it hits barrier when rotating
+  PIDAngleRotateAbs(180);
+  PIDPosForwardAbs(-900);
+
+  PIDAngleRotateAbs(45);
+  this_thread::sleep_for(100);
+  PIDAngleRotateAbs(-35);
+  PIDPosForwardAbs(-75);
+
+  setPistonBW(true);
+  this_thread::sleep_for(200);
+  PIDAngleRotateAbs(-90);
+  PIDPosForwardAbs(-480);
+  setPistonBW(false);
+  this_thread::sleep_for(100);
+
+return;
+
+  // ## Push triballs over alley and touch horizontal bar
+  PIDAngleRotateAbs(110);
+  setPistonFW(true);
+  setIntakeSpeed(-50);
+  PIDPosForwardAbs(100);
+  setPistonFLW(false);
+  PIDAngleRotateAbs(75);
+  PIDPosForwardAbs(590);
+
+  printf ("\n===== near_3: End: Elased=%.i =====\n", autotimer.getTime());
+  Brain.Screen.setCursor(11, 1);
+  Brain.Screen.print("AutonTimer: %d               ", autotimer.getTime());
+}
