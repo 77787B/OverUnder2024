@@ -217,8 +217,31 @@ void setPistonBRW(bool _input){
 
 void setPistonFW(bool _input){
   // set Expansion piston accordingly
-  if (_input)  PistonFW.off();
-  else PistonFW.on();
+  if (_input) {
+    PistonFLW.off();
+    PistonFRW.off();
+
+  }
+  else {
+  PistonFRW.on();
+  PistonFLW.on();
+  }
+}
+void setPistonFLW(bool _input){
+  if(_input){
+    PistonFLW.off();
+  }
+  else{
+    PistonFLW.on();
+  }
+}
+void setPistonFRW(bool _input){
+  if(_input){
+    PistonFRW.off();
+  }
+  else{
+    PistonFRW.on();
+  }
 }
 
 
@@ -233,9 +256,9 @@ void flapFW()
     {
         if (flaptime > 0)
         {
-            PistonFW.off();
+            setPistonFW(true);
             this_thread::sleep_for(flaptime);
-            PistonFW.on();
+            setPistonFW(false);
             flaptime = 0;
         }
         this_thread::sleep_for(1);
